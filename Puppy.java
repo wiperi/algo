@@ -1,7 +1,7 @@
 public class Puppy {
     public Puppy(String name) {
         // 这个构造器仅有一个参数：name
-        System.out.println("小狗的名字是 : " + name);
+        System.out.println("The dog's name is " + name);
     }
 
     public Puppy() {
@@ -9,24 +9,25 @@ public class Puppy {
     }
 
     /* 这是一个嵌套类 */
-    public class SecondPuppy {
-        public SecondPuppy(String name) {
+    public class Collar {
+        public Collar(String color) {
             // 这个构造器仅有一个参数：name
-            System.out.println("the dog's name is: " + name);
+            System.out.println("Its collar colored in: " + color);
         }
     }
 
     public static void main(String[] args) {
 
         // 下面的语句将创建一个Puppy对象
-        Puppy myPuppy = new Puppy("tommy");
+        Puppy poopoo = new Puppy("poopoo");
         
 
-        SecondPuppy mySecondPuppy = new Puppy("andy").new SecondPuppy("James");
+        Collar poopoo_collar = new Puppy().new Collar("Red");
         
+        // 调用另一个类的方法，由于该方法是static method，所以不需要实例化，可以直接调用
         HelloWorld.main(new String[] {});
         
-        HelloWorld.staticmethod();
+        HelloWorld.static_method_saying_goodbye();
     }
 
 }
