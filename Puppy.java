@@ -20,14 +20,12 @@ public class Puppy {
 
         // 下面的语句将创建一个Puppy对象
         Puppy poopoo = new Puppy("poopoo");
-        
 
         Collar poopoo_collar = new Puppy().new Collar("Red");
-        
+
         // 调用另一个类的方法，由于该方法是static method，所以不需要实例化，可以直接调用
         HelloWorld.main(new String[] {});
-        
+
         HelloWorld.static_method_saying_goodbye();
     }
-
 }
