@@ -1,6 +1,9 @@
+package Week1_UnionFind.Programming_Task;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.StdStats;
+import edu.princeton.cs.algs4.Stopwatch;
 import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.Stopwatch;
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 public class Percolation {
@@ -23,13 +26,6 @@ public class Percolation {
         virtualBottom = n * n + 1;
         grid = new boolean[n][n];
         openSitesCount = 0;
-
-        // connect virtualTop to the top row and do the same to virtualBottom and the
-        // bottom row
-        for (int i = 1; i <= gridSize; i++) {
-            uf.union(virtualTop, i);
-            uf.union(virtualBottom, (gridSize * gridSize + 1) - i);
-        }
     }
 
     private void validate(int n) {
@@ -51,16 +47,24 @@ public class Percolation {
             grid[x][y] = true;
             openSitesCount++;
 
-            if (isOpen(row, col + 1)) {
+            // test right side
+            if (col + 1 <= gridSize && isOpen(row, col + 1)) {
                 uf.union(site, site + 1);
             }
-            if (isOpen(row, col - 1)) {
+            // test left side
+            if (col - 1 >= 1 && isOpen(row, col - 1)) {
                 uf.union(site, site - 1);
             }
-            if (isOpen(row + 1, col)) {
+            // test down side
+            if (row + 1 > gridSize) {
+                uf.union(site, virtualBottom);
+            } else if (isOpen(row + 1, col)) {
                 uf.union(site, site + gridSize);
             }
-            if (isOpen(row - 1, col)) {
+            // test top side
+            if (row - 1 < 1) {
+                uf.union(site, virtualTop);
+            } else if (isOpen(row - 1, col)) {
                 uf.union(site, site - gridSize);
             }
         }
@@ -69,16 +73,7 @@ public class Percolation {
     // is the site (row, col) open?
     public boolean isOpen(int row, int col) {
         int x = row - 1, y = col - 1;
-
-        if ((x >= gridSize || x < 0) || (y >= gridSize || y < 0)) {
-            return false;
-        }
-
-        if (!grid[x][y]) {
-            return false;
-        } else {
-            return true;
-        }
+        return grid[x][y];
     }
 
     // is the site (row, col) full?
@@ -102,18 +97,18 @@ public class Percolation {
 
     // test client (optional)
     public static void main(String[] args) {
-
+        
         double[] result = new double[100];
 
         for (int i = 0; i < 100; i++) {
-            Percolation my = new Percolation(5);
-            while (!my.percolates()) {
-                int randomA = StdRandom.uniformInt(1, my.gridSize + 1);
-                int randomB = StdRandom.uniformInt(1, my.gridSize + 1);
-                my.open(randomA, randomB);
+            Percolation myPer = new Percolation(5);
+            while (!myPer.percolates()) {
+                int randomA = StdRandom.uniformInt(1, myPer.gridSize + 1);
+                int randomB = StdRandom.uniformInt(1, myPer.gridSize + 1);
+                myPer.open(randomA, randomB);
                 StdOut.println(randomA + " " + randomB);
             }
-            result[i] = (double) my.openSitesCount / (my.gridSize * my.gridSize);
+            result[i] = (double) myPer.openSitesCount / (myPer.gridSize * myPer.gridSize);
         }
         StdOut.println(StdStats.mean(result));
     }

@@ -1,6 +1,8 @@
+package Week1_UnionFind.Programming_Task;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.StdStats;
+import edu.princeton.cs.algs4.Stopwatch;
 
 public class PercolationStats {
     private double[] result;
@@ -10,7 +12,7 @@ public class PercolationStats {
 
     // perform independent trials on an n-by-n grid
     public PercolationStats(int n, int trials) {
-        
+
         // input validate
         if (n <= 0 || trials <= 0) {
             throw new IllegalArgumentException("n and trails must > 0");
@@ -42,7 +44,7 @@ public class PercolationStats {
 
     // low endpoint of 95% confidence interval
     public double confidenceLo() {
-        return mean - ((1.96 * stddev) /  (Math.sqrt(trials)));
+        return mean - ((1.96 * stddev) / (Math.sqrt(trials)));
     }
 
     // high endpoint of 95% confidence interval
@@ -52,10 +54,15 @@ public class PercolationStats {
 
     // test client (see below)
     public static void main(String[] args) {
-        PercolationStats myPS = new PercolationStats(5, 30);
+
+        Stopwatch myStopwatch = new Stopwatch();
+        
+        PercolationStats myPS = new PercolationStats(1000, 30);
         StdOut.println(myPS.mean());
         StdOut.println(myPS.stddev());
         StdOut.println(myPS.confidenceLo());
         StdOut.println(myPS.confidenceHi());
+
+        StdOut.println("It takes " + myStopwatch.elapsedTime() + " seconds");
     }
 }

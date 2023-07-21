@@ -1,4 +1,4 @@
-package UnionFind;
+package Week1_UnionFind;
 import edu.princeton.cs.algs4.StdArrayIO;
 
 public class MyWeightedPathCompressionUF {
