@@ -1,3 +1,5 @@
+package Week0_JavaTest;
+
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.Out;
 import edu.princeton.cs.algs4.StdIn;
