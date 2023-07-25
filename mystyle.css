@@ -1,0 +1,19 @@
+body {
+    background-color: #1a1818;
+}
+
+h1 {
+    color: rgb(101, 101, 189);
+    text-align: center;
+}
+
+p {
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+a {
+    color: aqua;
+}

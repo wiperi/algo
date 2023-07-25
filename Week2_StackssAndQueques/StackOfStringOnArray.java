@@ -1,9 +1,11 @@
+package Week2_StackssAndQueques;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
 public class StackOfStringOnArray {
     private String[] arr;
     private int stackSize;
+    // 维护一个栈顶指针
     private int top = 0;
 
     StackOfStringOnArray(int n) {
@@ -26,7 +28,7 @@ public class StackOfStringOnArray {
 
         /*
          * 为了避免内存浪费，每一次出栈都将数组中的值重置为null，这样做，java的内存回收机制会自动将该处引用指向的字符串所占用的内存回收，
-         * 因为目标字符串已经没有显式引用了
+         * 因为目标字符串已经没有显式引用了 
          */
         top--;
         String buffer = arr[top];
