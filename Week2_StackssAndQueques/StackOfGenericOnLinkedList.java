@@ -4,9 +4,9 @@ import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 import java.util.Iterator;
 
-public class StackOfGenericOnLinkedList<Type> {
+public class StackOfGenericOnLinkedList<T> implements Iterable<T> {
     private class Node {
-        Type item;
+        T item;
         Node next;
     }
 
@@ -16,37 +16,83 @@ public class StackOfGenericOnLinkedList<Type> {
         return first == null;
     }
 
-    public void push(Type item) {
+    public void push(T item) {
         Node oldfirst = first;
         first = new Node();
         first.item = item;
         first.next = oldfirst;
     }
 
-    public Type pop() {
-        Type item = first.item;
+    public T pop() {
+        T item = first.item;
         first = first.next;
         return item;
     }
 
+    /**************************** 实现迭代器 **********************************/
+    @Override
+    public Iterator<T> iterator() {
+        return new StackIterator();
+    }
+
+    // 为了实现Iterable接口，需要先实现Iterator接口
+    private class StackIterator implements Iterator<T> {
+        private Node current = first;
+
+        @Override
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        @Override
+        public T next() {
+            T item = current.item;
+            current = current.next;
+            return item;
+        }
+    }
+
+    /*************************************************************************/
+
     public static void main(String[] args) {
 
-        StackOfGenericOnLinkedList<Integer> arr = new StackOfGenericOnLinkedList<Integer>();
-        arr.print();
+        /************************* 迭代器测试 *********************************/
+        StackOfGenericOnLinkedList<String> stack = new StackOfGenericOnLinkedList<>();
+
+        stack.push("3 ");
+        stack.push("3 ");
+        stack.push("2 ");
+
+        // foreach语句的效果和下面的while相同但是更精简
+        for (String s : stack) {
+            StdOut.print(s);
+        }
+
+        Iterator<String> stackI = stack.iterator();
+        while (stackI.hasNext()) {
+            String s = stackI.next();
+            StdOut.print(s);
+        }
+        /*********************************************************************/
+
+        /*********************** 出栈入栈测试 *********************************/
+        StackOfGenericOnLinkedList<Integer> intStack = new StackOfGenericOnLinkedList<Integer>();
+        intStack.print();
 
         while (!StdIn.isEmpty()) {
             int item = StdIn.readInt();
             if (item == -1) {
-                arr.pop();
-                arr.print();
+                intStack.pop();
+                intStack.print();
             } else {
-                arr.push(item);
-                arr.print();
+                intStack.push(item);
+                intStack.print();
             }
         }
+        /*********************************************************************/
     }
 
-    public void print() {
+    private void print() {
         Node cur = first;
         while (cur != null) {
             StdOut.print(cur.item + " ");
