@@ -18,12 +18,14 @@ public class Redirection {
          * 使用命令提示符(cmd)作为终端环境。
          * 
          * 终端操作如下:
-         * C:\Users\15617\Documents\92 My Github\java exercise>javac -cp .;./lib/algs4.jar .\Redirection.java
+         * $ javac -cp .;./lib/algs4.jar .\Redirection.java
          * 该指令将algs4.jar添加到class path中并编译源代码文件
          * 
-         * C:\Users\15617\Documents\92 My Github\java exercise>java -cp .;./lib/algs4.jar Redirection < ./redirection_input_file.txt
-         * iufihiu2hif23
+         * $ java -cp .;./lib/algs4.jar Redirection < ./redirection_input_file.txt
          * 该指令将input.txt重定向至标准输入中
+         * 
+         * 输出如下：
+         * iufihiu2hif23
          */
         int[] whietlist = In.readInts(args[0]);
 

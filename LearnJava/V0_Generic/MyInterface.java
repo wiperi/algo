@@ -1,4 +1,4 @@
-package GenericTest;
+package LearnJava.V0_Generic;
 
 /**
  * 关键字 interface 用于定义一个接口
