@@ -1,8 +1,8 @@
-package Week2_StackssAndQueques;
+package Week2_StacksAndQueues.Queue;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
-public class QueueOfStringOnLinkedList {
+public class LinkedList {
 
     private class Node {
         String item;
@@ -47,7 +47,7 @@ public class QueueOfStringOnLinkedList {
     }
 
     public static void main(String[] args) {
-        QueueOfStringOnLinkedList queque = new QueueOfStringOnLinkedList();
+        LinkedList queque = new LinkedList();
         queque.print();
 
         while (!StdIn.isEmpty()) {

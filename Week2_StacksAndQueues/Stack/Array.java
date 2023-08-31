@@ -1,4 +1,4 @@
-package Week2_StackssAndQueques;
+package Week2_StacksAndQueues.Stack;
 
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
@@ -8,7 +8,7 @@ import edu.princeton.cs.algs4.StdOut;
  * 
  * 用数组的方式实现栈的数据结构
  */
-public class StackOfStringOnArray {
+public class Array {
     private String[] arr;
     private int stackSize;
 
@@ -16,7 +16,7 @@ public class StackOfStringOnArray {
     private int top = 0;
 
     // 类初始化器，创建一个字符串数组
-    StackOfStringOnArray(int n) {
+    Array(int n) {
         stackSize = n;
         arr = new String[stackSize];
     }
@@ -65,7 +65,7 @@ public class StackOfStringOnArray {
          * 
          * 输入任意字符串并压入栈，输入 - 执行出栈操作并打印
          */
-        StackOfStringOnArray stack = new StackOfStringOnArray(20);
+        Array stack = new Array(20);
 
         while (!StdIn.isEmpty()) {
             String s = StdIn.readString();

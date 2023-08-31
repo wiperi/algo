@@ -1,8 +1,8 @@
-package Week2_StackssAndQueques;
+package Week2_StacksAndQueues.Queue;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
-public class QueueOfStringOnResizeingArray {
+public class ResizeingArray {
     private String[] arr = new String[1];
     private int head = 0, tail = 0;
 
@@ -106,7 +106,7 @@ public class QueueOfStringOnResizeingArray {
     }
 
     public static void main(String[] args) {
-        QueueOfStringOnResizeingArray queque = new QueueOfStringOnResizeingArray();
+        ResizeingArray queque = new ResizeingArray();
         queque.print();
 
         while (!StdIn.isEmpty()) {

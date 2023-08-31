@@ -1,12 +1,12 @@
-package Week2_StackssAndQueques;
+package Week2_StacksAndQueues.Stack;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
-public class StackOfStringOnResizingArray {
+public class ResizingArray {
     private String[] arr;
     private int top;
 
-    StackOfStringOnResizingArray() {
+    ResizingArray() {
         arr = new String[1];
     }
 
@@ -43,7 +43,7 @@ public class StackOfStringOnResizingArray {
 
     public static void main(String[] args) {
 
-        StackOfStringOnResizingArray arr = new StackOfStringOnResizingArray();
+        ResizingArray arr = new ResizingArray();
         arr.print();
 
         while (!StdIn.isEmpty()) {

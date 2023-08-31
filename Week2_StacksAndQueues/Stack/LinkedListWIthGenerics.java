@@ -1,10 +1,10 @@
-package Week2_StackssAndQueques;
+package Week2_StacksAndQueues.Stack;
 
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 import java.util.Iterator;
 
-public class StackOfGenericOnLinkedList<T> implements Iterable<T> {
+public class LinkedListWIthGenerics<T> implements Iterable<T> {
     private class Node {
         T item;
         Node next;
@@ -57,7 +57,7 @@ public class StackOfGenericOnLinkedList<T> implements Iterable<T> {
     public static void main(String[] args) {
 
         /************************* 迭代器测试 *********************************/
-        StackOfGenericOnLinkedList<String> stack = new StackOfGenericOnLinkedList<>();
+        LinkedListWIthGenerics<String> stack = new LinkedListWIthGenerics<>();
 
         stack.push("3 ");
         stack.push("3 ");
@@ -76,7 +76,7 @@ public class StackOfGenericOnLinkedList<T> implements Iterable<T> {
         /*********************************************************************/
 
         /*********************** 出栈入栈测试 *********************************/
-        StackOfGenericOnLinkedList<Integer> intStack = new StackOfGenericOnLinkedList<Integer>();
+        LinkedListWIthGenerics<Integer> intStack = new LinkedListWIthGenerics<Integer>();
         intStack.print();
 
         while (!StdIn.isEmpty()) {

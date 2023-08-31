@@ -1,8 +1,8 @@
-package Week2_StackssAndQueques;
+package Week2_StacksAndQueues.Stack;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
-public class StackOfStringOnLinkedList {
+public class LinkedList {
     private Node first = null;
 
     private class Node {
@@ -28,7 +28,7 @@ public class StackOfStringOnLinkedList {
     }
 
     public static void main(String[] args) {
-        StackOfStringOnLinkedList stack = new StackOfStringOnLinkedList();
+        LinkedList stack = new LinkedList();
 
         while (!StdIn.isEmpty()) {
             String s = StdIn.readString();

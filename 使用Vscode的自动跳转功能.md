@@ -19,9 +19,9 @@ public class Test {
 }
 ```
 
-4. 将光标放在 `StdIn` 或 `StdOut` 类名上，按下 `Ctrl` + `鼠标左键` 或 `F12` 键（Windows 和 Linux 系统），或者 `Cmd` + `鼠标左键` 或 `F12` 键（MacOS），Visual Studio Code 将会自动跳转到这些类的源代码文件中。
+   1. 将光标放在 `StdIn` 或 `StdOut` 类名上，按下 `Ctrl` + `鼠标左键` 或 `F12` 键（Windows 和 Linux 系统），或者 `Cmd` + `鼠标左键` 或 `F12` 键（MacOS），Visual Studio Code 将会自动跳转到这些类的源代码文件中。
 
-5. 你可以在源代码文件中查看和编辑代码，不需要解压 jar 文件。
+   2. 你可以在源代码文件中查看和编辑代码，不需要解压 jar 文件。
 
 注意事项：
 

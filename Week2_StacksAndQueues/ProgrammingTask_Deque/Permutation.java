@@ -1,4 +1,4 @@
-package Week2_StackssAndQueques.Programming_Task_Deque;
+package Week2_StacksAndQueues.ProgrammingTask_Deque;
 
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
