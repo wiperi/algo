@@ -1,4 +1,4 @@
-package LearnJava.V0_Generic;
+package LearnJava._30_Generic;
 
 /**
  * 关键字 interface 用于定义一个接口
@@ -16,7 +16,7 @@ package LearnJava.V0_Generic;
  * 法，这样实现类如果不实现它，则使用默认的方法，如果实现它
  * ，则覆盖接口提供的默认方法
  */
-public interface MyInterface {
+public interface _10_My_Interface {
 
     public static final int ege = 2;
 

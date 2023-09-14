@@ -1,6 +1,6 @@
-package LearnJava.B0_ObjectAndClass;
+package LearnJava._20_ObjectAndClass;
 
-import LearnJava.A0_Fundamental._10_HelloWorld;
+import LearnJava._10_Fundamental._10_HelloWorld;
 
 /*
  * 嵌套类：
@@ -24,7 +24,7 @@ import LearnJava.A0_Fundamental._10_HelloWorld;
  * 使用的类。它们在声明的同时被实例化，并且可以扩展类或实现接口。匿名类通常用于
  * 创建事件处理程序、线程等。
  */
-public class B0_NestedClass {
+public class _20_NestedClass {
 
     public Node first;
 
@@ -42,9 +42,9 @@ public class B0_NestedClass {
     public static void main(String args[]) {
 
         // 由于Node是非静态嵌套类，所以必须先实例化它的外部类
-        B0_NestedClass nest = new B0_NestedClass();
+        _20_NestedClass nest = new _20_NestedClass();
         // 然后才能创建Node
-        nest.first = new B0_NestedClass().new Node(233, null);
+        nest.first = new _20_NestedClass().new Node(233, null);
         System.out.println(nest.first.val);
         System.out.println(nest.first.next);
 
