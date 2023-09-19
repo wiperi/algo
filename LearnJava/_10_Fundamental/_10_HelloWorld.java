@@ -1,4 +1,4 @@
-package LearnJava.A0_Fundamental;
+package LearnJava._10_Fundamental;
 
 // public为访问修饰符，class为类标识符，HellWorld为类名称，类名称必须与Java源文件名称相同
 // 注意：Java的命名规则中不允许用数字开头

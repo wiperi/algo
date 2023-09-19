@@ -1,4 +1,4 @@
-package LearnJava._20_ObjectAndClass;
+package LearnJava._20_Object_And_Class;
 
 import LearnJava._10_Fundamental._10_HelloWorld;
 
