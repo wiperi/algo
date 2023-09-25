@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
 
-public class _14_Quick_Sort {
+public class _14_Quick_Sort1 {
     public static void sort(int[] a) {
         StdRandom.shuffle(a); // 消除对输入的依赖
         sort(a, 0, a.length - 1);
@@ -48,12 +48,13 @@ public class _14_Quick_Sort {
         Stopwatch myStopwatch = new Stopwatch();
 
         // 生成测试数组
-        int[] arr = new int[100];
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = StdRandom.uniformInt(0, 100);
-        }
+        int[] arr = { 0, 0, 0, 0, 0, 0, 0 };
+        // for (int i = 0; i < arr.length; i++) {
+        // arr[i] = StdRandom.uniformInt(0, 100);
+        // }
+        // arr[0] = 33;
 
-        sort(arr, 0, arr.length - 1);
+        partition(arr, 0, arr.length - 1);
 
         StdArrayIO.print(arr); // 打印测试结果
 

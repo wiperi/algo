@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
 
-public class _14_Quick_Sort {
+public class _14_Quick_Sort2 {
     public static void sort(int[] a) {
         StdRandom.shuffle(a); // 消除对输入的依赖
         sort(a, 0, a.length - 1);
@@ -19,21 +19,22 @@ public class _14_Quick_Sort {
         sort(a, j + 1, hi); // 将右半部分a[j+1 .. hi]排序
     }
 
-    private static int partition(int[] a, int lo, int hi) { // 将数组切分为a[lo..i-1], a[i], a[i+1..hi]
-        int i = lo, j = hi + 1; // 左右扫描指针
-        int v = a[lo]; // 切分元素
+    private static int partition(int[] arr, int lo, int hi) { // 将数组切分为a[lo..i-1], a[i], a[i+1..hi]
+        int i = lo, j = hi + 1;
+        int v = arr[lo]; // 切分元素
         while (true) { // 扫描左右，检查扫描是否结束并交换元素
-            while (a[++i] < v)
-                if (i == hi)
-                    break;
-            while (v < a[--j])
-                if (j == lo)
-                    break;
+            i++;
+            while (arr[i] < v && i != hi) {
+            }
+            j--;
+            while (arr[j] > v && j != lo) {
+            }
+
             if (i >= j)
                 break;
-            transfer(a, i, j);
+            transfer(arr, i, j);
         }
-        transfer(a, lo, j); // 将v = a[j]放入正确的位置
+        transfer(arr, lo, j); // 将v = a[j]放入正确的位置
         return j; // a[lo..j-1] <= a[j] <= a[j+1..hi] 达成
     }
 
@@ -48,12 +49,13 @@ public class _14_Quick_Sort {
         Stopwatch myStopwatch = new Stopwatch();
 
         // 生成测试数组
-        int[] arr = new int[100];
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = StdRandom.uniformInt(0, 100);
-        }
+        int[] arr = { 0, 0, 0, 0, 0, 0, 0, 0 };
+        if (arr == null)
+            for (int i = 0; i < arr.length; i++) {
+                arr[i] = StdRandom.uniformInt(0, 100);
+            }
 
-        sort(arr, 0, arr.length - 1);
+        partition(arr, 0, arr.length - 1);
 
         StdArrayIO.print(arr); // 打印测试结果
 
