@@ -25,7 +25,7 @@ public class _12_Quick_Sort {
 
         ///////////////// 移动数组，实现 {a, b, c, pivot, u, v, w} ///////////////
         int pivot = r; // 选取pivot
-        int i = -1, j = 0; // j指针遍历数组，i指针用来从数组左侧开始将小于pivot依次写入。
+        int i = l - 1, j = l; // j指针遍历数组，i指针用来从数组左侧开始将小于pivot依次写入。
         while (j != pivot) { // 每次当arr[j] <= arr[pivot]，就交换 i 和 j 指向元素的位置。
 
             if (arr[j] <= arr[pivot]) {
