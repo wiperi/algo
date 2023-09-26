@@ -1,14 +1,22 @@
 package Week0_JavaTest.BinarySearchExample;
 
 import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.Out;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
+import java.util.Arrays;
+
+/* 
+常用的库函数：
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.Out;
 import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.StdStats;
 import edu.princeton.cs.algs4.StdArrayIO;
 import java.util.Arrays;
+ */
 
 /* 
  * 使用重定向:

@@ -8,8 +8,6 @@ public class Deque<Item> implements Iterable<Item> {
 
     // define Node class and set two pointers
     private class Node {
-        public Node() {
-        }
 
         public Node(Item item, Node prev, Node next) {
             this.item = item;

@@ -1,7 +1,5 @@
 package Week3_Elementary_Sort;
 
-/* 我的版本 */
-
 import edu.princeton.cs.algs4.StdArrayIO;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.Stopwatch;
@@ -21,14 +19,13 @@ public class _12_Quick_Sort_My_Attempt {
          * 快排和归并排序都采用了递归的分治方法，区别是，归并排序的比较操作发生在递归调用之后， 快排的比较操作发生在递归调用之前。
          */
 
-        // base condition
-        if (l >= r) {
+        if (l >= r) { // base condition
             return;
         }
 
-        ///////////////// 移动数组，实现 {a, b, c, pivot, u, v, w} ///////////////
+        ///////////////// 整理数组 ///////////////
         int pivot = r; // 选取pivot
-        int i = l - 1, j = l; // j指针遍历数组，i指针用来从数组左侧开始将小于pivot依次写入。
+        int i = l - 1, j = l; // j指针遍历数组，i指针用来从数组左侧开始将小于pivot的元素依次写入。
         while (j != pivot) { // 每次当arr[j] <= arr[pivot]，就交换 i 和 j 指向元素的位置。
 
             if (arr[j] <= arr[pivot]) {
@@ -38,7 +35,7 @@ public class _12_Quick_Sort_My_Attempt {
             j++;
         }
         transfer(arr, i + 1, pivot);
-        ///////////////// 移动数组，实现 {a, b, c, pivot, u, v, w} ///////////////
+        ///////////////// 整理数组 ///////////////
 
         qsort(arr, 0, i);
         qsort(arr, i + 2, r);
