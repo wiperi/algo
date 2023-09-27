@@ -46,6 +46,27 @@ public class _14_Quick_Sort_Sedgewick_Version {
         arr[i] = tmp;
     }
 
+    // 三向切分的快速排序
+    private static void threeWaySplit(int[] arr, int lo, int hi) {
+        if (hi <= lo)
+            return;
+
+        // 初始化less than，greater than和i指针
+        int lt = lo, i = lo + 1, gt = hi;
+        int pivot = arr[lo];
+        while (i <= gt) {
+            if (arr[i] < pivot) {
+                transfer(arr, i++, lt++);
+            } else if (arr[i] > pivot) {
+                transfer(arr, i, gt--);
+            } else {
+                i++;
+            }
+        } // 现在 a[lo..lt-1] < v = a[lt..gt] < a[gt+1..hi]成立
+        threeWaySplit(arr, lo, lt - 1);
+        threeWaySplit(arr, gt + 1, hi);
+    }
+
     public static void main(String[] args) {
 
         Stopwatch myStopwatch = new Stopwatch();
@@ -57,27 +78,11 @@ public class _14_Quick_Sort_Sedgewick_Version {
         }
 
         sort(arr, 0, arr.length - 1);
+        threeWaySplit(arr, 0, arr.length - 1);
 
         StdArrayIO.print(arr); // 打印测试结果
 
         StdOut.println("It takes " + myStopwatch.elapsedTime() + " seconds");
     }
 
-        private static void sortQuick3(int[] arr, int lo, int hi) { // 调用此方法的公有方法sort()请见算法2.5
-            if (hi <= lo)
-                return;
-            int lt = lo, i = lo + 1, gt = hi;
-            int v = arr[lo];
-            while (i <= gt) {
-                int cmp = arr[i].compareTo(v);
-                if (cmp < 0)
-                    transfer(arr, lt++, i++);
-                else if (cmp > 0)
-                    transfer(arr, i, gt--);
-                else
-                    i++;
-            } // 现在 a[lo..lt-1] < v = a[lt..gt] < a[gt+1..hi]成立
-            sort(arr, lo, lt - 1);
-            sort(arr, gt + 1, hi);
-        }
 }
