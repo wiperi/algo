@@ -1,13 +1,7 @@
 package Week0_JavaTest;
 import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.Out;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.StdDraw;
-import edu.princeton.cs.algs4.StdRandom;
-import edu.princeton.cs.algs4.StdStats;
-import edu.princeton.cs.algs4.StdArrayIO;
-import java.util.Arrays;
 
 public class Redirection {
     public static void main(String[] args) {

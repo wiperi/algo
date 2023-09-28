@@ -1,5 +1,5 @@
 
-public class Linked_List_Tester {
+public class My_Tester {
 
     ListNode head;
 
