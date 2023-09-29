@@ -1,4 +1,4 @@
-package Chap1_Fundamental;
+package Chap1_Fundamental.Section1_Programming_Model;
 
 // 
 // 1.1.23 为BinarySearch 的测试用例添加一个参数：+ 打印出标准输入中不在白名单上的值；−，则打

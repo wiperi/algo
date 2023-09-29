@@ -1,6 +1,6 @@
 package LearnJava._20_Object_And_Class;
 
-import Chap1_Fundamental._10_HelloWorld;
+import Chap1_Fundamental.Section1_Programming_Model._10_HelloWorld;
 
 /*
  * 嵌套类：
