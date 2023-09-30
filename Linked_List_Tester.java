@@ -95,7 +95,7 @@ class LinkedList {
     }
 }
 
-public class Tester {
+public class Linked_List_Tester {
     public static void main(String[] args) {
         LinkedList list = new LinkedList();
 

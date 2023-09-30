@@ -9,7 +9,7 @@ import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 import java.util.Arrays;
 
-public class _15_BinarySearch {
+public class _10_BinarySearch {
 
     /**
      * 使用二分查找的方法，检查一个整数值在不在传入的数组中
