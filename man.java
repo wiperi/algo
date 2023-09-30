@@ -3,6 +3,7 @@ import edu.princeton.cs.algs4.Draw;
 import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdRandom;
 
+// 表1.1.20 StdDraw 绘图举例
 public class man {
 
     public static void main(String[] args) {
