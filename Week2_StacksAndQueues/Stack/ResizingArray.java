@@ -1,4 +1,5 @@
 package Week2_StacksAndQueues.Stack;
+
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
@@ -13,7 +14,7 @@ public class ResizingArray {
     public boolean isempty() {
         return top == 0 ? true : false;
     }
-    
+
     public void push(String item) {
         if (top == arr.length) {
             resize(2 * arr.length);

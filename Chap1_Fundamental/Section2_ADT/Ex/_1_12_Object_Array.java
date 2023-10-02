@@ -1,4 +1,4 @@
-package Chap1_Fundamental.Section2_ADT;
+package Chap1_Fundamental.Section2_ADT.Ex;
 
 import edu.princeton.cs.algs4.Counter;
 import edu.princeton.cs.algs4.StdOut;
