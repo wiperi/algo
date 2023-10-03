@@ -15,7 +15,7 @@ public class _2_2_Fixed_Capacity_Stack<Item> {
      * 
      * @param cap 栈的容量
      */
-    _2_2_Fixed_Capacity_Stack(int cap) {        
+    _2_2_Fixed_Capacity_Stack(int cap) {
         // java不支持创建泛型数组，arr = new Item[cap]; is prohibited.
         arr = (Item[]) new Object[cap];
     }
@@ -74,6 +74,7 @@ public class _2_2_Fixed_Capacity_Stack<Item> {
 
     /**
      * 单元测试，从标准输入读取字符串入栈，输入 - 号出栈并打印
+     * 
      * @param args
      */
     public static void main(String[] args) {
