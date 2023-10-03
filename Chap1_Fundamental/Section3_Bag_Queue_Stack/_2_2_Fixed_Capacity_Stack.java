@@ -3,14 +3,11 @@ package Chap1_Fundamental.Section3_Bag_Queue_Stack;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
-/*
- * 说明:
- * 
- * 用数组的方式实现栈的数据结构
+/**
+ * 定容栈的实现
  */
 public class _2_2_Fixed_Capacity_Stack<Item> {
     private Item[] arr;
-    private int stackSize;
     private int size = 0;
 
     /**
@@ -18,10 +15,8 @@ public class _2_2_Fixed_Capacity_Stack<Item> {
      * 
      * @param cap 栈的容量
      */
-    _2_2_Fixed_Capacity_Stack(int cap) {
-        stackSize = cap;
-        
-        // java不支持创建泛型数组，arr = new Item[stackSize]; is prohibited.
+    _2_2_Fixed_Capacity_Stack(int cap) {        
+        // java不支持创建泛型数组，arr = new Item[cap]; is prohibited.
         arr = (Item[]) new Object[cap];
     }
 
@@ -31,7 +26,7 @@ public class _2_2_Fixed_Capacity_Stack<Item> {
      * @param item 被压进栈中的对象
      */
     public void push(Item item) {
-        if (size == stackSize) {
+        if (isFull()) {
             throw new RuntimeException("Stack is full");
         }
         arr[size] = item;
@@ -63,7 +58,15 @@ public class _2_2_Fixed_Capacity_Stack<Item> {
 
     /**
      * 
-     * @return 返回当前容量
+     * @return 是否已满
+     */
+    public boolean isFull() {
+        return arr.length == size;
+    }
+
+    /**
+     * 
+     * @return 当前容量
      */
     public int size() {
         return size;

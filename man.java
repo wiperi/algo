@@ -1,3 +1,6 @@
+import java.util.HashSet;
+import java.util.Set;
+
 import edu.princeton.cs.algs4.Bag;
 import edu.princeton.cs.algs4.Date;
 
@@ -17,6 +20,7 @@ public class man {
             Date date = new Date(12, 12, 1);
             Bag<Integer> bag = new Bag<Integer>();
             
+            Set<String> a = new HashSet<>(100);
             
 
 
