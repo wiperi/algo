@@ -3,6 +3,7 @@ package Chap1_Fundamental.Section3_Bag_Queue_Stack;
 import java.util.Iterator;
 import edu.princeton.cs.algs4.StdIn;
 
+@SuppressWarnings("unchecked")
 public class _3_9_Resizeing_Array_Queue<Item> implements Iterable<Item> {
     private Item[] arr = (Item[]) new Object[1];
     private int head = 0, tail = 0;

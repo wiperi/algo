@@ -15,6 +15,7 @@ public class _2_2_Fixed_Capacity_Stack<Item> {
      * 
      * @param cap 栈的容量
      */
+    @SuppressWarnings("unchecked")
     _2_2_Fixed_Capacity_Stack(int cap) {
         // java不支持创建泛型数组，arr = new Item[cap]; is prohibited.
         arr = (Item[]) new Object[cap];

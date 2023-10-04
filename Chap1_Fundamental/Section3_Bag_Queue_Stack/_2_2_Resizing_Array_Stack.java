@@ -3,6 +3,7 @@ package Chap1_Fundamental.Section3_Bag_Queue_Stack;
 import java.util.Iterator;
 
 public class _2_2_Resizing_Array_Stack<Item> implements Iterable<Item> {
+    @SuppressWarnings("unchecked")
     private Item[] a = (Item[]) new Object[1]; // 栈元素
     private int N = 0; // 元素数量
 
@@ -14,6 +15,7 @@ public class _2_2_Resizing_Array_Stack<Item> implements Iterable<Item> {
         return N;
     }
 
+    @SuppressWarnings("unchecked")
     private void resize(int max) { // 将栈移动到一个大小为max 的新数组
         Item[] temp = (Item[]) new Object[max];
         for (int i = 0; i < N; i++)

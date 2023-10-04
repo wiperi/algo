@@ -1,5 +1,6 @@
 package Chap1_Fundamental.Section3_Bag_Queue_Stack;
 
+
 public class Linked_List<Item> {
     public Node<Item> head;
 
@@ -7,6 +8,7 @@ public class Linked_List<Item> {
         head = null;
     }
 
+    @SuppressWarnings("unchecked")
     public Linked_List(String s) {
         Item[] tokens = (Item[]) s.split("\\s+");
         for (int i = 0; i < tokens.length; i++) {
