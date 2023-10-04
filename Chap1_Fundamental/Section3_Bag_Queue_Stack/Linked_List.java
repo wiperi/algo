@@ -1,44 +1,34 @@
 package Chap1_Fundamental.Section3_Bag_Queue_Stack;
 
-public class _0_Linked_List_Tester<Item> {
-    public Node head;
+public class Linked_List<Item> {
+    public Node<Item> head;
 
-    public class Node {
-        public Item item;
-        public Node next;
-
-        public Node(Item item, Node next) {
-            this.item = item;
-            this.next = next;
-        }
-    }
-
-    public _0_Linked_List_Tester() {
+    public Linked_List() {
         head = null;
     }
 
-    public _0_Linked_List_Tester(String s) {
+    public Linked_List(String s) {
         Item[] tokens = (Item[]) s.split("\\s+");
         for (int i = 0; i < tokens.length; i++) {
             addBackNode(tokens[i]);
         }
     }
 
-    public Node getHead() {
+    public Node<Item> getHead() {
         return head;
     }
 
     public void addFrontNode(Item item) {
-        Node newNode = new Node(item, head);
+        Node<Item> newNode = new Node<Item>(item, head);
         head = newNode;
     }
 
     public void addBackNode(Item item) {
-        Node newNode = new Node(item, null);
+        Node<Item> newNode = new Node<Item>(item, null);
         if (head == null) {
             head = newNode;
         } else {
-            Node cur = head;
+            Node<Item> cur = head;
             while (cur.next != null) {
                 cur = cur.next;
             }
@@ -47,7 +37,7 @@ public class _0_Linked_List_Tester<Item> {
     }
 
     public void print() {
-        Node cur = head;
+        Node<Item> cur = head;
         System.out.print("-> ");
         while (cur != null) {
             System.out.print(cur.item + " -> ");
@@ -58,7 +48,7 @@ public class _0_Linked_List_Tester<Item> {
 
     @Override
     public String toString() {
-        Node cur = head;
+        Node<Item> cur = head;
         String s = "-> ";
         while (cur != null) {
             s += cur.item.toString() + " -> ";
@@ -69,7 +59,8 @@ public class _0_Linked_List_Tester<Item> {
     }
 
     public static void main(String[] args) {
-        _0_Linked_List_Tester<String> l = new _0_Linked_List_Tester<>("1 2 3 4 5");
+        Linked_List<String> l = new Linked_List<>("1 2 3 4 5");
+        l.print();
         System.out.println(l);
     }
 }
