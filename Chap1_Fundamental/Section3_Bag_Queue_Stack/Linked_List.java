@@ -1,6 +1,5 @@
 package Chap1_Fundamental.Section3_Bag_Queue_Stack;
 
-
 public class Linked_List<Item> {
     public Node<Item> head;
 
@@ -8,6 +7,11 @@ public class Linked_List<Item> {
         head = null;
     }
 
+    /**
+     * 当且仅当泛型参数为{@code String}的时候可以使用此构造函数，该函数接受一个字符串，读取其中每一个由空格分隔的元素，生成一条链表
+     * 
+     * @param s 用于构建链表的字符串
+     */
     @SuppressWarnings("unchecked")
     public Linked_List(String s) {
         Item[] tokens = (Item[]) s.split("\\s+");
