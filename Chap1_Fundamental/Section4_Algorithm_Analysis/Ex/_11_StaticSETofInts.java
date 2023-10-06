@@ -49,27 +49,24 @@ public class _11_StaticSETofInts {
             return 0;
         }
 
-        int left = rank(key - 1); // 定位key左侧第一个元素
-        int right = rank(key + 1); // 定位key右侧第一个元素
-        if (left == -1) {
+        int leftKey = key - 1;
+        int rightKey = key + 1;
+        int left = rank(leftKey);
+        int right = rank(rightKey);
+        if (left == -1) { // 定位key左侧第一个元素
             left = -1;
+        } else {
+            while (a[left + 1] != key) {
+                left = rank(leftKey, left + 1, keyIndex);
+            }
         }
-        if (right == -1) {
+        if (right == -1) { // 定位key右侧第一个元素
             right = a.length;
+        } else {
+            while (a[right - 1] != key) {
+                right = rank(rightKey, right - 1, keyIndex);
+            }
         }
-        int leftKey;
-        int rightKey;
-        int newLeft = left;
-        int newRight = right;
-        while (a[newLeft + 1] != key) {
-            leftKey = a[left];
-            left = rank(leftKey, left + 1, keyIndex);
-            newLeft = left;
-        }
-        while (a[right - 1] != key) {
-            right = rank(a[right], right - 1, keyIndex);
-        }
-
 
         return right - left - 1;
     }
