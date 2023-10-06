@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
 import edu.princeton.cs.algs4.ThreeSum;
 
-public class _6_1_Doubling_Ratior {
+public class _6_1_Doubling_Ratio {
 
     public static double timeTrial(int N) { // 为处理N 个随机的六位整数的ThreeSum.count() 计时
         int MAX = 1000000;
