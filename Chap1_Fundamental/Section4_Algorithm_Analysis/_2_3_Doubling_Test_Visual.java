@@ -38,8 +38,8 @@ public class _2_3_Doubling_Test_Visual {
         }
     }
 
-    private static void drawPoint(List<Point2D> list, double n, double time) {
-        Point2D point = new Point2D(n, time);
+    private static void drawPoint(List<Point2D> list, double N, double time) {
+        Point2D point = new Point2D(N, time);
         list.add(point);
         point.draw();
         point.drawTo(list.get(list.size() > 1 ? list.size() - 2 : 0));

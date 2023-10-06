@@ -1,8 +1,7 @@
 package Chap1_Fundamental.Section4_Algorithm_Analysis;
 
-import edu.princeton.cs.algs4.StdRandom;
-
-public class _2_1_Three_Sum {
+public class _3_1_Three_Sum {
+    // O(N^3)
     public static int count(int[] a) { // 统计和为0的元组的数量
         int N = a.length;
         int cnt = 0;
@@ -17,10 +16,7 @@ public class _2_1_Three_Sum {
     }
 
     public static void main(String[] args) {
-        int[] arr = new int[10];
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = StdRandom.uniformInt(-100, 101);
-        }
-        count(arr);
+        int[] arr = { 1, 2, 3, 4, 5, 6, -3, -2, -1 };
+        System.out.println(count(arr));
     }
 }
