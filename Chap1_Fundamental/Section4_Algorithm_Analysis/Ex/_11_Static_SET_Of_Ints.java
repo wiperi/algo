@@ -2,10 +2,10 @@ package Chap1_Fundamental.Section4_Algorithm_Analysis.Ex;
 
 import java.util.Arrays;
 
-public class _11_StaticSETofInts {
+public class _11_Static_SET_Of_Ints {
     private int[] a;
 
-    public _11_StaticSETofInts(int[] keys) {
+    public _11_Static_SET_Of_Ints(int[] keys) {
         a = new int[keys.length];
         for (int i = 0; i < keys.length; i++)
             a[i] = keys[i]; // 保护性复制
@@ -73,12 +73,12 @@ public class _11_StaticSETofInts {
 
     public static void main(String[] args) {
         int[] arr = { 1, 2, 3, 3, 4, 5 };
-        int[] arr1 = { 0, 0, 0, 0, 1, 1 };
+        int[] arr1 = { 0, 0, 0, 0, 1, 1, 1, 2 };
 
-        _11_StaticSETofInts set = new _11_StaticSETofInts(arr);
+        _11_Static_SET_Of_Ints set = new _11_Static_SET_Of_Ints(arr);
         System.out.println(set.howMany(3));
 
-        _11_StaticSETofInts set1 = new _11_StaticSETofInts(arr1);
+        _11_Static_SET_Of_Ints set1 = new _11_Static_SET_Of_Ints(arr1);
         System.out.println(set1.howMany(1));
     }
 }
