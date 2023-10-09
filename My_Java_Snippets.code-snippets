@@ -33,4 +33,36 @@
 		],
 		"description": ""
 	}
+
+	"Print array": {
+		"scope": "java",
+		"prefix": "prar",
+		"body": [
+	 		"for (int i = 0; i < ${1:arr.length}; i++) {"
+			"	System.out.print(${2:arr[i]} + \" \");"
+			"}"
+			"$0"
+		],
+		"description": ""
+	}
+
+	"Build an array of integers": {
+		"scope": "java",
+		"prefix": "inar",
+		"body": [
+	 		"int[] arr = { 4, 3, 2, 1 };$1"
+		],
+		"description": ""
+	}
+
+	"Build a public function": {
+		"scope": "java",
+		"prefix": "func",
+		"body": [
+	 		"public ${1:static} ${2:void} ${3:func}($4) {"
+			"	$0"
+			"}"
+		],
+		"description": ""
+	}	
 }
