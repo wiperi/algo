@@ -1,5 +1,30 @@
 import java.util.Scanner;
 
+public class Linked_List_Tester {
+    public static void main(String[] args) {
+        LinkedList list = new LinkedList();
+
+        // 从数组生成链表
+        int[] arr = { 1, 2, 3 };
+        for (int num : arr) {
+            list.addNode(num);
+        }
+        list.printList();
+
+        // 从用户输入生成链表
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("请输入以逗号分隔的整数序列：");
+        String input = scanner.nextLine();
+        String[] nums = input.split(",");
+        for (String num : nums) {
+            list.addNode(Integer.parseInt(num.trim()));
+        }
+        list.printList();
+
+        scanner.close();
+    }
+}
+
 class ListNode {
     int val;
     ListNode next;
@@ -92,30 +117,5 @@ class LinkedList {
             curr = curr.next;
         }
         System.out.println("null");
-    }
-}
-
-public class Linked_List_Tester {
-    public static void main(String[] args) {
-        LinkedList list = new LinkedList();
-
-        // 从数组生成链表
-        int[] arr = {1, 2, 3};
-        for (int num : arr) {
-            list.addNode(num);
-        }
-        list.printList();
-
-        // 从用户输入生成链表
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("请输入以逗号分隔的整数序列：");
-        String input = scanner.nextLine();
-        String[] nums = input.split(",");
-        for (String num : nums) {
-            list.addNode(Integer.parseInt(num.trim()));
-        }
-        list.printList();
-
-        scanner.close();
     }
 }

@@ -8,17 +8,29 @@ package Chap1_Fundamental.Section4_Algorithm_Analysis.Ex;
  * 个局部最小值则算法终止；否则则在较小的相邻元素的半边中继续查找。
  */
 public class _18_Local_Minimum {
-    public static void main(String[] args) {
-        int[] arr = { 4, 3, 2, 1 };
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i] + " ");
-        }
-
-    }
 
     public static int localMinimum(int[] a) {
-        int lo = 0, hi = a.length - 1;
-        int mid = lo + (hi - lo) / 2;
-        if ()
+        int len = a.length;
+        int lo = 0, hi = len - 1;
+        while (lo <= hi) {
+            int mid = lo + (hi - lo) / 2;
+
+            if (mid == 0 || mid == len - 1) // corner case
+                break;
+
+            if (a[mid] < a[mid - 1] && a[mid] < a[mid + 1]) {
+                return mid;
+            } else if (a[mid - 1] < a[mid]) {
+                hi = mid - 1;
+            } else {
+                lo = mid + 1;
+            }
+        }
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = { 4, 3, 2, 1, 0, 1 };
+        System.out.println(localMinimum(arr));
     }
 }

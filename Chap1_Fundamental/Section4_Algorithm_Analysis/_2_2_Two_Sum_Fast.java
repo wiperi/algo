@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import edu.princeton.cs.algs4.BinarySearch;
 
-public class _2_2_Two_SumFast {
+public class _2_2_Two_Sum_Fast {
     // O(N lnN)
     public static int count(int[] a) { // 计算和为0的整数对的数目
         Arrays.sort(a);
