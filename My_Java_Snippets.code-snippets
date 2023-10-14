@@ -16,27 +16,18 @@
 	// 	"description": "Log output to console"
 	// }
 
-	"Print to System.out": {
+	"print a line": {
 		"scope": "java",
 		"prefix": "pr",
 		"body": [
 	 		"System.out.println($1);$0"
 		],
-		"description": "Print a line to System.out"
-	}
-
-	"Middle Element": {
-		"scope": "java",
-		"prefix": "int mid",
-		"body": [
-	 		"int mid = lo + (hi - lo) / 2;$1"
-		],
 		"description": ""
 	}
 
-	"Print array": {
+	"print array": {
 		"scope": "java",
-		"prefix": "prar",
+		"prefix": "prarr",
 		"body": [
 	 		"for (int i = 0; i < ${1:arr.length}; i++) {"
 			"	System.out.print(${2:arr[i]} + \" \");"
@@ -46,16 +37,28 @@
 		"description": ""
 	}
 
-	"Build an array of integers": {
+	"print hash map": {
 		"scope": "java",
-		"prefix": "inar",
+		"prefix": "prhashmap",
 		"body": [
-	 		"int[] arr = { 4, 3, 2, 1 };$1"
+			"for (Map.Entry<${1:Character}, ${2:Integer}> entry : ${3:hashmap}.entrySet()) {"
+			"	System.out.println(\"Key: \" + entry.getKey() + \", Value: \" + entry.getValue());"
+			"}"
+			"$0"
 		],
 		"description": ""
 	}
 
-	"Build a public function": {
+	"build array of integers": {
+		"scope": "java",
+		"prefix": "intarr",
+		"body": [
+	 		"int[] ${1:arr} = $2;$0"
+		],
+		"description": ""
+	}
+
+	"build function": {
 		"scope": "java",
 		"prefix": "func",
 		"body": [
@@ -64,5 +67,23 @@
 			"}"
 		],
 		"description": ""
-	}	
+	}
+
+	"build hash map": {
+		"scope": "java",
+		"prefix": "hashmap",
+		"body": [
+			"HashMap<${1:Character}, ${2:Integer}> ${3:window} = new HashMap<>();$0"
+		],
+		"description": ""
+	}
+
+	"middle element": {
+		"scope": "java",
+		"prefix": "int mid",
+		"body": [
+	 		"int mid = lo + (hi - lo) / 2;$1"
+		],
+		"description": ""
+	}
 }

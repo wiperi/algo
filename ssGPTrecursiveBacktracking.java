@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ssgptrecursive3sum {
+public class ssGPTrecursiveBacktracking {
     public List<List<Integer>> nSum(int[] nums, int target, int n) {
         List<List<Integer>> result = new ArrayList<>();
         Arrays.sort(nums); // 需要先将数组排序
@@ -54,7 +54,7 @@ public class ssgptrecursive3sum {
     }
 
     public static void main(String[] args) {
-        ssgptrecursive3sum solution = new ssgptrecursive3sum();
+        ssGPTrecursiveBacktracking solution = new ssGPTrecursiveBacktracking();
         int[] nums = {1, 0, -1, 0, -2, 2};
         int target = 0;
         int n = 4;

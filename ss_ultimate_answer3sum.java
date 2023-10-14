@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-class sswtfisthis {
+class ss_ultimate_answer3sum {
     public List<List<Integer>> threeSum(int[] nums) {
         return nSum(nums, 3, 0);
     }

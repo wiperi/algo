@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class sslarecursive {
+public class ssrecursive {
 
     public List<List<Integer>> threeSum(int[] nums) {
         Arrays.sort(nums);
