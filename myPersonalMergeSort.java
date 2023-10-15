@@ -29,7 +29,7 @@ public class myPersonalMergeSort {
 
             int[] temp = { 3, 4, 1, 2 }; // debug
             if (Arrays.equals(a, temp)) { // debug
-                int wtf = 0;
+                a.toString();
             }
 
             if (left > mid)
