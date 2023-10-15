@@ -1,53 +1,98 @@
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-class Solution {
-    public static List<Integer> findAnagrams(String s, String p) {
-        HashMap<Character, Integer> need = new HashMap<>(); // ch -> times it duplicate times
-        for (Character character : p.toCharArray()) {
-            need.put(character, need.getOrDefault(character, 0) + 1);
-        }
-        printMap(need);
-        
+/**
+ * Solution
+ */
+public class Solution {
+
+    public static boolean checkInclusion(String s1, String s2) {
+        int s1Len = s1.length();
+        int s2Len = s2.length();
+        if (s2Len < s1Len)
+            return false;
+
+        HashMap<Character, Integer> need = new HashMap<>();
         HashMap<Character, Integer> window = new HashMap<>();
 
-        ArrayList<Integer> ret = new ArrayList<>();
-        int left = 0, right = 0;
-        while (right <= s.length() - p.length()) {
-            char ch = s.charAt(right);
-            if (need.containsKey(ch)) {
-                for (int i = 0; i < p.length(); i++) {
-                    window.put(s.charAt(right + i), window.getOrDefault(s.charAt(right + i), 0) + 1);
-                }
+        for (Character character : s1.toCharArray()) {
+            need.put(character, need.getOrDefault(character, 0) + 1);
+        }
+        System.out.println(need); // debug
 
-                System.out.println("compare 2");
-                printMap(window);
-                printMap(need);
-                if (window.equals(need)) {
-                    ret.add(right);
+        int left = 0, right = 0;
+        int valid = 0;
+        while (right < s2Len) {
+            char Rch = s2.charAt(right);
+            right++;
+            if (need.containsKey(Rch)) { // extend right side
+                window.put(Rch, window.getOrDefault(Rch, 0) + 1);
+                System.out.println("window updated: " + window); // debug
+                if (window.get(Rch).equals(need.get(Rch))) {
+                    valid++;
                 }
             }
-            window.clear();
-            right++;
+
+            int len = right - left;
+            while (len >= s1Len) {
+                if (valid == need.size()) {
+                    return true;
+                }
+                char Lch = s2.charAt(left);
+                left++;
+                len = right - left;
+                if (need.containsKey(Lch)) { // shrink left side
+                    if (window.get(Lch).equals(need.get(Lch))) {
+                        valid--;
+                    }
+                    window.put(Lch, window.getOrDefault(Lch, 0) - 1);
+                    System.out.println("window shrinked: " + window); // debug
+                }
+            }
+
         }
-        return ret;
+        return false;
     }
 
-    public static void printMap(HashMap<Character, Integer> map) {
-        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
-            System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
+    public static boolean checkInclusion1(String t, String s) {
+        HashMap<Character, Integer> need = new HashMap<>();
+        HashMap<Character, Integer> window = new HashMap<>();
+        for (int i = 0; i < t.length(); i++) {
+            char c = t.charAt(i);
+            need.put(c, need.getOrDefault(c, 0) + 1);
         }
-        System.out.println();
+    
+        int left = 0, right = 0;
+        int valid = 0;
+        while (right < s.length()) {
+            char c = s.charAt(right);
+            right++;
+            if (need.containsKey(c)) {
+                window.put(c, window.getOrDefault(c, 0) + 1);
+                if (window.get(c).equals(need.get(c)))
+                    valid++;
+            }
+    
+            // 判断左侧窗口是否要收缩
+            while (right - left >= t.length()) {
+                // 在这里判断是否找到了合法的子串
+                if (valid == need.size())
+                    return true;
+                char d = s.charAt(left);
+                left++;
+                if (need.containsKey(d)) {
+                    if (window.get(d).equals(need.get(d)))
+                        valid--;
+                    window.put(d, window.getOrDefault(d, 0) - 1);
+                }
+            }
+        }
+        // 未找到符合条件的子串
+        return false;
     }
 
     public static void main(String[] args) {
-        String s = "cbaebabacd";
-        String p = "abc";
+        System.out.println(checkInclusion("ab", "wab"));
+        System.out.println(checkInclusion1("ab", "wab"));
 
-        for (Integer integer : findAnagrams(s, p)) {
-            System.out.println(integer);
-        }
     }
 }

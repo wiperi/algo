@@ -29,9 +29,10 @@
 		"scope": "java",
 		"prefix": "prarr",
 		"body": [
-	 		"for (int i = 0; i < ${1:arr.length}; i++) {"
-			"	System.out.print(${2:arr[i]} + \" \");"
-			"}"
+			"for (int ints : ${1:a}) {"
+            "    System.out.print(ints + \" \");"
+            "}"
+            "System.out.println();"
 			"$0"
 		],
 		"description": ""
@@ -51,9 +52,18 @@
 
 	"build array of integers": {
 		"scope": "java",
-		"prefix": "intarr",
+		"prefix": "arr",
 		"body": [
-	 		"int[] ${1:arr} = $2;$0"
+	 		"int[] arr = { 4, 3, 2, 1 };$0"
+		],
+		"description": ""
+	}
+
+	"build list": {
+		"scope": "java",
+		"prefix": "list",
+		"body": [
+	 		"List<${1:Integer}> ${2:list} = new ArrayList<>();$0"
 		],
 		"description": ""
 	}
