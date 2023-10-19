@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Linked_List_Tester {
+public class Linked_List_GPT_Ver {
     public static void main(String[] args) {
         LinkedList list = new LinkedList();
 

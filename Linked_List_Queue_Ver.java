@@ -1,11 +1,21 @@
-import Chap1_Fundamental.Section3_Bag_Queue_Stack.Node;
 import edu.princeton.cs.algs4.Queue;
 
-public class LinkedList<Item> {
+class Node<Item> {
+    public Item item;
+    public Node<Item> next;
+
+    public Node(Item item, Node<Item> next) {
+        this.item = item;
+        this.next = next;
+    }
+}
+
+public class Linked_List_Queue_Ver<Item> {
+
     public Queue<Node<Item>> q = new Queue<Node<Item>>();
     public Node<Item> head;
 
-    public LinkedList() {
+    public Linked_List_Queue_Ver() {
         head = null;
     }
 
@@ -15,7 +25,7 @@ public class LinkedList<Item> {
      * @param s 用于构建链表的字符串
      */
     @SuppressWarnings("unchecked")
-    public LinkedList(String s) {
+    public Linked_List_Queue_Ver(String s) {
         Item[] tokens = (Item[]) s.split("\\s+");
         for (int i = 0; i < tokens.length; i++) {
             addBackNode(tokens[i]);
@@ -67,8 +77,14 @@ public class LinkedList<Item> {
         return s;
     }
 
+    public void printExisted() {
+        for (Node<Item> node : q) {
+            System.out.println(node.item + "-> " + (node.next == null ? null : node.next.item));
+        }
+    }
+
     public static void main(String[] args) {
-        LinkedList<String> l = new LinkedList<>("1 2 3 4 5");
+        Linked_List_Queue_Ver<String> l = new Linked_List_Queue_Ver<>("1 2 3 4 5");
         l.print();
         System.out.println(l);
 
@@ -78,7 +94,7 @@ public class LinkedList<Item> {
             cur = cur.next;
         }
         for (Node<String> node : l.q) {
-            System.out.println(node.item + node.next);
+            System.out.println(node.item + "-> " + (node.next == null ? null : node.next.item));
         }
     }
 }
