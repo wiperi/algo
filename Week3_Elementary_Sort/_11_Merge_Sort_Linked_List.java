@@ -1,7 +1,8 @@
+package Week3_Elementary_Sort;
 import Chap1_Fundamental.Section3_Bag_Queue_Stack.Linked_List_Queue_Ver;
 import Chap1_Fundamental.Section3_Bag_Queue_Stack.Node;
 
-public class Solutioncopy {
+public class _11_Merge_Sort_Linked_List {
 
     public static Node<Integer> sortList(Node<Integer> head) {
         if (head == null || head.next == null) { // base case
@@ -42,5 +43,4 @@ public class Solutioncopy {
         l.head = sortList(l.head);
         l.print();
     }
-
 }
