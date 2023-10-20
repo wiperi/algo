@@ -20,7 +20,7 @@ public class Linked_List_Queue_Ver<Item> {
     }
 
     /**
-     * 生成一条链表，当且仅当泛型参数为{@code String}的时候使用此构造函数，该函数接受一个字符串，读取其中每一个由空格分隔的元素生成一条链表
+     * 构建链表，当且仅当类型参数为{@code String}的情况下使用
      * 
      * @param s 用于构建链表的字符串
      */
@@ -29,6 +29,18 @@ public class Linked_List_Queue_Ver<Item> {
         Item[] tokens = (Item[]) s.split("\\s+");
         for (int i = 0; i < tokens.length; i++) {
             addBackNode(tokens[i]);
+        }
+    }
+
+    /**
+     * 构建链表，当且仅当类型参数为{@code Integer}的情况下使用
+     * 
+     * @param a 用于构建链表的数组
+     */
+    @SuppressWarnings("unchecked")
+    public Linked_List_Queue_Ver(int[] a) {
+        for (int i : a) {
+            addBackNode((Item) Integer.valueOf(i));
         }
     }
 
