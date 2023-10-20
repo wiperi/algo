@@ -7,7 +7,7 @@ import java.util.Arrays;
  * 一对最接近的值：两者之差（绝对值）最小的两个数。程序在最坏情况下所需的运行时间应该
  * 是线性对数级别的。
  */
-public class _16_Minimum_Pair {
+public class _16_Closest_Pair {
     public static double[] minimumPair(double[] a) {
         Arrays.parallelSort(a);
 
