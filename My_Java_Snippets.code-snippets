@@ -54,7 +54,7 @@
 		"scope": "java",
 		"prefix": "arr",
 		"body": [
-	 		"int[] arr = { 4, 3, 2, 1 };$0"
+	 		"${1:int}[] arr = { 4, 3, 2, 1 };$0"
 		],
 		"description": ""
 	}
