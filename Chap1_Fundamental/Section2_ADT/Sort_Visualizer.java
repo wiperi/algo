@@ -47,7 +47,7 @@ public class Sort_Visualizer {
     }
 
     @SuppressWarnings("unchecked")
-    private void drawColumn(int N, int i) {
+    private void drawColumn(int i) {
         double x = (1.0 * (i + 1)) / N;
         double y = 0;
         double halfWidth = (((1.0) / N) * 0.9) / 2;
@@ -60,9 +60,9 @@ public class Sort_Visualizer {
         canva.filledRectangle(x, y, halfWidth, halfHeight);
     }
 
-    private void drawColumn(int N, int i, Color color) {
-        canva.setPenColor(color);
-        drawColumn(N, i);
+    private void drawColumn(int N, int i, Color markColor) {
+        canva.setPenColor(markColor);
+        drawColumn(i);
         canva.setPenColor(Draw.BLACK);
     }
 
@@ -70,42 +70,42 @@ public class Sort_Visualizer {
         canva.clear();
 
         for (int i = 0; i < N; i++) {
-            drawColumn(N, i);
+            drawColumn(i);
         }
         canva.show();
         canva.pause(300);
     }
 
-    public void drawArray(Boolean clearCanva, Color color, int... target) {
+    public void drawArray(Boolean clearCanva, Color markColor, int... marked) {
         if (clearCanva)
             canva.clear();
 
         for (int i = 0; i < N; i++) {
-            drawColumn(N, i);
+            drawColumn(i);
         }
-        for (int i : target) {
-            drawColumn(N, i, color);
+        for (int i : marked) {
+            drawColumn(N, i, markColor);
         }
         canva.show();
         canva.pause(300);
     }
 
-    public void markColumn(Boolean blink, Color color, int... target) {
-        canva.setPenColor(color);
+    public void markColumn(Boolean blink, Color markColor, int... marked) {
+        canva.setPenColor(markColor);
 
-        for (int i : target) {
-            drawColumn(N, i);
+        for (int i : marked) {
+            drawColumn(i);
         }
         canva.show();
-        canva.pause(300);
+        canva.pause(150);
 
         if (blink) {
             canva.setPenColor(Draw.BLACK);
-            for (int i : target) {
-                drawColumn(N, i);
+            for (int i : marked) {
+                drawColumn(i);
             }
             canva.show();
-            canva.pause(300);
+            canva.pause(150);
         }
         canva.setPenColor(Draw.BLACK);
     }

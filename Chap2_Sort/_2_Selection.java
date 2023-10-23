@@ -1,7 +1,5 @@
 package Chap2_Sort;
 
-import java.util.Random;
-
 import Chap1_Fundamental.Section2_ADT.Sort_Visualizer;
 import edu.princeton.cs.algs4.Draw;
 
@@ -27,16 +25,16 @@ public class _2_Selection extends Example {
         int N = a.length;
         for (int i = 0; i < a.length; i++) {
             int minIndex = i;
-            v.drawArray(false, Draw.BLACK, i);
             for (int j = i; j < N; j++) {
-                v.markColumn(false, Draw.BLUE, j);
+                v.markColumn(true, Draw.BLUE, j);
                 if (less(a[j], a[minIndex])) {
                     minIndex = j;
+                    v.markColumn(false, Draw.ORANGE, minIndex);
                 }
             }
-            v.drawArray(false, Draw.BLACK, i, minIndex);
+            v.drawArray(true, Draw.GREEN, i, minIndex);
             exch(a, i, minIndex);
-            v.drawArray(true, Draw.BLACK, i, minIndex);
+            v.drawArray(true, Draw.GREEN, i, minIndex);
         }
     }
 
