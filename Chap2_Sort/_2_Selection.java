@@ -27,16 +27,16 @@ public class _2_Selection extends Example {
         int N = a.length;
         for (int i = 0; i < a.length; i++) {
             int minIndex = i;
-            v.drawArray(false, i);
+            v.drawArray(false, Draw.BLACK, i);
             for (int j = i; j < N; j++) {
-                v.markColumn(a, Draw.BLUE, j);
+                v.markColumn(false, Draw.BLUE, j);
                 if (less(a[j], a[minIndex])) {
                     minIndex = j;
                 }
             }
-            v.drawArray(false, i, minIndex);
+            v.drawArray(false, Draw.BLACK, i, minIndex);
             exch(a, i, minIndex);
-            v.drawArray(true, i, minIndex);
+            v.drawArray(true, Draw.BLACK, i, minIndex);
         }
     }
 

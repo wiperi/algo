@@ -3,7 +3,6 @@ package Chap1_Fundamental.Section2_ADT;
 import javax.swing.JFrame;
 
 import java.awt.Color;
-import java.awt.color.*;
 
 import edu.princeton.cs.algs4.Draw;
 
@@ -18,6 +17,7 @@ public class Sort_Visualizer {
     private double max = 0;
     private double min = 0;
 
+    @SuppressWarnings("unchecked")
     public Sort_Visualizer(Comparable[] a) {
         this.a = a;
         this.N = a.length;
@@ -46,11 +46,11 @@ public class Sort_Visualizer {
         canva.enableDoubleBuffering();
     }
 
-    public void drawColumn(int N, int i) {
+    @SuppressWarnings("unchecked")
+    private void drawColumn(int N, int i) {
         double x = (1.0 * (i + 1)) / N;
         double y = 0;
         double halfWidth = (((1.0) / N) * 0.9) / 2;
-
         double halfHeight;
         if (a[maxIndex] instanceof Number) {
             halfHeight = Double.parseDouble(a[i].toString()) - min + 1;
@@ -60,7 +60,7 @@ public class Sort_Visualizer {
         canva.filledRectangle(x, y, halfWidth, halfHeight);
     }
 
-    public void drawColumn(int N, int i, Color color) {
+    private void drawColumn(int N, int i, Color color) {
         canva.setPenColor(color);
         drawColumn(N, i);
         canva.setPenColor(Draw.BLACK);
@@ -76,7 +76,7 @@ public class Sort_Visualizer {
         canva.pause(300);
     }
 
-    public void drawArray(Boolean clearCanva, int... target) {
+    public void drawArray(Boolean clearCanva, Color color, int... target) {
         if (clearCanva)
             canva.clear();
 
@@ -84,13 +84,13 @@ public class Sort_Visualizer {
             drawColumn(N, i);
         }
         for (int i : target) {
-            drawColumn(N, i, Draw.GREEN);
+            drawColumn(N, i, color);
         }
         canva.show();
         canva.pause(300);
     }
 
-    public void markColumn(Comparable[] a, Color color, int... target) {
+    public void markColumn(Boolean blink, Color color, int... target) {
         canva.setPenColor(color);
 
         for (int i : target) {
@@ -98,33 +98,19 @@ public class Sort_Visualizer {
         }
         canva.show();
         canva.pause(300);
-        canva.setPenColor(Draw.BLACK);
-    }
 
-    public void markColumn(Comparable[] a, int i) {
-        canva.setPenColor(Draw.GREEN);
-
-        double x = (1.0 * (i + 1)) / N;
-        double y = 0;
-        double halfWidth = (((1.0) / N) * 0.9) / 2;
-        double halfHeight;
-        if (a[maxIndex] instanceof Number) {
-            halfHeight = Double.parseDouble(a[i].toString()) - min + 1;
-        } else {
-            halfHeight = a[i].compareTo(a[minIndex]);
+        if (blink) {
+            canva.setPenColor(Draw.BLACK);
+            for (int i : target) {
+                drawColumn(N, i);
+            }
+            canva.show();
+            canva.pause(300);
         }
-        canva.filledRectangle(x, y, halfWidth, halfHeight);
-
-        canva.show();
-        canva.pause(300);
         canva.setPenColor(Draw.BLACK);
     }
 
     public static void main(String[] args) {
-        String[] strarr = { "d", "c", "b", "a" };
-        Integer[] intarr = { 4, 3, 2, 1, 1, 1, 1, 1, 1, 1 };
-        Sort_Visualizer v = new Sort_Visualizer(intarr);
-        v.drawArray(intarr);
 
     }
 }
