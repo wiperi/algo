@@ -1,7 +1,0 @@
-/**
- * Solutioncopycopy
- */
-public class Solutioncopycopy {
-
-    
-}
