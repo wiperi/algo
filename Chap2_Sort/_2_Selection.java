@@ -26,13 +26,13 @@ public class _2_Selection extends Example {
         for (int i = 0; i < a.length; i++) {
             int minIndex = i;
             for (int j = i; j < N; j++) {
-                v.markColumn(true, Draw.BLUE, j);
+                v.markColumn(true, Draw.BLUE, j); // 蓝色，遍历轨迹
                 if (less(a[j], a[minIndex])) {
                     minIndex = j;
-                    v.markColumn(false, Draw.ORANGE, minIndex);
+                    v.markColumn(false, Draw.ORANGE, minIndex); // 橘色，当前最小值
                 }
             }
-            v.drawArray(true, Draw.GREEN, i, minIndex);
+            v.drawArray(true, Draw.GREEN, i, minIndex); // 绿色，交换的元素
             exch(a, i, minIndex);
             v.drawArray(true, Draw.GREEN, i, minIndex);
         }

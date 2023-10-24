@@ -41,16 +41,16 @@ public class Sort_Visualizer {
         canva.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         canva.setCanvasSize(500, 500);
         canva.setPenRadius(0.02);
-        canva.setXscale(-0.1, 1.1);
+        canva.setXscale(-0.1, 1.1); // 留出20%的空白区域
         canva.setYscale(0, maxGap + 1);
         canva.enableDoubleBuffering();
     }
 
     @SuppressWarnings("unchecked")
     private void drawColumn(int i) {
-        double x = (1.0 * (i + 1)) / N;
+        double x = (1.0 * (i + 1)) / N; // 由于下标从0开始，所以是 i + 1
         double y = 0;
-        double halfWidth = (((1.0) / N) * 0.9) / 2;
+        double halfWidth = (((1.0) / N) * 0.9) / 2; // 0.9 为留白参数
         double halfHeight;
         if (a[maxIndex] instanceof Number) {
             halfHeight = Double.parseDouble(a[i].toString()) - min + 1;
@@ -110,7 +110,32 @@ public class Sort_Visualizer {
         canva.setPenColor(Draw.BLACK);
     }
 
+    public void bars() {
+        canva.setCanvasSize(500, 500);
+        canva.setXscale(-1, N + 1);
+        canva.setPenRadius(0.006);
+    }
+
+    private void showBars(int i) {
+        canva.setYscale(-a.length + i + 0.8, i + 0.8);
+        System.out.printf("set scale: min = %f, max = %f\n", -a.length + i + 0.8, i + 0.8);
+
+        for (int k = 0; k < a.length; k++) {
+            Double y = Double.parseDouble(a[k].toString()) * 0.3;
+            Double halfHeight = Double.parseDouble(a[k].toString()) * 0.3;
+            System.out.printf("show: y = %f, hheight = %f\n", y, halfHeight);
+            canva.filledRectangle(k, y, 0.25, halfHeight);
+        }
+        canva.show();
+    }
+
     public static void main(String[] args) {
+        Integer[] arr = { 1, 1, 1 };
+        Sort_Visualizer v = new Sort_Visualizer(arr);
+        v.bars();
+        for (int i = 0; i < arr.length; i++) {
+            v.showBars(i);
+        }
 
     }
 }
