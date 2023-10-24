@@ -25,7 +25,7 @@ public class _3_Insertion extends Example {
     }
 
     public static void main(String[] args) {
-        Integer[] arr = { 4, 3, 2, 1 };
+        Integer[] arr = { 5, 6, 4, 3, 1, 7, 9, 0, 6, 2 };
         sortV2(arr);
         show(arr);
     }
