@@ -110,20 +110,21 @@ public class Sort_Visualizer {
         canva.setPenColor(Draw.BLACK);
     }
 
-    public void bars() {
-        canva.setCanvasSize(500, 500);
+    /**
+     * bar的高度必须在0到1之间
+     * 
+     * @param i
+     */
+    private void showBars(int i) {
+        // set up for bar digram
         canva.setXscale(-1, N + 1);
         canva.setPenRadius(0.006);
-    }
 
-    private void showBars(int i) {
         canva.setYscale(-a.length + i + 0.8, i + 0.8);
-        System.out.printf("set scale: min = %f, max = %f\n", -a.length + i + 0.8, i + 0.8);
 
         for (int k = 0; k < a.length; k++) {
             Double y = Double.parseDouble(a[k].toString()) * 0.3;
             Double halfHeight = Double.parseDouble(a[k].toString()) * 0.3;
-            System.out.printf("show: y = %f, hheight = %f\n", y, halfHeight);
             canva.filledRectangle(k, y, 0.25, halfHeight);
         }
         canva.show();
@@ -132,7 +133,6 @@ public class Sort_Visualizer {
     public static void main(String[] args) {
         Integer[] arr = { 1, 1, 1 };
         Sort_Visualizer v = new Sort_Visualizer(arr);
-        v.bars();
         for (int i = 0; i < arr.length; i++) {
             v.showBars(i);
         }
