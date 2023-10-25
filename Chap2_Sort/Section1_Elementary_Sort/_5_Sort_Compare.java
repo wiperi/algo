@@ -1,4 +1,4 @@
-package Chap2_Sort;
+package Chap2_Sort.Section1_Elementary_Sort;
 
 import java.util.Arrays;
 
@@ -18,7 +18,7 @@ import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
 
-public class _5_SortCompare {
+public class _5_Sort_Compare {
 
     public static double time(String alg, Double[] a) {
         Stopwatch sw = new Stopwatch();
@@ -26,7 +26,7 @@ public class _5_SortCompare {
         else if (alg.equals("InsertionX"))      InsertionX.sort(a);
         else if (alg.equals("BinaryInsertion")) BinaryInsertion.sort(a);
         else if (alg.equals("Selection"))       Selection.sort(a);
-        else if (alg.equals("Bubble"))          Bubble.sort(a);
+        else if (alg.equals("Bubble"))          _7_Bubble.sort(a);
         else if (alg.equals("Shell"))           Shell.sort(a);
         else if (alg.equals("Merge"))           Merge.sort(a);
         else if (alg.equals("MergeX"))          MergeX.sort(a);

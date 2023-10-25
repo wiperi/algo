@@ -1,20 +1,14 @@
+import edu.princeton.cs.algs4.StdRandom;
+
 /**
  * Solution
  */
 public class Solution {
 
-    public int subarraySum(int[] nums, int n) {
-        int count = 0;
-        for (int i = 0; i < nums.length; i++) {
-            for (int j = i; j < nums.length; j++) {
-                int sum = 0;
-                for (int k = i; k <= j; k++) {
-                    sum += nums[k];
-                }
-                if (sum == n)
-                    count++;
-            }
+    public static void main(String[] args) {
+        for (int i = 0; i < 20; i++) {
+            System.out.println(StdRandom.uniformDouble());
+            
         }
-        return count;
     }
 }

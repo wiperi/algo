@@ -1,10 +1,10 @@
-package Chap2_Sort;
+package Chap2_Sort.Section1_Elementary_Sort;
 
 import Chap1_Fundamental.Section2_ADT.Sort_Visualizer;
 import edu.princeton.cs.algs4.Draw;
 
 @SuppressWarnings("rawtypes")
-public class _2_Selection extends Example {
+public class _2_Selection extends Template {
     public static void sort(Comparable[] a) {
         int N = a.length;
         for (int i = 0; i < N; i++) {

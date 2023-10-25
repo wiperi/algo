@@ -3,8 +3,10 @@ package Chap1_Fundamental.Section2_ADT;
 import javax.swing.JFrame;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 
 import edu.princeton.cs.algs4.Draw;
+import edu.princeton.cs.algs4.DrawListener;
 
 @SuppressWarnings("rawtypes")
 public class Sort_Visualizer {
@@ -130,12 +132,26 @@ public class Sort_Visualizer {
         canva.show();
     }
 
-    public static void main(String[] args) {
+    public void key() {
+        if (canva.hasNextKeyTyped()) {
+            char key = canva.nextKeyTyped();
+            if (key == ' ') {
+                System.out.println(666);
+            }
+        }
+    }
+
+    public static void main1(String[] args) {
         Integer[] arr = { 1, 1, 1 };
         Sort_Visualizer v = new Sort_Visualizer(arr);
         for (int i = 0; i < arr.length; i++) {
             v.showBars(i);
         }
 
+    }
+
+    public static void main(String[] args) {
+        Sort_Visualizer v = new Sort_Visualizer(new Integer[] { 4, 3, 2, 1 });
+        v.key();
     }
 }
