@@ -52,16 +52,16 @@
 
 	"build array of integers": {
 		"scope": "java",
-		"prefix": "arr",
+		"prefix": "barr",
 		"body": [
-	 		"${1:int}[] arr = { 4, 3, 2, 1 };$0"
+	 		"${1:int}[] arr = $2;$0"
 		],
 		"description": ""
 	}
 
 	"build list": {
 		"scope": "java",
-		"prefix": "list",
+		"prefix": "blist",
 		"body": [
 	 		"List<${1:Integer}> ${2:list} = new ArrayList<>();$0"
 		],
@@ -70,7 +70,7 @@
 
 	"build function": {
 		"scope": "java",
-		"prefix": "func",
+		"prefix": "bfunc",
 		"body": [
 	 		"public ${1:static} ${2:void} ${3:func}($4) {"
 			"	$0"
@@ -81,7 +81,7 @@
 
 	"build hash map": {
 		"scope": "java",
-		"prefix": "hashmap",
+		"prefix": "bhash",
 		"body": [
 			"HashMap<${1:Character}, ${2:Integer}> ${3:window} = new HashMap<>();$0"
 		],
@@ -90,7 +90,7 @@
 
 	"middle element": {
 		"scope": "java",
-		"prefix": "int mid",
+		"prefix": "midv",
 		"body": [
 	 		"int mid = lo + (hi - lo) / 2;$1"
 		],
