@@ -1,7 +1,7 @@
 package Chap2_Sort.Section1_Elementary_Sort;
 
 @SuppressWarnings("rawtypes")
-public class _6_Shell extends Template {
+public class _6_Shell extends Sort_Template {
 
     public static void sort(Comparable[] a) { // 将a[]按升序排列
         int N = a.length;

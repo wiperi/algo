@@ -1,7 +1,7 @@
 package Chap2_Sort.Section1_Elementary_Sort;
 
 @SuppressWarnings("rawtypes")
-public class _3_Insertion extends Template {
+public class _3_Insertion extends Sort_Template {
     public static void sort(Comparable[] a) {
         int N = a.length;
         for (int i = 1; i < N; i++) {

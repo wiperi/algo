@@ -4,7 +4,7 @@ import Chap1_Fundamental.Section2_ADT.Sort_Visualizer;
 import edu.princeton.cs.algs4.Draw;
 
 @SuppressWarnings("rawtypes")
-public class _2_Selection extends Template {
+public class _2_Selection extends Sort_Template {
     public static void sort(Comparable[] a) {
         int N = a.length;
         for (int i = 0; i < N; i++) {
