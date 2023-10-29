@@ -2,13 +2,14 @@ package Chap2_Sort.Section4_Priority_Queue;
 
 @SuppressWarnings("rawtypes")
 public class _5_Heap_Sort {
+    // 参考：Hello算法
+
     public static void sort(Comparable[] a) {
         // 由下至上建堆（大顶堆）
-        // 由于叶节点没有子节点，默认为堆有序状态，所以从最后一个由子节点的根节点开始向上层序遍历
+        // 由于叶节点没有子节点，默认为堆有序状态，所以从最后一个有子节点的根节点开始向上层序遍历
         for (int i = parent(a.length - 1); i >= 0; i--) {
             sink(a, a.length, i);
         }
-
         // 从堆中提取最大元素放到末尾，缩小堆长度
         int n = a.length;
         for (int i = a.length - 1; i > 0; i--) {
@@ -29,6 +30,7 @@ public class _5_Heap_Sort {
 
     private static void sink(Comparable[] a, int n, int i) {
         while (true) {
+            // 找到三个节点中最大的那个  
             int max = i;
             int left = leftKid(i);
             int right = rightKid(i);
@@ -38,6 +40,7 @@ public class _5_Heap_Sort {
             if (right < n && less(a, max, right)) {
                 max = right;
             }
+            // 如果根节点最大则退出循环
             if (max == i) {
                 break;
             }
