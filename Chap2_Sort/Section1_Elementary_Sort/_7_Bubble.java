@@ -1,5 +1,6 @@
 package Chap2_Sort.Section1_Elementary_Sort;
 
+@SuppressWarnings("rawtypes")
 public class _7_Bubble extends Sort_Template {
     public static void sort(Comparable[] a) {
         int N = a.length;

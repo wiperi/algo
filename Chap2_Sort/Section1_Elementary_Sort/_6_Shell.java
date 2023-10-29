@@ -4,6 +4,7 @@ package Chap2_Sort.Section1_Elementary_Sort;
 public class _6_Shell extends Sort_Template {
 
     public static void sort(Comparable[] a) { // 将a[]按升序排列
+        // 参考：算法（第四版）
         int N = a.length;
         int gap = 1;
         while (gap < N / 3)
@@ -19,6 +20,7 @@ public class _6_Shell extends Sort_Template {
     }
 
     public static void sortSimpleVer(Comparable[] arr) {
+        // 参考：https://www.runoob.com/data-structures/shell-sort.html
         int j;
         for (int gap = arr.length / 2; gap > 0; gap /= 2) { // gap: N/2, N/4, N/8 ... 1
             for (int i = gap; i < arr.length; i++) { // from gap to end of arr 进行间隔为gap的插入排序

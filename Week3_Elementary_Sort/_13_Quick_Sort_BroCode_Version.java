@@ -23,17 +23,17 @@ public class _13_Quick_Sort_BroCode_Version {
         while (j <= end - 1) {
             if (arr[j] < pivot) {
                 i++;
-                transfer(arr, i, j);
+                exch(arr, i, j);
             }
             j++;
         }
         i++;
-        transfer(arr, i, end);
+        exch(arr, i, end);
 
         return i;
     }
 
-    private static void transfer(int[] arr, int i, int j) {
+    private static void exch(int[] arr, int i, int j) {
         int tmp = arr[j];
         arr[j] = arr[i];
         arr[i] = tmp;
