@@ -1,37 +1,49 @@
 package Chap2_Sort.Section4_Priority_Queue;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-public class _4_Index_MinPQ<Item extends Comparable<Item>> implements Iterable<Item> {
+public class _4_Index_MinPQ<Item extends Comparable<Item>> implements Iterable<Integer> {
     // 参考：https://zhuanlan.zhihu.com/p/287852724
-
-    Item[] items; // ItemIndex to priority
-    int[] pq; // HeapIndex to ItemIndex
-    int n; // size of pq, always points to last element
-    int[] qp; // ItemIndex to HeapIndex
-
     // 优先队列只能访问堆顶元素，不方便，我们想访问并修改堆中任意元素
 
-    public void insert(int itemIndex, Item item) {
-        items[itemIndex] = item;
+    private int capacity; // max capacity
+    private Item[] items; // rawIndex to item
+    private int[] pq; ////// heapIndex to rawIndex
+    private int[] qp; ////// rawIndex to heapIndex
+    private int n; ///////// size of pq, always points to the last element
 
-        n++;
-        pq[n] = itemIndex;
-        qp[itemIndex] = n;
-
-        swim(n);
+    @SuppressWarnings("unchecked")
+    public _4_Index_MinPQ(int capacity) {
+        this.capacity = capacity;
+        this.items = (Item[]) new Comparable[capacity];
+        this.n = 0;
+        this.pq = new int[capacity + 1];
+        this.qp = new int[capacity + 1];
+        for (int i = 0; i <= capacity; i++) {
+            qp[i] = -1; // -1 in qp means no such elements
+        }
     }
 
-    // return the itemIndex of minimum item
-    public int delMin() {
-        int min = pq[1]; // min itemIndex
-        exch(1, n);
-        n--;
-        sink(1);
+    /*********************************************************************
+     * Basic Functions
+     *********************************************************************/
+    private boolean less(int i, int j) {
+        // use i, j as heap index
+        // compare the acutual item in items[]
+        return items[pq[i]].compareTo(items[pq[j]]) < 0;
+    }
 
-        qp[min] = -1; // update qp
-        items[min] = null; // delete item
-        return min;
+    private void exch(int i, int j) {
+        // use i , j as heap index
+        // exch the rawIndex in pq[] and upadate the index in qp[]
+        int temp = pq[i];
+        pq[i] = pq[j];
+        pq[j] = temp;
+        // update qp[]
+        qp[pq[i]] = i;
+        qp[pq[j]] = j;
+
     }
 
     private void swim(int i) {
@@ -62,26 +74,6 @@ public class _4_Index_MinPQ<Item extends Comparable<Item>> implements Iterable<I
         }
     }
 
-    public static void main(String[] args) {
-
-    }
-
-    private boolean less(int i, int j) {
-        // i, j as heap index
-        return items[pq[i]].compareTo(items[pq[j]]) < 0;
-    }
-
-    private void exch(int i, int j) {
-        // i , j as heap index
-        int temp = pq[i];
-        pq[i] = pq[j];
-        pq[j] = temp;
-        // update qp
-        qp[pq[i]] = i;
-        qp[pq[j]] = j;
-
-    }
-
     private int parent(int i) {
         return i / 2;
     }
@@ -94,22 +86,152 @@ public class _4_Index_MinPQ<Item extends Comparable<Item>> implements Iterable<I
         return 2 * i + 1;
     }
 
-    @Override
-    public Iterator<Item> iterator() {
-        return new Iterator<Item>() {
+    public boolean isEmpty() {
+        return n == 0;
+    }
 
-            @Override
-            public boolean hasNext() {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'hasNext'");
-            }
+    public boolean contains(int i) {
+        return qp[i] != -1;
+    }
 
-            @Override
-            public Item next() {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'next'");
-            }
+    public int size() {
+        return n;
+    }
 
-        };
+    private void validate(int i) {
+        if (i >= capacity || i < 0) {
+            throw new IllegalArgumentException("illegal index");
+        }
+    }
+
+    /*******************************************************************
+     * Core Functions
+     *******************************************************************/
+    public void insert(int rawIndex, Item item) {
+        validate(rawIndex);
+
+        items[rawIndex] = item;
+
+        n++;
+        pq[n] = rawIndex;
+        qp[rawIndex] = n;
+
+        swim(n);
+    }
+
+    /**
+     * @return return the raw index of minimum item
+     */
+    public int delMin() {
+        int min = pq[1];
+        exch(1, n);
+        n--;
+        sink(1);
+
+        qp[min] = -1; // update qp
+        items[min] = null; // delete item
+        return min;
+    }
+
+    public Item itemOf(int i) {
+        return items[i];
+    }
+
+    public void changeItem(int i, Item newItem) {
+        items[i] = newItem;
+        swim(i);
+        sink(i);
+    }
+
+    public void delete(int i) {
+        int target = qp[i];
+        exch(target, n--);
+        sink(target);
+        swim(target);
+        items[i] = null;
+        qp[i] = -1;
+    }
+
+    public Item peekMinItem() {
+        return items[pq[1]];
+    }
+
+    public int peekMinIndex() {
+        return pq[1];
+    }
+
+    /**********************************************************************
+     * Iterator
+     **********************************************************************/
+    public Iterator<Integer> iterator() {
+        return new HeapIterator();
+    }
+
+    private class HeapIterator implements Iterator<Integer> {
+        // create a new pq
+        private _4_Index_MinPQ<Item> copy;
+
+        // add all elements to copy of heap
+        // takes linear time since already in heap order so no keys move
+        public HeapIterator() {
+            copy = new _4_Index_MinPQ<Item>(pq.length - 1);
+            for (int i = 1; i <= n; i++)
+                copy.insert(pq[i], items[pq[i]]);
+        }
+
+        public boolean hasNext() {
+            return !copy.isEmpty();
+        }
+
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
+
+        public Integer next() {
+            if (!hasNext())
+                throw new NoSuchElementException();
+            return copy.delMin();
+        }
+    }
+
+    public static void main(String[] args) {
+        _4_Index_MinPQ<Integer> pq = new _4_Index_MinPQ<>(20);
+        Integer[] arr = { 8, 7, 6, 5 };
+        for (int i = 0; i < arr.length; i++) {
+            pq.insert(i, arr[i]);
+        }
+
+        System.out.println("items: ");
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(pq.itemOf(i) + " ");
+        }
+        System.out.println();
+
+        System.out.println("min item: ");
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(pq.peekMinItem() + " ");
+            pq.delMin();
+        }
+        System.out.println();
+
+        // 重新insert然后修改item
+        for (int i = 0; i < arr.length; i++) {
+            pq.insert(i, arr[i]);
+        }
+        pq.changeItem(3, 6666);
+
+        System.out.println("items: ");
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(pq.itemOf(i) + " ");
+        }
+        System.out.println();
+
+        System.out.println("min item: ");
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(pq.peekMinItem() + " ");
+            pq.delMin();
+        }
+        System.out.println();
+
     }
 }

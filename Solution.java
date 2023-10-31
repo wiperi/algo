@@ -1,9 +1,8 @@
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 
-class Solution {
+public class Solution {
     public static String[] findRelativeRanks(int[] score) {
 
         Integer[] rank = new Integer[score.length];
