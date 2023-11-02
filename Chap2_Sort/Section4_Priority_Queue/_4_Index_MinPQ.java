@@ -2,7 +2,7 @@ package Chap2_Sort.Section4_Priority_Queue;
 
 import java.util.Iterator;
 
-public class _4_Index_MinPQ<Item extends Comparable<Item>> implements Iterable<Item> {
+public class _4_Index_MinPQ<Item extends Comparable<Item>> {
     // 参考：https://zhuanlan.zhihu.com/p/287852724
 
     Item[] items; // ItemIndex to priority
@@ -92,24 +92,5 @@ public class _4_Index_MinPQ<Item extends Comparable<Item>> implements Iterable<I
 
     private int rightKid(int i) {
         return 2 * i + 1;
-    }
-
-    @Override
-    public Iterator<Item> iterator() {
-        return new Iterator<Item>() {
-
-            @Override
-            public boolean hasNext() {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'hasNext'");
-            }
-
-            @Override
-            public Item next() {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'next'");
-            }
-
-        };
     }
 }
