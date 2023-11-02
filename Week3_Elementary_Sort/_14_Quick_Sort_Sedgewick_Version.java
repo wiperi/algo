@@ -34,13 +34,13 @@ public class _14_Quick_Sort_Sedgewick_Version {
                     break;
             if (i >= j)
                 break;
-            transfer(arr, i, j);
+            exch(arr, i, j);
         }
-        transfer(arr, lo, j); // 此时，pivot在最左侧，j指向一个应当在左侧的元素。交换pivot和j指向元素的位置
+        exch(arr, lo, j); // 此时，pivot在最左侧，j指向一个应当在左侧的元素。交换pivot和j指向元素的位置
         return j; // a[lo..j-1] <= a[j] <= a[j+1..hi] 达成
     }
 
-    private static void transfer(int[] arr, int i, int j) {
+    private static void exch(int[] arr, int i, int j) {
         int tmp = arr[j];
         arr[j] = arr[i];
         arr[i] = tmp;
@@ -56,9 +56,9 @@ public class _14_Quick_Sort_Sedgewick_Version {
         int pivot = arr[lo];
         while (i <= gt) {
             if (arr[i] < pivot) {
-                transfer(arr, i++, lt++);
+                exch(arr, i++, lt++);
             } else if (arr[i] > pivot) {
-                transfer(arr, i, gt--);
+                exch(arr, i, gt--);
             } else {
                 i++;
             }

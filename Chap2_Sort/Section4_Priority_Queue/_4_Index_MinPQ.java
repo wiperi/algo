@@ -8,9 +8,10 @@ public class _4_Index_MinPQ<Item extends Comparable<Item>> implements Iterable<I
     // 优先队列只能访问堆顶元素，不方便，我们想访问并修改堆中任意元素
 
     private int capacity; // max capacity
-    private Item[] items; // rawIndex to item
-    private int[] pq; ////// heapIndex to rawIndex
-    private int[] qp; ////// rawIndex to heapIndex
+    // pq[] <--> items[] -> item
+    private Item[] items; // rawIndex to item, items[rawrIndex] = the item
+    private int[] pq; ////// heapIndex to rawIndex, pq[heapIndex] = rawIndex
+    private int[] qp; ////// rawIndex to heapIndex, qp[rawIndex] = heapIndex
     private int n; ///////// size of pq, always points to the last element
 
     @SuppressWarnings("unchecked")
@@ -46,19 +47,19 @@ public class _4_Index_MinPQ<Item extends Comparable<Item>> implements Iterable<I
 
     }
 
-    private void swim(int i) {
-        while (parent(i) >= 1 && less(i, parent(i))) {
-            exch(i, parent(i));
-            i = parent(i);
+    private void swim(int heapI) {
+        while (parent(heapI) >= 1 && less(heapI, parent(heapI))) {
+            exch(heapI, parent(heapI));
+            heapI = parent(heapI);
         }
     }
 
-    private void sink(int i) {
+    private void sink(int heapI) {
         // sink the bigger node
         while (true) {
-            int min = i;
-            int leftKid = leftKid(i);
-            int rightKid = rightKid(i);
+            int min = heapI;
+            int leftKid = leftKid(heapI);
+            int rightKid = rightKid(heapI);
 
             if (leftKid <= n && less(leftKid, min)) {
                 min = leftKid;
@@ -66,11 +67,11 @@ public class _4_Index_MinPQ<Item extends Comparable<Item>> implements Iterable<I
             if (rightKid <= n && less(rightKid, min)) {
                 min = rightKid;
             }
-            if (min == i) {
+            if (min == heapI) {
                 break;
             }
-            exch(i, min);
-            i = min;
+            exch(heapI, min);
+            heapI = min;
         }
     }
 
@@ -107,14 +108,14 @@ public class _4_Index_MinPQ<Item extends Comparable<Item>> implements Iterable<I
     /*******************************************************************
      * Core Functions
      *******************************************************************/
-    public void insert(int rawIndex, Item item) {
-        validate(rawIndex);
+    public void insert(int rawI, Item item) {
+        validate(rawI);
 
-        items[rawIndex] = item;
+        items[rawI] = item;
 
         n++;
-        pq[n] = rawIndex;
-        qp[rawIndex] = n;
+        pq[n] = rawI;
+        qp[rawI] = n;
 
         swim(n);
     }
@@ -133,14 +134,14 @@ public class _4_Index_MinPQ<Item extends Comparable<Item>> implements Iterable<I
         return min;
     }
 
-    public Item itemOf(int i) {
-        return items[i];
+    public Item itemOf(int rawIndex) {
+        return items[rawIndex];
     }
 
-    public void changeItem(int i, Item newItem) {
-        items[i] = newItem;
-        swim(i);
-        sink(i);
+    public void changeItem(int rawIndex, Item newItem) {
+        items[rawIndex] = newItem;
+        swim(qp[rawIndex]);
+        sink(qp[rawIndex]);
     }
 
     public void delete(int i) {
@@ -201,37 +202,16 @@ public class _4_Index_MinPQ<Item extends Comparable<Item>> implements Iterable<I
             pq.insert(i, arr[i]);
         }
 
-        System.out.println("items: ");
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(pq.itemOf(i) + " ");
+        for (int i = 0; i < pq.size(); i++) {
+            System.out.println(pq.itemOf(pq.pq[i + 1]));
         }
         System.out.println();
 
-        System.out.println("min item: ");
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(pq.peekMinItem() + " ");
-            pq.delMin();
+        pq.changeItem(3, 100);
+
+        for (int i = 0; i < pq.size(); i++) {
+            System.out.println(pq.itemOf(pq.pq[i + 1]));
         }
         System.out.println();
-
-        // 重新insert然后修改item
-        for (int i = 0; i < arr.length; i++) {
-            pq.insert(i, arr[i]);
-        }
-        pq.changeItem(3, 6666);
-
-        System.out.println("items: ");
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(pq.itemOf(i) + " ");
-        }
-        System.out.println();
-
-        System.out.println("min item: ");
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(pq.peekMinItem() + " ");
-            pq.delMin();
-        }
-        System.out.println();
-
     }
 }

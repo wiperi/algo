@@ -2,6 +2,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 
+import Chap3_Search.TreeNode;
+
 public class Solution {
     public static String[] findRelativeRanks(int[] score) {
 
@@ -25,6 +27,23 @@ public class Solution {
 
         return ret;
 
+    }
+
+    public int maxDepth(TreeNode root) {
+        int[] max = {0};
+        depth(root, 0, max);
+        return max[0];
+    }
+    
+    private int depth(TreeNode root, int curDepth, int[] max) {
+        curDepth++;
+        if (root == null) {
+            return curDepth--;
+        }
+        max[0] = Math.max(curDepth, max[0]);
+        depth(root.left, curDepth, max);
+        depth(root.right, curDepth, max);
+        return curDepth--;
     }
 
     public static void main(String[] args) {
