@@ -3,10 +3,7 @@ package Chap1_Fundamental.Section2_ADT;
 import javax.swing.JFrame;
 
 import java.awt.Color;
-import java.awt.event.KeyEvent;
-
 import edu.princeton.cs.algs4.Draw;
-import edu.princeton.cs.algs4.DrawListener;
 
 @SuppressWarnings("rawtypes")
 public class Sort_Visualizer {
