@@ -1,9 +1,9 @@
 package Chap1_Fundamental.Section3_Bag_Queue_Stack;
 
-public class Linked_List<Item> {
+public class Linked_List_Raw_Ver<Item> {
     public Node<Item> head;
 
-    public Linked_List() {
+    public Linked_List_Raw_Ver() {
         head = null;
     }
 
@@ -13,7 +13,7 @@ public class Linked_List<Item> {
      * @param s 用于构建链表的字符串
      */
     @SuppressWarnings("unchecked")
-    public Linked_List(String s) {
+    public Linked_List_Raw_Ver(String s) {
         Item[] tokens = (Item[]) s.split("\\s+");
         for (int i = 0; i < tokens.length; i++) {
             addBackNode(tokens[i]);
@@ -65,7 +65,7 @@ public class Linked_List<Item> {
     }
 
     public static void main(String[] args) {
-        Linked_List<String> l = new Linked_List<>("1 2 3 4 5");
+        Linked_List_Raw_Ver<String> l = new Linked_List_Raw_Ver<>("1 2 3 4 5");
         l.print();
         System.out.println(l);
     }

@@ -84,10 +84,12 @@ public class TreeNode {
         while (!que.isEmpty()) {
             TreeNode temp = que.poll(); // 取出节点
             retList.add(temp.val); // 记录节点
-            que.offer(temp.left == null ? null : temp.left); // 左节点入队
-            que.offer(temp.right == null ? null : temp.right); // 右节点入队
-        }
 
+            if (temp.left != null) // 左节点入队
+                que.offer(temp.left);
+            if (temp.right != null) // 右节点入队
+                que.offer(temp.right);
+        }
         return retList;
     }
 }

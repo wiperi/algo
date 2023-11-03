@@ -3,7 +3,7 @@ import edu.princeton.cs.algs4.Queue;
 
 public class Linked_List_Leet_Ver {
 
-    public Queue<ListNode> q = new Queue<ListNode>();
+    public Queue<ListNode> que = new Queue<ListNode>();
     public ListNode head;
 
     public Linked_List_Leet_Ver() {
@@ -39,13 +39,13 @@ public class Linked_List_Leet_Ver {
 
     public void addFront(int val) {
         ListNode newNode = new ListNode(val, head);
-        q.enqueue(newNode);
+        que.enqueue(newNode);
         head = newNode;
     }
 
     public void addBack(int val) {
         ListNode newNode = new ListNode(val, null);
-        q.enqueue(newNode);
+        que.enqueue(newNode);
         if (head == null) {
             head = newNode;
         } else {
@@ -80,7 +80,7 @@ public class Linked_List_Leet_Ver {
     }
 
     public void showAllNodes() {
-        for (ListNode node : q) {
+        for (ListNode node : que) {
             System.out.println(node.val + "-> " + (node.next == null ? null : node.next.val));
         }
     }

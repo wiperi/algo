@@ -1,6 +1,6 @@
 package Chap1_Fundamental.Section3_Bag_Queue_Stack.Ex;
 
-import Chap1_Fundamental.Section3_Bag_Queue_Stack.Linked_List;
+import Chap1_Fundamental.Section3_Bag_Queue_Stack.Linked_List_Raw_Ver;
 import Chap1_Fundamental.Section3_Bag_Queue_Stack.Node;
 
 /**
@@ -39,11 +39,11 @@ public class _30_Reverse_Linked_List<Item> {
     }
 
     public static void main(String[] args) {
-        Linked_List<String> l = new Linked_List<>("1 2 3 4 5");
+        Linked_List_Raw_Ver<String> l = new Linked_List_Raw_Ver<>("1 2 3 4 5");
         l.print();
         l.head = reverseList(l.getHead());
         l.print();
-        Linked_List<String> l2 = new Linked_List<>("1 2 3 4 5");
+        Linked_List_Raw_Ver<String> l2 = new Linked_List_Raw_Ver<>("1 2 3 4 5");
         l2.print();
         l2.head = reverseListLoop(l2.getHead());
         l2.print();
