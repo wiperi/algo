@@ -5,6 +5,9 @@ import edu.princeton.cs.algs4.BST;
 public class _BST {
     public TreeNode root;
 
+    /************************************************************************
+     * Core Functions
+     ************************************************************************/
     public TreeNode search(int val) {
         TreeNode cur = root;
         while (cur != null) {
@@ -45,6 +48,9 @@ public class _BST {
         }
     }
 
+    /************************************************************************
+     * Test
+     ************************************************************************/
     public static void main(String[] args) {
         BST<Integer, Integer> bst = new BST<>();
         _BST b = new _BST();

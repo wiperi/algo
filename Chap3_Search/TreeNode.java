@@ -29,9 +29,26 @@ public class TreeNode {
     /************************************************************************
      * Helper Funtions
      ************************************************************************/
-    public static int size(TreeNode root) {
+    public static int sizeOf(TreeNode root) {
         List<Integer> list = levelOrder(root);
         return list.size();
+    }
+
+    public static TreeNode builtTree(int[] a) {
+        int len = a.length;
+        TreeNode[] nodes = new TreeNode[len];
+        for (int i = 0; i < len; i++) {
+            nodes[i] = new TreeNode(a[i], null, null);
+        }
+        for (int i = 0; i < len; i++) {
+            int leftKid = 2 * i + 1;
+            int rightKid = 2 * i + 2;
+            if (leftKid < len)
+                nodes[i].left = nodes[leftKid];
+            if (rightKid < len)
+                nodes[i].right = nodes[rightKid];
+        }
+        return nodes[0];
     }
 
     /************************************************************************
@@ -63,6 +80,18 @@ public class TreeNode {
     /************************************************************************
      * DFS
      ************************************************************************/
+    @SuppressWarnings("unused")
+    private static void dfsFrame(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        // 前序位置
+        dfsFrame(root.left);
+        // 中序位置
+        dfsFrame(root.right);
+        // 后序位置
+    }
+
     private static List<Integer> retList = new ArrayList<>();
 
     public static List<Integer> dfs(TreeNode root, int mode) {
@@ -93,6 +122,22 @@ public class TreeNode {
             retList.add(root.val); // 后序
 
         return retList;
+    }
+
+    public static List<Integer> preorderSub(TreeNode root) {
+        // 分解成问题：一个二叉树的前序遍历结果 = root的值 + 左子树的前序结果 +  + 右子树的前序结果
+        List<Integer> ret = new ArrayList<>();
+
+        if (root == null) return ret;
+
+        List<Integer> left = preorderSub(root.left);
+        List<Integer> right = preorderSub(root.right);
+
+        ret.add(root.val); // 中序和后序改变add命令的位置即可
+        ret.addAll(left);
+        ret.addAll(right);
+
+        return ret;
     }
 
     public static List<Integer> preorderIter(TreeNode root) { // 迭代先序
@@ -187,7 +232,7 @@ public class TreeNode {
     /************************************************************************
      * Test
      ************************************************************************/
-    public static void main(String[] args) {
+    public static void testTraversal(String[] args) {
         BST<Integer, Integer> bst = new BST<>();
         _BST b = new _BST();
         for (Integer ints : new Integer[] { 6, 4, 8, 3, 5 }) {
@@ -211,8 +256,12 @@ public class TreeNode {
         System.out.println("pre, pre1, in, post order by iter:");
         System.out.println(TreeNode.preorderIter(b.root));
         System.out.println(TreeNode.preorderIter1(b.root));
+        System.out.println(TreeNode.preorderSub(b.root));
         System.out.println(TreeNode.inorderIter(b.root));
         System.out.println(TreeNode.postorderIter(b.root));
+    }
 
+    public static void main(String[] args) {
+        testTraversal(args);
     }
 }
