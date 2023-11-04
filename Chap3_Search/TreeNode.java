@@ -46,7 +46,7 @@ public class TreeNode {
 
         Queue<TreeNode> que = new LinkedList<>();
         List<Integer> ret = new ArrayList<>();
-        
+
         que.add(root);
         while (!que.isEmpty()) {
             TreeNode temp = que.poll(); // 取出节点
@@ -213,4 +213,6 @@ public class TreeNode {
         System.out.println(TreeNode.preorderIter1(b.root));
         System.out.println(TreeNode.inorderIter(b.root));
         System.out.println(TreeNode.postorderIter(b.root));
-    }}
+
+    }
+}
