@@ -16,6 +16,9 @@
 	// 	"description": "Log output to console"
 	// }
 
+	/************************************************************************
+	 * Print
+	 ************************************************************************/
 	"print a line": {
 		"scope": "java",
 		"prefix": "pr",
@@ -52,40 +55,16 @@
 		"description": ""
 	}
 
-	"build arr": {
-		"scope": "java",
-		"prefix": "anarr",
-		"body": [
-	 		"${1:int}[] ${2:a} = new ${1:int}[$3]$4;$0"
-		],
-		"description": ""
-	}
-
-	"build list": {
-		"scope": "java",
-		"prefix": "alist",
-		"body": [
-	 		"List<${1:Integer}> ${2:list} = new ArrayList<>();$0"
-		],
-		"description": ""
-	}
-
-	"build function": {
+	/************************************************************************
+	 * Build
+	 ************************************************************************/
+	"build a function": {
 		"scope": "java",
 		"prefix": "afunc",
 		"body": [
 	 		"public ${1:static} ${2:void} ${3:func}($4) {"
 			"	$0"
 			"}"
-		],
-		"description": ""
-	}
-
-	"build hash map": {
-		"scope": "java",
-		"prefix": "amap",
-		"body": [
-			"HashMap<${1:Character}, ${2:Integer}> ${3:window} = new HashMap<>();$0"
 		],
 		"description": ""
 	}
@@ -99,14 +78,59 @@
 		"description": ""
 	}
 
-	"separator": {
-		"scope": "java",
+	"build a separator": {
+		"scope": "",
 		"prefix": "separate",
 		"body": [
 	 		"/************************************************************************"
 			" * ${1:Helper Funtions}"
 			" ************************************************************************/"
 			"$0"
+		],
+		"description": ""
+	}
+
+	"build an arr": {
+		"scope": "java",
+		"prefix": "anarr",
+		"body": [
+	 		"${1:int}[] ${2:a} = new ${1:int}[$3]$4;$0"
+		],
+		"description": ""
+	}
+
+	"build a list": {
+		"scope": "java",
+		"prefix": "alist",
+		"body": [
+	 		"List<${1:Integer}> ${2:list} = new ArrayList<>();$0"
+		],
+		"description": ""
+	}
+
+	"build a que": {
+		"scope": "java",
+		"prefix": "aque",
+		"body": [
+			"Queue<${1:Integer}> ${2:que} = new LinkedList<>();$0"
+		],
+		"description": ""
+	}
+
+	"build a stack": {
+		"scope": "java",
+		"prefix": "astack",
+		"body": [
+			"Stack<${1:Integer}> ${2:stack} = new Stack<>();$0"
+		],
+		"description": ""
+	}
+
+	"build a map": {
+		"scope": "java",
+		"prefix": "amap",
+		"body": [
+			"Map<${1:Character}, ${2:Integer}> ${3:window} = new HashMap<>();$0"
 		],
 		"description": ""
 	}
