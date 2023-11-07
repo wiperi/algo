@@ -5,7 +5,7 @@ import java.util.HashMap;
 import Chap3_Search.TreeNode;
 
 public class Solution {
-    public static String[] findRelativeRanks(int[] score) {
+    public String[] findRelativeRanks(int[] score) {
 
         Integer[] rank = new Integer[score.length];
         for (int i = 0; i < score.length; i++) {
@@ -20,9 +20,12 @@ public class Solution {
         String[] ret = new String[score.length];
         for (int i = 0; i < ret.length; i++) {
             ret[i] = scoreToRank.get(score[i]).toString();
-            if (scoreToRank.get(score[i]) == 1) ret[i] = "Gold Medal";
-            if (scoreToRank.get(score[i]) == 2) ret[i] = "Silver Medal";
-            if (scoreToRank.get(score[i]) == 3) ret[i] = "Bronze Medal";
+            if (scoreToRank.get(score[i]) == 1)
+                ret[i] = "Gold Medal";
+            if (scoreToRank.get(score[i]) == 2)
+                ret[i] = "Silver Medal";
+            if (scoreToRank.get(score[i]) == 3)
+                ret[i] = "Bronze Medal";
         }
 
         return ret;
@@ -30,11 +33,11 @@ public class Solution {
     }
 
     public int maxDepth(TreeNode root) {
-        int[] max = {0};
+        int[] max = { 0 };
         depth(root, 0, max);
         return max[0];
     }
-    
+
     private int depth(TreeNode root, int curDepth, int[] max) {
         curDepth++;
         if (root == null) {
@@ -46,14 +49,35 @@ public class Solution {
         return curDepth--;
     }
 
-    public static void main(String[] args) {
-        findRelativeRanks(new int[] { 7, 8, 5, 4 });
+    public static int iceBreakingGame(int num, int target) {
+        int[] a = new int[num];
+        for (int i = 0; i < num; i++) {
+            a[i] = i + 1;
+        }
+        a[num - 1] = 0;
+
+        int pre = 0, cur = 0, times = 1;
+        while (true) {
+            times++;
+            pre = cur;
+            cur = a[cur];
+
+            if (times == target) {
+                times = 0;
+                a[pre] = a[cur];
+                if (a[cur] == a[a[cur]])
+                    return a[cur];
+            }
+        }
     }
 
-    public static void show(Comparable[] a) {
-        for (Comparable ints : a) {
-            System.out.print(ints + " ");
-        }
-        System.out.println();
+    public int diameterOfBinaryTree(TreeNode root) {
+        if (root == null)
+            return 0;
+
+        int leftMax = diameterOfBinaryTree(root.left);
+        int rightMax = diameterOfBinaryTree(root.right);
+
+        return 1 + Math.max(leftMax, rightMax);
     }
 }
