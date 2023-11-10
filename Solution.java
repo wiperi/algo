@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.PriorityQueue;
 import java.util.Queue;
 
 import Chap3_Search.TreeNode;
@@ -74,6 +75,27 @@ public class Solution {
         }
 
         dfs(root.right);
+    }
+
+    public int kthSmallest(TreeNode root, int k) {
+        kthSmallestAux(root, k);
+        return res;
+    }
+
+    static int res;
+    static int times;
+
+    private void kthSmallestAux(TreeNode root, int k) {
+        if (root == null) {
+            times--;
+            return;
+        }
+        kthSmallestAux(root.left, k);
+        // inorder position
+        times++;
+        if (k == times)
+            res = root.val;
+        kthSmallestAux(root.right, k);
     }
 
     public static void main(String[] args) {
