@@ -34,6 +34,16 @@ public class TreeNode {
         return list.size();
     }
 
+    public static int getHeight(TreeNode root) {
+        if (root == null)
+            return 0;
+
+        int leftMax = getHeight(root.left);
+        int rightMax = getHeight(root.right);
+
+        return 1 + Math.max(leftMax, rightMax);
+    }
+
     public static TreeNode builtTree(int[] a) {
         int len = a.length;
         TreeNode[] nodes = new TreeNode[len];

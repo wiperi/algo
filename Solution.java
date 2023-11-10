@@ -1,83 +1,176 @@
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
 import Chap3_Search.TreeNode;
 
 public class Solution {
-    public String[] findRelativeRanks(int[] score) {
-
-        Integer[] rank = new Integer[score.length];
-        for (int i = 0; i < score.length; i++) {
-            rank[i] = score[i];
-        }
-        Arrays.sort(rank, Collections.reverseOrder());
-        HashMap<Integer, Integer> scoreToRank = new HashMap<>();
-        for (int i = 0; i < rank.length; i++) {
-            scoreToRank.put(rank[i], i + 1);
-        }
-
-        String[] ret = new String[score.length];
-        for (int i = 0; i < ret.length; i++) {
-            ret[i] = scoreToRank.get(score[i]).toString();
-            if (scoreToRank.get(score[i]) == 1)
-                ret[i] = "Gold Medal";
-            if (scoreToRank.get(score[i]) == 2)
-                ret[i] = "Silver Medal";
-            if (scoreToRank.get(score[i]) == 3)
-                ret[i] = "Bronze Medal";
-        }
-
-        return ret;
-
-    }
-
-    public int maxDepth(TreeNode root) {
-        int[] max = { 0 };
-        depth(root, 0, max);
-        return max[0];
-    }
-
-    private int depth(TreeNode root, int curDepth, int[] max) {
-        curDepth++;
-        if (root == null) {
-            return curDepth--;
-        }
-        max[0] = Math.max(curDepth, max[0]);
-        depth(root.left, curDepth, max);
-        depth(root.right, curDepth, max);
-        return curDepth--;
-    }
-
-    public static int iceBreakingGame(int num, int target) {
-        int[] a = new int[num];
-        for (int i = 0; i < num; i++) {
-            a[i] = i + 1;
-        }
-        a[num - 1] = 0;
-
-        int pre = 0, cur = 0, times = 1;
-        while (true) {
-            times++;
-            pre = cur;
-            cur = a[cur];
-
-            if (times == target) {
-                times = 0;
-                a[pre] = a[cur];
-                if (a[cur] == a[a[cur]])
-                    return a[cur];
-            }
-        }
-    }
 
     public int diameterOfBinaryTree(TreeNode root) {
+        maxDepth(root);
+        return res;
+    }
+
+    int res = 0;
+
+    public int maxDepth(TreeNode root) {
+        // 分解问题：最长直径 = 左子树的最长路径 + 右子树的最长路径
         if (root == null)
             return 0;
 
-        int leftMax = diameterOfBinaryTree(root.left);
-        int rightMax = diameterOfBinaryTree(root.right);
+        int leftMax = maxDepth(root.left);
+        int rightMax = maxDepth(root.right);
 
+        res = Math.max(res, leftMax + rightMax);
         return 1 + Math.max(leftMax, rightMax);
+    }
+
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        if (root == null)
+            return null;
+
+        Queue<TreeNode> que = new LinkedList<>();
+        List<TreeNode> list = new LinkedList<>();
+        List<Integer> subList = new ArrayList<>();
+        List<List<Integer>> res = new ArrayList<>();
+        que.offer(root);
+
+        while (true) {
+            for (TreeNode node : que) {
+                list.add(node);
+            }
+
+            for (TreeNode node : list) {
+                int a = node.val;
+                System.out.println(a);
+                subList.add(a);
+            }
+            res.add(subList);
+            subList.clear();
+
+            que.clear();
+            for (TreeNode node : list) {
+                if (node.left != null)
+                    que.offer(node.left);
+                if (node.right != null)
+                    que.offer(node.right);
+            }
+            if (que.isEmpty())
+                break;
+            list.clear();
+        }
+        return res;
+    }
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        // 方法一：BFS
+        // if(root == null){
+        //     return new ArrayList<>();
+        // }
+        // List<List<Integer>> res = new ArrayList<>();
+        
+
+        // LinkedList<TreeNode> queue = new LinkedList<>();
+        // queue.add(root);
+
+        // while(!queue.isEmpty()){
+        //     int size = queue.size();
+        //     List<Integer> tempList = new ArrayList<>();
+
+        //     while(size > 0){
+        //         TreeNode temp = queue.poll();
+        //         tempList.add(temp.val);
+
+        //         if(temp.left != null){
+        //             queue.add(temp.left);
+        //         }
+
+        //         if(temp.right != null){
+        //             queue.add(temp.right);
+        //         }
+        //         size--;
+
+        //     }
+
+        //     res.add(tempList);
+
+        // }
+
+        // return res;
+
+
+        // 方法二： DFS
+        DFS(root, 0);
+        return res;
+
+
+    }
+    List<List<Integer>> res = new ArrayList<>();
+
+    public void DFS(TreeNode root,int  level){
+        if(root == null){
+            return;
+        }
+        
+        if(res.size() == level){
+            res.add(new ArrayList<Integer>());
+        }
+
+        res.get(level).add(root.val);
+
+        DFS(root.left, level + 1);
+        DFS(root.right, level + 1);
+
+    }
+}
+
+    public List<List<Integer>> levelOrderAns(TreeNode root) {
+        List<List<Integer>> res = new LinkedList<>();
+        if (root == null) {
+            return res;
+        }
+
+        Queue<TreeNode> que = new LinkedList<>();
+        que.offer(root);
+        // while 循环控制从上向下一层层遍历
+        while (!que.isEmpty()) {
+            int sz = que.size();
+            // 记录这一层的节点值
+            List<Integer> level = new LinkedList<>();
+            // for 循环控制每一层从左向右遍历
+            for (int i = 0; i < sz; i++) {
+                TreeNode cur = que.poll();
+                level.add(cur.val);
+                if (cur.left != null)
+                    que.offer(cur.left);
+                if (cur.right != null)
+                    que.offer(cur.right);
+            }
+            res.add(level);
+        }
+        return res;
+    }
+
+    public static void main(String[] args) {
+        Solution s = new Solution();
+        TreeNode root = TreeNode.builtTree(new int[] { 1, 2, 3, 4, 5 });
+        System.out.println(s.levelOrder(root));
     }
 }

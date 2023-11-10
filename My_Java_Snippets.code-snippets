@@ -28,6 +28,15 @@
 		"description": ""
 	}
 
+	"print a fomated string": {
+		"scope": "java",
+		"prefix": "prf",
+		"body": [
+	 		"System.out.printf(\"$1\", $2);$0"
+		],
+		"description": ""
+	}
+
 	"print array": {
 		"scope": "java",
 		"prefix": "show",
