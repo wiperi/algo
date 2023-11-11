@@ -92,8 +92,8 @@ public class _BST {
         return isValidBSTVerLabuladongAux(root, null, null);
     }
 
-    /* 限定以 root 为根的子树节点必须满足 max.val > root.val > min.val */
     boolean isValidBSTVerLabuladongAux(TreeNode root, TreeNode min, TreeNode max) {
+        /* 限定以 root 为根的子树节点必须满足 max.val > root.val > min.val */
         // base case
         if (root == null)
             return true;
@@ -107,11 +107,11 @@ public class _BST {
                 && isValidBSTVerLabuladongAux(root.right, root, max);
     }
 
-    public static TreeNode buildFromSortedArray(int[] a) {
+    public static TreeNode buildFromSortedArray(Integer[] a) {
         return buildFromSortedArrayAux(null, a, 0, a.length - 1);
     }
 
-    private static TreeNode buildFromSortedArrayAux(TreeNode root, int[] arr, int lo, int hi) {
+    private static TreeNode buildFromSortedArrayAux(TreeNode root, Integer[] arr, int lo, int hi) {
         int mid = lo + (hi - lo) / 2;
         if (lo <= hi) {
             root = new TreeNode(arr[mid]);
@@ -124,7 +124,7 @@ public class _BST {
         return root;
     }
 
-    private static boolean isSorted(int[] a) {
+    private static boolean isSorted(Integer[] a) {
         for (int i = 1; i < a.length; i++) {
             if (a[i] < a[i - 1])
                 return false;
@@ -132,7 +132,7 @@ public class _BST {
         return true;
     }
 
-    public static TreeNode buildFromArray(int[] a) {
+    public static TreeNode buildFromArray(Integer[] a) {
         if (!isSorted(a))
             Arrays.sort(a);
         return buildFromSortedArray(a);

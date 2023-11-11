@@ -9,18 +9,18 @@ import java.util.Stack;
 import edu.princeton.cs.algs4.BST;
 
 public class TreeNode {
-    public int val;
+    public Integer val;
     public TreeNode left;
     public TreeNode right;
 
     public TreeNode() {
     }
 
-    public TreeNode(int val) {
+    public TreeNode(Integer val) {
         this.val = val;
     }
 
-    public TreeNode(int val, TreeNode left, TreeNode right) {
+    public TreeNode(Integer val, TreeNode left, TreeNode right) {
         this.val = val;
         this.left = left;
         this.right = right;
@@ -44,7 +44,7 @@ public class TreeNode {
         return 1 + Math.max(leftMax, rightMax);
     }
 
-    public static TreeNode builtTree(int[] a) {
+    public static TreeNode builtTree(Integer[] a) {
         int len = a.length;
         TreeNode[] nodes = new TreeNode[len];
         for (int i = 0; i < len; i++) {
@@ -322,7 +322,12 @@ public class TreeNode {
         System.out.println(TreeNode.postorderIter(b.root));
     }
 
+    public static void testBuiltTree(String[] args) {
+        TreeNode root = TreeNode.builtTree(new Integer[] { null, 2, 3 });
+        System.out.println(TreeNode.dfs(root, 1));
+    }
+
     public static void main(String[] args) {
-        testTraversal(args);
+        testBuiltTree(args);
     }
 }
