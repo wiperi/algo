@@ -2,7 +2,7 @@ package Chap1_Fundamental.Section3_Bag_Queue_Stack.Ex;
 
 import java.util.Iterator;
 
-import Chap1_Fundamental.Section3_Bag_Queue_Stack.Node;
+import Chap1_Fundamental.Node;
 import edu.princeton.cs.algs4.StdIn;
 
 /**

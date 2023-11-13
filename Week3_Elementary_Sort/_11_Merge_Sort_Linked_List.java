@@ -1,6 +1,6 @@
 package Week3_Elementary_Sort;
-import Chap1_Fundamental.Section3_Bag_Queue_Stack.Linked_List_Queue_Ver;
-import Chap1_Fundamental.Section3_Bag_Queue_Stack.Node;
+import Chap1_Fundamental.Linked_List_Queue_Ver;
+import Chap1_Fundamental.Node;
 
 public class _11_Merge_Sort_Linked_List {
 

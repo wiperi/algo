@@ -1,4 +1,4 @@
-package Chap1_Fundamental.Section3_Bag_Queue_Stack;
+package Chap1_Fundamental;
 import edu.princeton.cs.algs4.Queue;
 
 public class Linked_List_Leet_Ver {

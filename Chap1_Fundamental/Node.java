@@ -1,4 +1,4 @@
-package Chap1_Fundamental.Section3_Bag_Queue_Stack;
+package Chap1_Fundamental;
 
 public class Node<Item> {
     public Item item;

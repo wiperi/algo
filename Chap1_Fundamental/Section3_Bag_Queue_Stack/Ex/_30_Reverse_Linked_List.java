@@ -1,7 +1,7 @@
 package Chap1_Fundamental.Section3_Bag_Queue_Stack.Ex;
 
-import Chap1_Fundamental.Section3_Bag_Queue_Stack.Linked_List_Raw_Ver;
-import Chap1_Fundamental.Section3_Bag_Queue_Stack.Node;
+import Chap1_Fundamental.Linked_List_Raw_Ver;
+import Chap1_Fundamental.Node;
 
 /**
  * 1.3.30 编写一个函数，接受一条链表的首结点作为参数，（破坏性地）将链表反转并返回结果链表的

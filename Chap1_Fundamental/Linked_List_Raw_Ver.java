@@ -1,37 +1,22 @@
-package Chap1_Fundamental.Section3_Bag_Queue_Stack;
-import edu.princeton.cs.algs4.Queue;
+package Chap1_Fundamental;
 
-public class Linked_List_Queue_Ver<Item> {
-
-    public Queue<Node<Item>> q = new Queue<Node<Item>>();
+public class Linked_List_Raw_Ver<Item> {
     public Node<Item> head;
 
-    public Linked_List_Queue_Ver() {
+    public Linked_List_Raw_Ver() {
         head = null;
     }
 
     /**
-     * 构建链表，当且仅当类型参数为{@code String}的情况下使用
+     * 当且仅当泛型参数为{@code String}的时候可以使用此构造函数，该函数接受一个字符串，读取其中每一个由空格分隔的元素，生成一条链表
      * 
      * @param s 用于构建链表的字符串
      */
     @SuppressWarnings("unchecked")
-    public Linked_List_Queue_Ver(String s) {
+    public Linked_List_Raw_Ver(String s) {
         Item[] tokens = (Item[]) s.split("\\s+");
         for (int i = 0; i < tokens.length; i++) {
             addBackNode(tokens[i]);
-        }
-    }
-
-    /**
-     * 构建链表，当且仅当类型参数为{@code Integer}的情况下使用
-     * 
-     * @param a 用于构建链表的数组
-     */
-    @SuppressWarnings("unchecked")
-    public Linked_List_Queue_Ver(int[] a) {
-        for (int i : a) {
-            addBackNode((Item) Integer.valueOf(i));
         }
     }
 
@@ -46,7 +31,6 @@ public class Linked_List_Queue_Ver<Item> {
 
     public void addBackNode(Item item) {
         Node<Item> newNode = new Node<Item>(item, null);
-        q.enqueue(newNode);
         if (head == null) {
             head = newNode;
         } else {
@@ -80,24 +64,9 @@ public class Linked_List_Queue_Ver<Item> {
         return s;
     }
 
-    public void printExisted() {
-        for (Node<Item> node : q) {
-            System.out.println(node.item + "-> " + (node.next == null ? null : node.next.item));
-        }
-    }
-
     public static void main(String[] args) {
-        Linked_List_Queue_Ver<String> l = new Linked_List_Queue_Ver<>("1 2 3 4 5");
+        Linked_List_Raw_Ver<String> l = new Linked_List_Raw_Ver<>("1 2 3 4 5");
         l.print();
         System.out.println(l);
-
-        Node<String> cur = l.getHead();
-        while (cur != null) {
-            System.out.println(cur);
-            cur = cur.next;
-        }
-        for (Node<String> node : l.q) {
-            System.out.println(node.item + "-> " + (node.next == null ? null : node.next.item));
-        }
     }
 }
