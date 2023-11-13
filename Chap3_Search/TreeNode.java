@@ -9,18 +9,18 @@ import java.util.Stack;
 import edu.princeton.cs.algs4.BST;
 
 public class TreeNode {
-    public int val;
+    public Integer val;
     public TreeNode left;
     public TreeNode right;
 
     public TreeNode() {
     }
 
-    public TreeNode(int val) {
+    public TreeNode(Integer val) {
         this.val = val;
     }
 
-    public TreeNode(int val, TreeNode left, TreeNode right) {
+    public TreeNode(Integer val, TreeNode left, TreeNode right) {
         this.val = val;
         this.left = left;
         this.right = right;
@@ -44,7 +44,7 @@ public class TreeNode {
         return 1 + Math.max(leftMax, rightMax);
     }
 
-    public static TreeNode builtTree(int[] a) {
+    public static TreeNode builtTree(Integer[] a) {
         int len = a.length;
         TreeNode[] nodes = new TreeNode[len];
         for (int i = 0; i < len; i++) {
@@ -87,6 +87,49 @@ public class TreeNode {
         return ret;
     }
 
+    public static List<List<Integer>> levelOrderReturnLists(TreeNode root) {
+        List<List<Integer>> res = new LinkedList<>();
+        dfs(root, 1, res);
+        return res;
+    }
+
+    private static void dfs(TreeNode root, int level, List<List<Integer>> res) {
+        if (root == null) {
+            return;
+        }
+
+        if (level > res.size())
+            res.add(new LinkedList<Integer>());
+        res.get(level - 1).add(root.val);
+
+        dfs(root.left, level + 1, res);
+        dfs(root.right, level + 1, res);
+    }
+
+    public static List<List<Integer>> levelOrderReturnListsIter(TreeNode root) {
+        if (root == null)
+            return new ArrayList<>();
+
+        List<List<Integer>> res = new ArrayList<>();
+        Queue<TreeNode> que = new LinkedList<>();
+        que.offer(root);
+        while (!que.isEmpty()) {
+            int levelSize = que.size();
+
+            List<Integer> level = new ArrayList<>();
+            for (int i = 0; i < levelSize; i++) {
+                TreeNode cur = que.poll();
+                level.add(cur.val);
+                if (cur.left != null)
+                    que.offer(cur.left);
+                if (cur.right != null)
+                    que.offer(cur.right);
+            }
+            res.add(level);
+        }
+        return res;
+    }
+
     /************************************************************************
      * DFS
      ************************************************************************/
@@ -104,12 +147,19 @@ public class TreeNode {
 
     private static List<Integer> retList = new ArrayList<>();
 
+    /**
+     * mode 1 = preorder, mode 2 = inorder, mode 3 = postorder
+     * 
+     * @param root
+     * @param mode
+     * @return
+     */
     public static List<Integer> dfs(TreeNode root, int mode) {
         retList.clear();
-        return dfsRecur(root, mode);
+        return dfsAux(root, mode);
     }
 
-    private static List<Integer> dfsRecur(TreeNode root, int mode) {
+    private static List<Integer> dfsAux(TreeNode root, int mode) {
         if (mode < 1 || mode > 3) { // 检查参数合法性
             throw new IllegalArgumentException("mode must be 1,2 or 3");
         }
@@ -121,12 +171,12 @@ public class TreeNode {
         if (mode == 1)
             retList.add(root.val); // 前序
 
-        dfsRecur(root.left, mode);
+        dfsAux(root.left, mode);
 
         if (mode == 2)
             retList.add(root.val); // 中序
 
-        dfsRecur(root.right, mode);
+        dfsAux(root.right, mode);
 
         if (mode == 3)
             retList.add(root.val); // 后序
@@ -135,10 +185,11 @@ public class TreeNode {
     }
 
     public static List<Integer> preorderSub(TreeNode root) {
-        // 分解成问题：一个二叉树的前序遍历结果 = root的值 + 左子树的前序结果 +  + 右子树的前序结果
+        // 分解成问题：一个二叉树的前序遍历结果 = root的值 + 左子树的前序结果 + + 右子树的前序结果
         List<Integer> ret = new ArrayList<>();
 
-        if (root == null) return ret;
+        if (root == null)
+            return ret;
 
         List<Integer> left = preorderSub(root.left);
         List<Integer> right = preorderSub(root.right);
@@ -271,7 +322,12 @@ public class TreeNode {
         System.out.println(TreeNode.postorderIter(b.root));
     }
 
+    public static void testBuiltTree(String[] args) {
+        TreeNode root = TreeNode.builtTree(new Integer[] { null, 2, 3 });
+        System.out.println(TreeNode.dfs(root, 1));
+    }
+
     public static void main(String[] args) {
-        testTraversal(args);
+        testBuiltTree(args);
     }
 }
