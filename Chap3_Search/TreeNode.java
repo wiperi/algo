@@ -44,7 +44,7 @@ public class TreeNode {
         return 1 + Math.max(leftMax, rightMax);
     }
 
-    public static TreeNode builtTree(Integer[] a) {
+    public static TreeNode buildTree(Integer[] a) {
         int len = a.length;
         TreeNode[] nodes = new TreeNode[len];
         for (int i = 0; i < len; i++) {
@@ -323,7 +323,7 @@ public class TreeNode {
     }
 
     public static void testBuiltTree(String[] args) {
-        TreeNode root = TreeNode.builtTree(new Integer[] { null, 2, 3 });
+        TreeNode root = TreeNode.buildTree(new Integer[] { null, 2, 3 });
         System.out.println(TreeNode.dfs(root, 1));
     }
 
