@@ -7,14 +7,14 @@ import java.util.Queue;
 import java.util.Stack;
 
 import edu.princeton.cs.algs4.BST;
+import edu.princeton.cs.algs4.IndexMultiwayMinPQ;
 
 public class TreeNode {
     public Integer val;
     public TreeNode left;
     public TreeNode right;
 
-    public TreeNode() {
-    }
+    public TreeNode() {}
 
     public TreeNode(Integer val) {
         this.val = val;
@@ -35,8 +35,7 @@ public class TreeNode {
     }
 
     public static int getHeight(TreeNode root) {
-        if (root == null)
-            return 0;
+        if (root == null) return 0;
 
         int leftMax = getHeight(root.left);
         int rightMax = getHeight(root.right);
@@ -53,12 +52,55 @@ public class TreeNode {
         for (int i = 0; i < len; i++) {
             int leftKid = 2 * i + 1;
             int rightKid = 2 * i + 2;
-            if (leftKid < len)
-                nodes[i].left = nodes[leftKid];
-            if (rightKid < len)
-                nodes[i].right = nodes[rightKid];
+            if (leftKid < len) nodes[i].left = nodes[leftKid];
+            if (rightKid < len) nodes[i].right = nodes[rightKid];
         }
         return nodes[0];
+    }
+
+    /**
+     * Show a linked list form binary tree
+     * 
+     * @param root
+     */
+    public static void show(TreeNode root) {
+        int arrSize = (int) Math.pow(2, (double) getHeight(root)) - 1;
+        Integer[] arr = new Integer[arrSize];
+        showAux(root, arr, 0);
+
+        // print to screen
+        int leftbound = 0;
+        int rightbound = 0;
+        int gapSize = arrSize; // the gap printed bewteem two elements that are in the same row
+        while (true) {
+            printGap(gapSize / 2);
+            for (int i = leftbound; i <= rightbound; i++) {
+                if (i >= arrSize) return;
+                if (arr[i] == null) System.out.printf("%s", "n");
+                if (arr[i] != null) System.out.print(arr[i]);
+                printGap(gapSize);
+            }
+            System.out.println();
+
+            gapSize /= 2;
+            leftbound = 2 * leftbound + 1;
+            rightbound = 2 * rightbound + 2;
+        }
+    }
+
+    private static void showAux(TreeNode root, Integer[] arr, int index) {
+        if (root == null) {
+            return;
+        }
+        arr[index] = root.val;
+        showAux(root.left, arr, 2 * index + 1);
+        showAux(root.right, arr, 2 * index + 2);
+    }
+
+    private static void printGap(int gapSize) {
+        for (int i = 0; i < gapSize; i++) {
+            System.out.printf("%s", " ");
+        }
     }
 
     /************************************************************************
@@ -89,26 +131,24 @@ public class TreeNode {
 
     public static List<List<Integer>> levelOrderReturnLists(TreeNode root) {
         List<List<Integer>> res = new LinkedList<>();
-        dfs(root, 1, res);
+        levelOrderReturnListsAux(root, 1, res);
         return res;
     }
 
-    private static void dfs(TreeNode root, int level, List<List<Integer>> res) {
+    private static void levelOrderReturnListsAux(TreeNode root, int level, List<List<Integer>> res) {
         if (root == null) {
             return;
         }
 
-        if (level > res.size())
-            res.add(new LinkedList<Integer>());
+        if (level > res.size()) res.add(new LinkedList<Integer>());
         res.get(level - 1).add(root.val);
 
-        dfs(root.left, level + 1, res);
-        dfs(root.right, level + 1, res);
+        levelOrderReturnListsAux(root.left, level + 1, res);
+        levelOrderReturnListsAux(root.right, level + 1, res);
     }
 
     public static List<List<Integer>> levelOrderReturnListsIter(TreeNode root) {
-        if (root == null)
-            return new ArrayList<>();
+        if (root == null) return new ArrayList<>();
 
         List<List<Integer>> res = new ArrayList<>();
         Queue<TreeNode> que = new LinkedList<>();
@@ -120,10 +160,8 @@ public class TreeNode {
             for (int i = 0; i < levelSize; i++) {
                 TreeNode cur = que.poll();
                 level.add(cur.val);
-                if (cur.left != null)
-                    que.offer(cur.left);
-                if (cur.right != null)
-                    que.offer(cur.right);
+                if (cur.left != null) que.offer(cur.left);
+                if (cur.right != null) que.offer(cur.right);
             }
             res.add(level);
         }
@@ -168,18 +206,15 @@ public class TreeNode {
             return null;
         }
 
-        if (mode == 1)
-            retList.add(root.val); // 前序
+        if (mode == 1) retList.add(root.val); // 前序
 
         dfsAux(root.left, mode);
 
-        if (mode == 2)
-            retList.add(root.val); // 中序
+        if (mode == 2) retList.add(root.val); // 中序
 
         dfsAux(root.right, mode);
 
-        if (mode == 3)
-            retList.add(root.val); // 后序
+        if (mode == 3) retList.add(root.val); // 后序
 
         return retList;
     }
@@ -188,8 +223,7 @@ public class TreeNode {
         // 分解成问题：一个二叉树的前序遍历结果 = root的值 + 左子树的前序结果 + + 右子树的前序结果
         List<Integer> ret = new ArrayList<>();
 
-        if (root == null)
-            return ret;
+        if (root == null) return ret;
 
         List<Integer> left = preorderSub(root.left);
         List<Integer> right = preorderSub(root.right);
@@ -327,7 +361,12 @@ public class TreeNode {
         System.out.println(TreeNode.dfs(root, 1));
     }
 
+    public static void testShow(String[] args) {
+        TreeNode root = TreeNode.buildTree(new Integer[] { 1, 2, 3, null, 4, 5, null, 6 });
+        TreeNode.show(root);
+    }
+
     public static void main(String[] args) {
-        testBuiltTree(args);
+        testShow(args);
     }
 }

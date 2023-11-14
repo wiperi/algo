@@ -72,8 +72,8 @@ public class _3_Binary_Heap_MaxPQ<Key extends Comparable<Key>> implements _1_PQ_
     }
 
     public Integer show() {
-        int lay = (int) (Math.log(n) / Math.log(2));
-        int numsOnBottomRow = (int) Math.pow(2, lay); // numbers of elements on bottom row
+        int levels = (int) (Math.log(n) / Math.log(2));
+        int numsOnBottomRow = (int) Math.pow(2, levels); // numbers of elements on bottom row
         int lenOfBottomRow = 2 * numsOnBottomRow - 1 - 1; // the char length that the bottom row should be printed
 
         int leftbound = 1;
