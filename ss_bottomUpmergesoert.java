@@ -1,6 +1,7 @@
 /**
  * Solutioncopycopy
  */
+@SuppressWarnings("rawtypes")
 public class ss_bottomUpmergesoert {
 
     public static void mergeSortBottomUp(Comparable[] a) {
@@ -15,6 +16,7 @@ public class ss_bottomUpmergesoert {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public static void merge(Comparable[] a, int left, int leftEnd, int right, int rightEnd) {
         System.out.printf("merge: %d %d %d %d\n", left, leftEnd, right, rightEnd); // de
         int L = left, R = right;
