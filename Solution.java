@@ -40,8 +40,6 @@ public class Solution {
         return root;
     }
 
-    
-
     public static void main(String[] args) {
         var s = new Solution();
         TreeNode root = TreeNode.buildTree(new Integer[] { 1, 2, 3 });

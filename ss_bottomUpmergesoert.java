@@ -47,8 +47,7 @@ public class ss_bottomUpmergesoert {
     }
 
     public static void main(String[] args) {
-        Integer[] a = { 1, 6, 4, 7, 4, 7, 4, 7, 4, 1, 6, 7, 6, 7, 8, 9, 0,
-                5, 3, 2 };
+        Integer[] a = { 1, 6, 4, 7, 4, 7, 4, 7, 4, 1, 6, 7, 6, 7, 8, 9, 0, 5, 3, 2 };
         mergeSortBottomUp(a);
         for (Integer integer : a) {
             System.out.print(integer + " ");
