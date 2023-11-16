@@ -7,7 +7,6 @@ import java.util.Queue;
 import java.util.Stack;
 
 import edu.princeton.cs.algs4.BST;
-import edu.princeton.cs.algs4.IndexMultiwayMinPQ;
 
 public class TreeNode {
     public Integer val;

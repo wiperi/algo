@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
+import org.junit.Test;
+
 import Chap3_Search.TreeNode;
 import Chap3_Search._BST;
 import edu.princeton.cs.algs4.In;
@@ -38,11 +40,14 @@ public class Solution {
         return root;
     }
 
+    
+
     public static void main(String[] args) {
-        Solution s = new Solution();
+        var s = new Solution();
         TreeNode root = TreeNode.buildTree(new Integer[] { 1, 2, 3 });
 
         TreeNode newroot = s.buildTree(new int[] { 1, 2, 3 }, new int[] { 2, 1, 3 });
         TreeNode.show(newroot);
+
     }
 }
