@@ -8,6 +8,9 @@ import java.util.Stack;
 
 import edu.princeton.cs.algs4.BST;
 
+/**
+ * Nodes of binary tree
+ */
 public class TreeNode {
     public Integer val;
     public TreeNode left;

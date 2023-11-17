@@ -3,6 +3,9 @@ package Chap3_Search;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Node of multi-way tree
+ */
 public class Node {
     public Integer val;
     public List<Node> children;
