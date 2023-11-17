@@ -51,8 +51,19 @@ public class Solutioncc {
             while (i < left.length) {
                 ret[cur++] = left[i++];
             }
+
+            while (j < right.length) ret[cur++] = right[j++];
+            for (int ints : ret) System.out.println(ints);
         }
         return ret;
+    }
+
+    public static void func() {
+        System.out.println("hello world");
+    }
+
+    public int have(int i) {
+        return i;
     }
 
     public static void main(String[] args) {

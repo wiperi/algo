@@ -1,0 +1,146 @@
+{
+	// Place your Algo workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"scope": "javascript,typescript",
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+
+	/************************************************************************
+	 * Print
+	 ************************************************************************/
+	"print a line": {
+		"scope": "java",
+		"prefix": "pr",
+		"body": [
+	 		"System.out.println($1);$0"
+		],
+		"description": ""
+	}
+
+	"print a fomated string": {
+		"scope": "java",
+		"prefix": "prf",
+		"body": [
+	 		"System.out.printf(\"$1\", $2);$0"
+		],
+		"description": ""
+	}
+
+	"print array": {
+		"scope": "java",
+		"prefix": "show",
+		"body": [
+			"public static void show(${1:Integer}[] a) {"
+			"    for (${1:Integer} i : a) {"
+			"        System.out.print(i);"
+			"    }"
+			"    System.out.println();"
+			"}"
+			"$0"
+		],
+		"description": ""
+	}
+
+	"print hash map": {
+		"scope": "java",
+		"prefix": "prhashmap",
+		"body": [
+			"for (Map.Entry<${1:Character}, ${2:Integer}> entry : ${3:hashmap}.entrySet()) {"
+			"	System.out.println(\"Key: \" + entry.getKey() + \", Value: \" + entry.getValue());"
+			"}"
+			"$0"
+		],
+		"description": ""
+	}
+
+	/************************************************************************
+	 * Build
+	 ************************************************************************/
+	"build a function": {
+		"scope": "java",
+		"prefix": "afunc",
+		"body": [
+	 		"public ${1:static} ${2:void} ${3:func}($4) {"
+			"	$0"
+			"}"
+		],
+		"description": ""
+	}
+
+	"middle element": {
+		"scope": "java",
+		"prefix": "midval",
+		"body": [
+	 		"int mid = lo + (hi - lo) / 2;$1"
+		],
+		"description": ""
+	}
+
+	"build a separator": {
+		"scope": "",
+		"prefix": "separate",
+		"body": [
+	 		"/************************************************************************"
+			" * ${1:Helper Funtions}"
+			" ************************************************************************/"
+			"$0"
+		],
+		"description": ""
+	}
+
+	"build an arr": {
+		"scope": "java",
+		"prefix": "anarr",
+		"body": [
+	 		"${1:int}[] ${2:a} = new ${1:int}[$3]$4;$0"
+		],
+		"description": ""
+	}
+
+	"build a list": {
+		"scope": "java",
+		"prefix": "alist",
+		"body": [
+	 		"List<${1:Integer}> ${2:list} = new ArrayList<>();$0"
+		],
+		"description": ""
+	}
+
+	"build a que": {
+		"scope": "java",
+		"prefix": "aque",
+		"body": [
+			"Queue<${1:Integer}> ${2:que} = new LinkedList<>();$0"
+		],
+		"description": ""
+	}
+
+	"build a stack": {
+		"scope": "java",
+		"prefix": "astack",
+		"body": [
+			"Stack<${1:Integer}> ${2:stack} = new Stack<>();$0"
+		],
+		"description": ""
+	}
+
+	"build a map": {
+		"scope": "java",
+		"prefix": "amap",
+		"body": [
+			"Map<${1:Character}, ${2:Integer}> ${3:window} = new HashMap<>();$0"
+		],
+		"description": ""
+	}
+}
