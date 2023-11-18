@@ -39,7 +39,7 @@
 
 	"print array": {
 		"scope": "java",
-		"prefix": "show",
+		"prefix": "showarr",
 		"body": [
 			"public static void show(${1:Integer}[] a) {"
 			"    for (${1:Integer} i : a) {"
@@ -92,7 +92,7 @@
 		"prefix": "separate",
 		"body": [
 	 		"/************************************************************************"
-			" * ${1:Helper Funtions}"
+			" * ${1:Separator}"
 			" ************************************************************************/"
 			"$0"
 		],

@@ -6,10 +6,9 @@ import org.junit.jupiter.api.Assertions;
 
 public class _12_MergeSortCuiVer {
     public int[] sortArray(int[] nums) {
+        if (nums.length == 1) return nums;
         int[][] sub = split(nums);
-        if (sub[0].length == 1 && sub[1].length == 0) {
-            return sub[0];
-        }
+        
         return merge(sortArray(sub[0]), sortArray(sub[1]));
     }
 
