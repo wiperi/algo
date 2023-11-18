@@ -3,24 +3,19 @@ package Chap3_Search;
 import java.util.List;
 
 public class Backtracking {
-    abstract class State {
-    }
+    abstract class State {}
 
-    abstract class Choice {
-    }
+    abstract class Choice {}
 
-    private void undoChoice(State state, Choice choice) {
-    }
+    private void undoChoice(State state, Choice choice) {}
 
-    private void makeChoice(State state, Choice choice) {
-    }
+    private void makeChoice(State state, Choice choice) {}
 
     private boolean isValid(State state, Choice choice) {
         return false;
     }
 
-    private void recordSolution(State state, List<State> res) {
-    }
+    private void recordSolution(State state, List<State> res) {}
 
     private boolean isSolution(State state) {
         return false;
