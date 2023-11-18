@@ -14,7 +14,6 @@ public class Sort_Template {
         return v.compareTo(w) < 0;
     }
 
-    @SuppressWarnings("unused")
     protected static void exch(Comparable[] a, int i, int j) {
         Comparable t = a[i];
         a[i] = a[j];
