@@ -51,3 +51,83 @@ public class Solution {
         System.out.println(commondad.val);
     }
 }
+
+class searchInsertclass {
+    public int searchInsert(int[] nums, int target) {
+        if (target < nums[0]) return 0;
+
+        int lo = 0, hi = nums.length - 1;
+
+        int mid = 0, midval = 0;
+        while (lo <= hi) {
+            mid = lo + (hi - lo) / 2;
+            midval = nums[mid];
+
+            if (target == midval)
+                return mid;
+            else if (target > midval)
+                lo = mid + 1;
+            else
+                hi = mid - 1;
+        }
+        if (target > midval)
+            return lo;
+        else
+            return hi;
+    }
+
+    public boolean searchMatrix(int[][] matrix, int target) {
+        int maxRow = matrix.length - 1;
+        int maxCol = matrix[0].length - 1;
+        if (target < matrix[0][0] || target > matrix[maxRow][maxCol]) return false;
+
+        int lo = 0, hi = maxRow;
+        int mid = 0, midval = 0;
+        while (lo <= hi) {
+            mid = lo + (hi - lo) / 2;
+            midval = matrix[mid][0];
+
+            if (target == midval) return true;
+            if (target > midval)
+                lo = mid + 1;
+            else
+                hi = mid - 1;
+        }
+        if (target < midval)
+            return searchRow(matrix[mid - 1], target);
+        else
+            return searchRow(matrix[mid], target);
+    }
+
+    private boolean searchRow(int[] nums, int target) {
+        int lo = 0, hi = nums.length - 1;
+        int mid = 0, midval = 0;
+        while (lo <= hi) {
+            mid = lo + (hi - lo) / 2;
+            midval = nums[mid];
+
+            if (target == midval) return true;
+            if (target > midval)
+                lo = mid + 1;
+            else
+                hi = mid - 1;
+        }
+        return false;
+    }
+}
+
+class Maxpathsum {
+    public int maxPathSum(TreeNode root) {
+        
+        int a = 0;
+
+        func f = (int x) -> x + 1;
+        a = f.add(a);
+        
+        return a;
+    }
+
+    public interface func {
+        int add(int a);
+    }
+}
