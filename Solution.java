@@ -117,17 +117,22 @@ class searchInsertclass {
 }
 
 class Maxpathsum {
+    int globalMax = 0;
+
     public int maxPathSum(TreeNode root) {
-        
-        int a = 0;
-
-        func f = (int x) -> x + 1;
-        a = f.add(a);
-        
-        return a;
+        maxPathSumAux(root);
+        return globalMax;
     }
+    public int maxPathSumAux(TreeNode root) {
+        if (root == null) return 0;
 
-    public interface func {
-        int add(int a);
+        int left = maxPathSum(root.left);
+        int right = maxPathSum(root.right);
+
+        int innerMax = root.val + Math.max(0, left) + Math.max(0, right);
+        if (innerMax > globalMax) globalMax = innerMax;
+
+        int outerMax = root.val + Math.max(0, Math.max(left, right));
+        return outerMax;
     }
 }

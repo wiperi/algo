@@ -5,7 +5,7 @@ import java.util.List;
 
 import edu.princeton.cs.algs4.BST;
 
-public class _BST {
+public class _010_BST {
     public TreeNode root;
 
     /************************************************************************
@@ -143,7 +143,7 @@ public class _BST {
      ************************************************************************/
     public static void main(String[] args) {
         BST<Integer, Integer> bst = new BST<>();
-        _BST b = new _BST();
+        _010_BST b = new _010_BST();
         for (Integer ints : new Integer[] { 6, 4, 8, 3, 5 }) {
             b.put(ints);
             bst.put(ints, ints);

@@ -331,7 +331,7 @@ public class TreeNode {
      ************************************************************************/
     public static void testTraversal(String[] args) {
         BST<Integer, Integer> bst = new BST<>();
-        _BST b = new _BST();
+        _010_BST b = new _010_BST();
         for (Integer ints : new Integer[] { 6, 4, 8, 3, 5 }) {
             b.put(ints);
             bst.put(ints, ints);
