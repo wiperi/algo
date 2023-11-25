@@ -42,14 +42,6 @@ public class Solution {
 
         path.remove(path.size() - 1);
     }
-
-    public static void main(String[] args) {
-        Solution s = new Solution();
-
-        TreeNode root = TreeNode.buildTree(new Integer[] { 3, 5, 1, 6, 2, 0, 8, null, null, 7, 4 });
-        TreeNode commondad = s.lowestCommonAncestor(root, root.left, root.left.right.right);
-        System.out.println(commondad.val);
-    }
 }
 
 class searchInsertclass {
@@ -123,6 +115,7 @@ class Maxpathsum {
         maxPathSumAux(root);
         return globalMax;
     }
+
     public int maxPathSumAux(TreeNode root) {
         if (root == null) return 0;
 
@@ -134,5 +127,51 @@ class Maxpathsum {
 
         int outerMax = root.val + Math.max(0, Math.max(left, right));
         return outerMax;
+    }
+}
+
+class findIslands {
+
+    public int numIslands(char[][] grid) {
+        boolean[][] visited = new boolean[grid.length][grid[0].length];
+        /*
+         * if (is visited) pass mark this as visited; if this node is 1 and it is
+         * islolated then it is island
+         * 
+         * for i in grid: for each direction: try();
+         */
+        return 0;
+    }
+
+    private int bfs(char[][] grid, boolean[][] visited) {
+        if (isIsland(grid, visited)) {
+
+        }
+    }
+
+    private boolean isIsland(int x, int y, char[][] grid, boolean[][] visited) {
+        for i in derection(x, y):
+        return false;
+    }
+
+    private void derection(int x, int y) {
+        int[] res = new int[4];
+        
+    }
+
+    public static void showGrid(Integer[][] g) {
+        int row = g.length;
+        int col = g == null ? 0 : g[0].length;
+        int totalLen = row * col;
+        for (int i = 0; i < totalLen; i++) {
+            System.out.print(g[i / col][i % col] + " ");
+            if ((i + 1) % col == 0) System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        Integer[][] matrix = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
+
+        showGrid(matrix);
     }
 }

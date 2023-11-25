@@ -52,6 +52,24 @@
 		"description": ""
 	}
 
+	"print grid": {
+		"scope": "java",
+		"prefix": "showgrid",
+		"body": [
+			"public static void showGrid(${1:int}[][] g) {"
+			"	int row = g.length;"
+			"	int col = g == null ? 0 : g[0].length;"
+			"	int totalLen = row * col;"
+			"	for (int i = 0; i < totalLen; i++) {"
+			"		System.out.print(g[i / col][i % col] + \" \");"
+			"		if ((i + 1) % col == 0) System.out.println();"
+			"	}"
+			"}"
+			"$0"
+		],
+		"description": ""
+	}
+
 	"print hash map": {
 		"scope": "java",
 		"prefix": "prhashmap",
