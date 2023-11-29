@@ -1,4 +1,4 @@
-package Chap3_Search;
+package LeetCode;
 
 import java.util.List;
 

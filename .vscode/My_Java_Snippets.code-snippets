@@ -64,6 +64,7 @@
 			"		System.out.print(g[i / col][i % col] + \" \");"
 			"		if ((i + 1) % col == 0) System.out.println();"
 			"	}"
+			"   System.out.println();"
 			"}"
 			"$0"
 		],
