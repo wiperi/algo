@@ -8,55 +8,84 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Stack;
 
+import javax.swing.RowFilter.Entry;
+
+import org.junit.Assert;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 
 import Chap3_Search.TreeNode;
 
 @SuppressWarnings("unused")
 public class Solution {
-    class Bfs {
-        public int numIslands(char[][] grid) {
-            if (grid == null || grid.length == 0) {
-                return 0;
-            }
 
-            int nr = grid.length;
-            int nc = grid[0].length;
-            int num_islands = 0;
+    class tanxin {
 
-            for (int r = 0; r < nr; ++r) {
-                for (int c = 0; c < nc; ++c) {
-                    if (grid[r][c] == '1') {
-                        ++num_islands;
-                        grid[r][c] = '0';
-                        Queue<Integer> neighbors = new LinkedList<>();
-                        neighbors.add(r * nc + c);
-                        while (!neighbors.isEmpty()) {
-                            int id = neighbors.remove();
-                            int row = id / nc;
-                            int col = id % nc;
-                            if (row - 1 >= 0 && grid[row - 1][col] == '1') {
-                                neighbors.add((row - 1) * nc + col);
-                                grid[row - 1][col] = '0';
-                            }
-                            if (row + 1 < nr && grid[row + 1][col] == '1') {
-                                neighbors.add((row + 1) * nc + col);
-                                grid[row + 1][col] = '0';
-                            }
-                            if (col - 1 >= 0 && grid[row][col - 1] == '1') {
-                                neighbors.add(row * nc + col - 1);
-                                grid[row][col - 1] = '0';
-                            }
-                            if (col + 1 < nc && grid[row][col + 1] == '1') {
-                                neighbors.add(row * nc + col + 1);
-                                grid[row][col + 1] = '0';
-                            }
-                        }
-                    }
+        public int maxProfit(int[] prices) {
+            // find the minimum day
+            int minval = prices[0], minindex = 0;
+            for (int i = 0; i < prices.length; i++) {
+                if (prices[i] < minval) {
+                    minval = prices[i];
+                    minindex = i;
                 }
             }
 
-            return num_islands;
+            if (minindex == prices.length - 1) return 0;
+
+            int maxval = prices[minindex + 1], maxindex = minindex + 1;
+            for (int i = minindex + 1; i < prices.length; i++) {
+                if (prices[i] > maxval) {
+                    maxval = prices[i];
+                    maxindex = i;
+                }
+            }
+
+            return maxval - minval;
         }
+    }
+
+    class MinStack {
+        class Pair {
+            int val;
+            int min;
+
+            Pair(int val, int min) {
+                this.val = val;
+                this.min = min;
+            }
+        }
+
+        Stack<Pair> stack = new Stack<>();
+
+        public MinStack() {}
+
+        public void push(int val) {
+            if (stack.isEmpty()) {
+                stack.push(new Pair(val, val));
+            } else {
+                stack.push(new Pair(val, val < getMin() ? val : getMin()));
+            }
+        }
+
+        public void pop() {
+            stack.pop();
+        }
+
+        public int top() {
+            return stack.peek().val;
+        }
+
+        public int getMin() { return stack.peek().min; }
+    }
+
+    public static void main(String[] args) {
+        MinStack s = new Solution().new MinStack();
+
+        for (int i : new int[] { -2, 0, -1 }) {
+            s.push(i);
+        }
+        System.out.println(s.getMin());
+
     }
 }
