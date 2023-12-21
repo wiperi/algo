@@ -19,7 +19,7 @@ import Chap3_Search.TreeNode;
 @SuppressWarnings("unused")
 public class Solution {
 
-    class tanxin {
+    class greedy {
 
         public int maxProfit(int[] prices) {
             // find the minimum day
@@ -79,13 +79,50 @@ public class Solution {
         public int getMin() { return stack.peek().min; }
     }
 
-    public static void main(String[] args) {
-        MinStack s = new Solution().new MinStack();
+    class rotten_tomato {
+        public int orangesRotting(int[][] grid) {
+            int nrow = grid.length;
+            int ncol = grid[0].length;
 
-        for (int i : new int[] { -2, 0, -1 }) {
-            s.push(i);
+            int rot_x = -1, rot_y = -1;
+            int fresh = 0;
+            boolean[][] path = new boolean[nrow][ncol];
+            for (int i = 0; i < nrow; i++) {
+                for (int j = 0; j < ncol; j++) {
+                    if (grid[i][j] == 1) fresh++;
+                    if (grid[i][j] == 2) {
+                        rot_x = i;
+                        rot_y = j;
+                    }
+                }
+            }
+            int numOfrottened = dfs(grid, path, 0, nrow, ncol, rot_x, rot_y) - 1;
+            return numOfrottened < fresh ? -1 : maxLevel;
         }
-        System.out.println(s.getMin());
 
+        int maxLevel = 0;
+
+        private int dfs(int[][] grid, boolean[][] path, int level, int nrow, int ncol, int row, int col) {
+            if (row < 0 || row >= nrow || col < 0 || col >= ncol || path[row][col] == true || grid[row][col] == 0)
+                return 0;
+            int res = 1;
+            path[row][col] = true;
+            res += dfs(grid, path, level + 1, nrow, ncol, row, col - 1); // Left
+            res += dfs(grid, path, level + 1, nrow, ncol, row + 1, col); // Down
+            res += dfs(grid, path, level + 1, nrow, ncol, row - 1, col); // Up
+            res += dfs(grid, path, level + 1, nrow, ncol, row, col + 1); // Right
+            maxLevel = Math.max(level, maxLevel);
+            return res;
+        }
+    }
+
+    public static void main(String[] args) {
+        rotten_tomato s = new Solution().new rotten_tomato();
+
+        int[][] matrix = { { 2, 1, 1 }, 
+                           { 0, 1, 1 }, 
+                           { 1, 0, 1 } };
+        int res = s.orangesRotting(matrix);
+        System.out.println(res);
     }
 }
