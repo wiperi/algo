@@ -1,9 +1,9 @@
 package LeetCode.Prefix_Sum;
 
-class range_sum_of_array {
+public class Range_Sum_Of_Array {
     int[] prefix;
 
-    range_sum_of_array(int[] nums) {
+    Range_Sum_Of_Array(int[] nums) {
         prefix = new int[nums.length];
 
         int sum = 0;
