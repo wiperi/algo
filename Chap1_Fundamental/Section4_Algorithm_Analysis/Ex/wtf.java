@@ -6,7 +6,7 @@ import static org.junit.Assert.assertEquals;
  * 1.4.10 修改二分查找算法，使之总是返回和被查找的键匹配的索引最小的元素（且仍然能够保证对数
  * 级别的运行时间）。
  */
-public class _10_Binary_Search_Minimum {
+public class haishi {
     public static int rank(int[] a, int key) {
         int lo = 0, hi = a.length - 1;
         while (lo <= hi) {
