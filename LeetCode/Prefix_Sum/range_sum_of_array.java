@@ -17,4 +17,8 @@ public class Range_Sum_Of_Array {
         if (left == 0) return prefix[right];
         return prefix[right] - prefix[left - 1];
     }
+
+    public static void main(String[] args) {
+        System.out.println("hello");
+    }
 }
