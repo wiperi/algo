@@ -1,7 +1,21 @@
 package Chap3_Search;
 
-public class _020_AVL_Tree {
-    // 参考：hello算法
+// avl tree is also known as balanced bst
+// 参考：hello算法
+public class AVL_Tree {
+
+    public class AvlNode {
+        public int val;
+        public int height;
+        public AvlNode left, right;
+
+        public AvlNode(int val, AvlNode left, AvlNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
+
     private AvlNode root;
 
     /* 获取节点高度 */
