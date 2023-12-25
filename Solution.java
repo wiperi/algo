@@ -14,7 +14,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
-import Chap3_Search.TreeNode;
+import Chap3_Search.Binary_Tree.Node;
 
 @SuppressWarnings("unused")
 public class Solution {
