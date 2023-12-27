@@ -1,9 +1,11 @@
-package C_Data_Structure;
+package _50_Data_Structure;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Scanner;
 
+import edu.princeton.cs.algs4.GabowSCC;
 import edu.princeton.cs.algs4.In;
 
 public class Graph {
@@ -69,6 +71,55 @@ public class Graph {
         }
     }
 
+    /**
+     * Initializes a graph from the String. The format is the number of vertices
+     * <em>V</em>, followed by the number of edges <em>E</em>, followed by
+     * <em>E</em> pairs of vertices, with each entry separated by whitespace.
+     *
+     * @param s the input string
+     * @throws IllegalArgumentException if {@code in} is {@code null}
+     * @throws IllegalArgumentException if the endpoints of any edge are not in
+     *                                  prescribed range
+     * @throws IllegalArgumentException if the number of vertices or edges is
+     *                                  negative
+     * @throws IllegalArgumentException if the input stream is in the wrong format
+     */
+    @SuppressWarnings("unchecked")
+    public Graph(String s) {
+        if (s == null) {
+            throw new IllegalArgumentException("argument is null");
+        }
+        Scanner sc = new Scanner(s);
+        try {
+            // build vertices
+            this.V = sc.nextInt();
+            if (V < 0) {
+                sc.close();
+                throw new IllegalArgumentException("number of vertices in a Graph must be non negative");
+            }
+            adj = (LinkedList<Integer>[]) new LinkedList[V];
+            for (int v = 0; v < V; v++) {
+                adj[v] = new LinkedList<Integer>();
+            }
+            // build edges
+            int E = sc.nextInt();
+            if (E < 0) {
+                sc.close();
+                throw new IllegalArgumentException("number of edges in a graph must be non negative");
+            }
+            for (int i = 0; i < E; i++) {
+                int v = sc.nextInt();
+                int w = sc.nextInt();
+                validateVertex(v);
+                validateVertex(w);
+                addEdge(v, w);
+            }
+            sc.close();
+        } catch (NoSuchElementException e) {
+            throw new IllegalArgumentException("invalid input formate in Graph constructor");
+        }
+    }
+
     /************************************************************************
      * non-static methods
      ************************************************************************/
@@ -111,6 +162,12 @@ public class Graph {
      * static methods
      ************************************************************************/
 
+    /**
+     * 
+     * @param G the Graph
+     * @param v the vertex
+     * @return how many edges is incident to the vertex {@code v}
+     */
     @SuppressWarnings("unused")
     public static int degree(Graph G, int v) {
         int degree = 0;
@@ -118,6 +175,11 @@ public class Graph {
         return degree;
     }
 
+    /**
+     * 
+     * @param G the graph
+     * @return the maximum number of edges incident to a vertex in the graph {@code G}
+     */
     public static int maxDegree(Graph G) {
         int maxDegree = 0;
         for (int v = 0; v < G.V(); v++) {
@@ -126,6 +188,11 @@ public class Graph {
         return maxDegree;
     }
 
+    /**
+     * 
+     * @param G the graph
+     * @return the total of edges / the total of vertices
+     */
     public static double avergeDegree(Graph G) {
         return 2.0 * G.E() / G.V();
     }

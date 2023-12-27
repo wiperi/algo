@@ -1,3 +1,4 @@
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -14,8 +15,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
-import C_Data_Structure.Graph;
-import Chap3_Search.Binary_Tree.Node;
+import _50_Data_Structure.Graph;
+import _50_Data_Structure.Tree.Binary_Tree.Node;
 import edu.princeton.cs.algs4.In;
 
 @SuppressWarnings("unused")
@@ -167,5 +168,119 @@ public class Solution {
         }
     }
 
-    public static void main(String[] args) {}
+    class rotten {
+        int[] dr = new int[] { -1, 0, 1, 0 };
+        int[] dc = new int[] { 0, -1, 0, 1 };
+
+        public int orangesRotting(int[][] grid) {
+            int R = grid.length, C = grid[0].length;
+            Queue<Integer> queue = new ArrayDeque<Integer>();
+            Map<Integer, Integer> depth = new HashMap<Integer, Integer>();
+            for (int r = 0; r < R; ++r) {
+                for (int c = 0; c < C; ++c) {
+                    if (grid[r][c] == 2) {
+                        int code = r * C + c;
+                        queue.add(code);
+                        depth.put(code, 0);
+                    }
+                }
+            }
+            int ans = 0;
+            while (!queue.isEmpty()) {
+                int code = queue.remove();
+                int r = code / C, c = code % C;
+                for (int k = 0; k < 4; ++k) { // for 4 direction
+                    int row = r + dr[k];
+                    int col = c + dc[k];
+                    if (0 <= row && row < R && 0 <= col && col < C && grid[row][col] == 1) {
+                        grid[row][col] = 2;
+                        int newcode = row * C + col;
+                        queue.add(newcode);
+                        depth.put(newcode, depth.get(code) + 1);
+                        ans = depth.get(newcode);
+                    }
+                }
+            }
+            for (int[] row : grid) {
+                for (int v : row) {
+                    if (v == 1) {
+                        return -1;
+                    }
+                }
+            }
+            return ans;
+        }
+    }
+
+    class rot {
+
+        int[] rowDiff = new int[] { 1, 0, 0, -1 };
+        int[] colDiff = new int[] { 0, 1, -1, 0 };
+
+        public int orangesRotting(int[][] grid) {
+            // get rotten source
+            int R = grid.length;
+            int C = grid[0].length;
+            int[] pathTo = new int[R * C];
+            int endPoint = -1;
+            List<Integer> rottenSource = new ArrayList<>();
+            for (int r = 0; r < R; r++) {
+                for (int c = 0; c < C; c++) {
+                    if (grid[r][c] == 2) {
+                        rottenSource.add(r * C + c);
+                    }
+                }
+            }
+            // put source into the que
+            Queue<Integer> que = new LinkedList<>();
+            for (Integer rotten : rottenSource) {
+                que.add(rotten);
+                pathTo[rotten] = rotten;
+            }
+            // start bfs
+            while (que.isEmpty() == false) {
+                int cur = que.poll();
+                int curR = cur / C;
+                int curC = cur % C;
+
+                for (int i = 0; i < 4; i++) {
+                    int newR = curR + rowDiff[i];
+                    int newC = curC + colDiff[i];
+                    if (newR >= 0 && newC >= 0 && newR < R && newC < C && grid[newR][newC] == 1) {
+                        grid[newR][newC] = 2;
+                        que.add(newR * C + newC);
+                        pathTo[newR * C + newC] = cur;
+                    }
+                }
+                endPoint = cur;
+            }
+            // check if all the tomatoes is rotten
+            for (int r = 0; r < R; r++) {
+                for (int c = 0; c < C; c++) {
+                    if (grid[r][c] == 1) {
+                        return -1;
+                    }
+                }
+            }
+            // return the result
+            int level = 0;
+            while (pathTo[endPoint] != endPoint) {
+                endPoint = pathTo[endPoint];
+                level++;
+            }
+            return level;
+        }
+    }
+
+    public static void show(int[] a) {
+        for (int i : a) {
+            System.out.print(i);
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        rot r = new Solution().new rot();
+        System.out.println(r.orangesRotting(new int[][] { { 0, 2 } }));
+    }
 }

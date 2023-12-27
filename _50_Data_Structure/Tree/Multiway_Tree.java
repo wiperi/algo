@@ -1,4 +1,4 @@
-package C_Data_Structure;
+package _50_Data_Structure.Tree;
 
 import java.util.ArrayList;
 import java.util.Arrays;
