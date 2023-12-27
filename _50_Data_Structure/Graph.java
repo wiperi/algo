@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-import edu.princeton.cs.algs4.GabowSCC;
 import edu.princeton.cs.algs4.In;
 
 public class Graph {
