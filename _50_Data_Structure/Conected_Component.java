@@ -1,5 +1,7 @@
 package _50_Data_Structure;
 
+import edu.princeton.cs.algs4.WeightedQuickUnionUF;
+
 public class Conected_Component {
 
     private static boolean[] visited;
@@ -30,9 +32,20 @@ public class Conected_Component {
         }
     }
 
+    public static int numberOfCC_UnionFind(Graph G) {
+        WeightedQuickUnionUF uf = new WeightedQuickUnionUF(G.V());
+        for (int i = 0; i < G.V(); i++) {
+            for (Integer v : G.adj(i)) {
+                uf.union(i, v);
+            }
+        }
+        return uf.count();
+    }
+
     public static void main(String[] args) {
         Graph g = new Graph("6 3 1 0 0 2 4 5");
         System.out.println(numberOfCC(g));
+        System.out.println(numberOfCC_UnionFind(g));
     }
 
 }
