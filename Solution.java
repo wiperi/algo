@@ -14,7 +14,9 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
+import C_Data_Structure.Graph;
 import Chap3_Search.Binary_Tree.Node;
+import edu.princeton.cs.algs4.In;
 
 @SuppressWarnings("unused")
 public class Solution {
@@ -116,13 +118,54 @@ public class Solution {
         }
     }
 
-    public static void main(String[] args) {
-        rotten_tomato s = new Solution().new rotten_tomato();
+    class dfs_for_graph {
+        public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
+            dfs(graph, 0);
+            return res;
+        }
 
-        int[][] matrix = { { 2, 1, 1 }, 
-                           { 0, 1, 1 }, 
-                           { 1, 0, 1 } };
-        int res = s.orangesRotting(matrix);
-        System.out.println(res);
+        List<List<Integer>> res = new ArrayList<>();
+        LinkedList<Integer> path = new LinkedList<>();
+
+        private void dfs(int[][] graph, int s) {
+            path.add(s);
+
+            if (s == graph.length - 1) { // reach the end
+                res.add(new ArrayList<>(path));
+                return;
+            }
+
+            for (int i : graph[s]) {
+                dfs(graph, i);
+            }
+            path.removeLast();
+        }
     }
+
+    class mhs {
+        public List<Integer> findMinHeightTrees(int n, int[][] edges) {
+            int minHeight = Integer.MAX_VALUE;
+            List<Integer> res = new ArrayList<>();
+            for (int i = 0; i < edges.length; i++) {
+                int curHeight = getHeight(edges, i);
+                if (curHeight < minHeight) {
+                    minHeight = curHeight;
+                    res.clear();
+                }
+                if (curHeight == minHeight) res.add(i);
+            }
+            return res;
+        }
+
+        private int getHeight(int[][] edges, int v) {
+            int maxSubHeight = 0;
+            for (int i : edges[v]) {
+                int subHeight = getHeight(edges, i);
+                if (subHeight > maxSubHeight) maxSubHeight = subHeight;
+            }
+            return 1 + maxSubHeight;
+        }
+    }
+
+    public static void main(String[] args) {}
 }
