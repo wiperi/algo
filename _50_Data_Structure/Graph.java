@@ -1,5 +1,6 @@
 package _50_Data_Structure;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -119,6 +120,37 @@ public class Graph {
         }
     }
 
+    @SuppressWarnings("unchecked")
+    public Graph(String s, int a) {
+        ArrayList<int[]> arr = new ArrayList<>();
+        String[] parts = s.split("/");
+        for (String part : parts) {
+            // 去除首尾空格并按空格分割数字
+            String[] numberStrings = part.trim().split("\\s+");
+
+            // 转换字符串数组为整数数组
+            int[] numbers = new int[numberStrings.length];
+            for (int i = 0; i < numberStrings.length; i++) {
+                numbers[i] = Integer.parseInt(numberStrings[i]);
+            }
+            arr.add(numbers);
+        }
+        // 得到节点数量，初始化adj列表
+        this.V = arr.get(0)[0];
+        adj = (LinkedList<Integer>[]) new LinkedList[V];
+        for (int v = 0; v < V; v++) {
+            adj[v] = new LinkedList<Integer>();
+        }
+        // 添加edges
+        for (int i = 1; i < arr.size(); i++) {
+            int[] subarr = arr.get(i);
+            int v = subarr[0];
+            for (int w = 1; w < subarr.length; w++) {
+                addEdge(v, subarr[w]);
+            }
+        }
+    }
+
     /************************************************************************
      * non-static methods
      ************************************************************************/
@@ -177,7 +209,8 @@ public class Graph {
     /**
      * 
      * @param G the graph
-     * @return the maximum number of edges incident to a vertex in the graph {@code G}
+     * @return the maximum number of edges incident to a vertex in the graph
+     *         {@code G}
      */
     public static int maxDegree(Graph G) {
         int maxDegree = 0;
