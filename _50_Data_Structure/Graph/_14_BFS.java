@@ -1,11 +1,11 @@
-package _50_Data_Structure;
+package _50_Data_Structure.Graph;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
 import edu.princeton.cs.algs4.In;
 
-public class BFS {
+public class _14_BFS {
 
     private static boolean[] visited;
     private static int[] pathTo; // 利用并查集结构记录从起点到每一个顶点的最短路径，pathTo数组表示了一颗无环多叉树，pathTo[kid] = parent

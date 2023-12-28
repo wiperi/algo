@@ -1,4 +1,4 @@
-package _50_Data_Structure;
+package _50_Data_Structure.Graph;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -95,7 +95,7 @@ public class Graph {
             }
             arr.add(numbers);
         }
-        // 得到节点数量，初始化adj列表
+        // 初始化adjacent list
         this.V = arr.get(0)[0];
         if (this.V <= 0) throw new IllegalArgumentException("nubmer of vertices shouldn't lesser than 0");
         adj = (LinkedList<Integer>[]) new LinkedList[V];

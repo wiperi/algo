@@ -1,8 +1,8 @@
-package _50_Data_Structure;
+package _50_Data_Structure.Graph;
 
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
-public class Conected_Component {
+public class _20_Conected_Component {
 
     private static boolean[] visited;
     private static int[] id; // id for each CC

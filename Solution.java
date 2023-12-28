@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Stack;
+import java.util.function.IntToDoubleFunction;
 
 import javax.swing.RowFilter.Entry;
 
@@ -15,7 +16,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
-import _50_Data_Structure.Graph;
+import _50_Data_Structure.Graph.Graph;
 import _50_Data_Structure.Tree.Binary_Tree.Node;
 import edu.princeton.cs.algs4.In;
 
@@ -279,8 +280,54 @@ public class Solution {
         System.out.println();
     }
 
+    class hasCiecle {
+        public boolean canFinish(int numCourses, int[][] prerequisites) {
+            // build the graph
+            List<Integer>[] graph = buildGraph(numCourses, prerequisites);
+            // dfs the graph, if ther is cycle return false
+            visited = new boolean[numCourses];
+            count = 0;
+            onPath = new boolean[numCourses];
+            dfs(graph, 0);
+            return res && count == numCourses;
+        }
+
+        private void dfs(List<Integer>[] graph, int v) {
+            visited[v] = true;
+            onPath[v] = true;
+            if (onPath[v]) {
+                res = false;
+                return;
+            }
+            for (Integer w : graph[v]) {
+                if (!visited[w]) {
+                    dfs(graph, w);
+                }
+            }
+            onPath[v] = false;
+        }
+
+        boolean res;
+        int count;
+        boolean visited[];
+        boolean[] onPath;
+
+        private List<Integer>[] buildGraph(int numCourses, int[][] prerequisites) {
+            List<Integer>[] graph = new LinkedList[numCourses];
+            for (int i = 0; i < graph.length; i++) {
+                graph[i] = new LinkedList<>();
+            }
+            for (int i = 0; i < prerequisites.length; i++) {
+                graph[prerequisites[i][1]].add(prerequisites[i][0]);
+                graph[prerequisites[i][0]].add(prerequisites[i][1]);
+            }
+            return graph;
+        }
+    }
+
     public static void main(String[] args) {
-        rot r = new Solution().new rot();
-        System.out.println(r.orangesRotting(new int[][] { { 0, 2 } }));
+        hasCiecle h = new Solution().new hasCiecle();
+        boolean res = h.canFinish(2, new int[][] { { 1, 0 } });
+        System.out.println(res);
     }
 }

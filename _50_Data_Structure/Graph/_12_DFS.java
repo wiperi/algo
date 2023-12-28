@@ -1,9 +1,9 @@
-package _50_Data_Structure;
+package _50_Data_Structure.Graph;
 
 import java.util.LinkedList;
 import edu.princeton.cs.algs4.In;
 
-public class DFS {
+public class _12_DFS {
     private static boolean[] visited;
     private static int[] pathTo;
 
