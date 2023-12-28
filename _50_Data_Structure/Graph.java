@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Scanner;
 
 import edu.princeton.cs.algs4.In;
 
@@ -72,56 +71,17 @@ public class Graph {
     }
 
     /**
-     * Initializes a graph from the String. The format is the number of vertices
-     * <em>V</em>, followed by the number of edges <em>E</em>, followed by
-     * <em>E</em> pairs of vertices, with each entry separated by whitespace.
-     *
+     * Intialize a graph according to the formate of the input string. The formate
+     * is
+     * {@code "number of vertices / edgingVertex otherVertices...  / edgingVertex otherVertices..."}
+     * </p>
+     * for example, {@code 4 / 0 1 2 3 / 3 1 2} means this is a graph with 4 vertices. There is edges between
+     * 0 1, 0 2, 0 3 and 3 1, 3 2.
+     * 
      * @param s the input string
-     * @throws IllegalArgumentException if {@code in} is {@code null}
-     * @throws IllegalArgumentException if the endpoints of any edge are not in
-     *                                  prescribed range
-     * @throws IllegalArgumentException if the number of vertices or edges is
-     *                                  negative
-     * @throws IllegalArgumentException if the input stream is in the wrong format
      */
     @SuppressWarnings("unchecked")
     public Graph(String s) {
-        if (s == null) {
-            throw new IllegalArgumentException("argument is null");
-        }
-        Scanner sc = new Scanner(s);
-        try {
-            // build vertices
-            this.V = sc.nextInt();
-            if (V < 0) {
-                sc.close();
-                throw new IllegalArgumentException("number of vertices in a Graph must be non negative");
-            }
-            adj = (LinkedList<Integer>[]) new LinkedList[V];
-            for (int v = 0; v < V; v++) {
-                adj[v] = new LinkedList<Integer>();
-            }
-            // build edges
-            int E = sc.nextInt();
-            if (E < 0) {
-                sc.close();
-                throw new IllegalArgumentException("number of edges in a graph must be non negative");
-            }
-            for (int i = 0; i < E; i++) {
-                int v = sc.nextInt();
-                int w = sc.nextInt();
-                validateVertex(v);
-                validateVertex(w);
-                addEdge(v, w);
-            }
-            sc.close();
-        } catch (NoSuchElementException e) {
-            throw new IllegalArgumentException("invalid input formate in Graph constructor");
-        }
-    }
-
-    @SuppressWarnings("unchecked")
-    public Graph(String s, int a) {
         ArrayList<int[]> arr = new ArrayList<>();
         String[] parts = s.split("/");
         for (String part : parts) {
@@ -137,6 +97,7 @@ public class Graph {
         }
         // 得到节点数量，初始化adj列表
         this.V = arr.get(0)[0];
+        if (this.V <= 0) throw new IllegalArgumentException("nubmer of vertices shouldn't lesser than 0");
         adj = (LinkedList<Integer>[]) new LinkedList[V];
         for (int v = 0; v < V; v++) {
             adj[v] = new LinkedList<Integer>();
@@ -144,8 +105,12 @@ public class Graph {
         // 添加edges
         for (int i = 1; i < arr.size(); i++) {
             int[] subarr = arr.get(i);
+            if (subarr.length <= 1)
+                throw new IllegalArgumentException("the quantity of nubmers between '/' shouldn't lesser than 1");
             int v = subarr[0];
             for (int w = 1; w < subarr.length; w++) {
+                validateVertex(v);
+                validateVertex(subarr[w]);
                 addEdge(v, subarr[w]);
             }
         }

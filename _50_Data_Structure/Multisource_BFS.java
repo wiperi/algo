@@ -49,7 +49,7 @@ public class Multisource_BFS {
     }
 
     public static void main(String[] args) {
-        Graph g = new Graph("7 / 6 1 2 3 4 / 0 1 2 / 5 3 4 / 1 3 / 2 4", 0);
+        Graph g = new Graph("7 / 6 1 2 3 4 / 0 1 2 / 5 3 4 / 1 3 / 2 4");
         System.out.println(g.toString());
     }
 }
