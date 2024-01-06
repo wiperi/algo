@@ -1,4 +1,4 @@
-package Chap3_Search;
+package _50_Data_Structure.Tree;
 
 // avl tree is also known as balanced bst
 // 参考：hello算法

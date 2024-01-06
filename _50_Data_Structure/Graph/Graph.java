@@ -1,5 +1,6 @@
-package C_Data_Structure;
+package _50_Data_Structure.Graph;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -69,6 +70,52 @@ public class Graph {
         }
     }
 
+    /**
+     * Intialize a graph according to the formate of the input string. The formate
+     * is
+     * {@code "number of vertices / edgingVertex otherVertices...  / edgingVertex otherVertices..."}
+     * </p>
+     * for example, {@code 4 / 0 1 2 3 / 3 1 2} means this is a graph with 4 vertices. There is edges between
+     * 0 1, 0 2, 0 3 and 3 1, 3 2.
+     * 
+     * @param s the input string
+     */
+    @SuppressWarnings("unchecked")
+    public Graph(String s) {
+        ArrayList<int[]> arr = new ArrayList<>();
+        String[] parts = s.split("/");
+        for (String part : parts) {
+            // 去除首尾空格并按空格分割数字
+            String[] numberStrings = part.trim().split("\\s+");
+
+            // 转换字符串数组为整数数组
+            int[] numbers = new int[numberStrings.length];
+            for (int i = 0; i < numberStrings.length; i++) {
+                numbers[i] = Integer.parseInt(numberStrings[i]);
+            }
+            arr.add(numbers);
+        }
+        // 初始化adjacent list
+        this.V = arr.get(0)[0];
+        if (this.V <= 0) throw new IllegalArgumentException("nubmer of vertices shouldn't lesser than 0");
+        adj = (LinkedList<Integer>[]) new LinkedList[V];
+        for (int v = 0; v < V; v++) {
+            adj[v] = new LinkedList<Integer>();
+        }
+        // 添加edges
+        for (int i = 1; i < arr.size(); i++) {
+            int[] subarr = arr.get(i);
+            if (subarr.length <= 1)
+                throw new IllegalArgumentException("the quantity of nubmers between '/' shouldn't lesser than 1");
+            int v = subarr[0];
+            for (int w = 1; w < subarr.length; w++) {
+                validateVertex(v);
+                validateVertex(subarr[w]);
+                addEdge(v, subarr[w]);
+            }
+        }
+    }
+
     /************************************************************************
      * non-static methods
      ************************************************************************/
@@ -111,6 +158,12 @@ public class Graph {
      * static methods
      ************************************************************************/
 
+    /**
+     * 
+     * @param G the Graph
+     * @param v the vertex
+     * @return how many edges is incident to the vertex {@code v}
+     */
     @SuppressWarnings("unused")
     public static int degree(Graph G, int v) {
         int degree = 0;
@@ -118,6 +171,12 @@ public class Graph {
         return degree;
     }
 
+    /**
+     * 
+     * @param G the graph
+     * @return the maximum number of edges incident to a vertex in the graph
+     *         {@code G}
+     */
     public static int maxDegree(Graph G) {
         int maxDegree = 0;
         for (int v = 0; v < G.V(); v++) {
@@ -126,6 +185,11 @@ public class Graph {
         return maxDegree;
     }
 
+    /**
+     * 
+     * @param G the graph
+     * @return the total of edges / the total of vertices
+     */
     public static double avergeDegree(Graph G) {
         return 2.0 * G.E() / G.V();
     }

@@ -1,10 +1,10 @@
-package Chap3_Search;
+package _50_Data_Structure.Tree;
 
 import java.util.Arrays;
 import java.util.List;
 
+import _50_Data_Structure.Tree.Binary_Tree.Node;
 import edu.princeton.cs.algs4.BST;
-import Chap3_Search.Binary_Tree.Node;
 
 public class Binary_Search_Tree {
 

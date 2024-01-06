@@ -1,4 +1,4 @@
-package C_Data_Structure;
+package _50_Data_Structure.Graph;
 
 import java.util.List;
 
