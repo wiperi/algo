@@ -10,7 +10,6 @@ public class Average_Grade {
         }
 
         System.out.println(sum / arr.length);
-        
     }
     
 }

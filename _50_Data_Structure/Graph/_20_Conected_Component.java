@@ -8,11 +8,13 @@ public class _20_Conected_Component {
     private static int[] id; // id for each CC
     private static int count; // nubmer of CCs
 
+    // method 1: use dfs
     public static int numberOfCC(Graph G) {
+        // initialize data
         visited = new boolean[G.V()];
         id = new int[G.V()];
         count = 0;
-
+        // dfs each vertex, if it's not visited then it means we meet a new CC
         for (int v = 0; v < G.V(); v++) {
             if (!visited[v]) {
                 dfsAux(G, v);
@@ -32,6 +34,7 @@ public class _20_Conected_Component {
         }
     }
 
+    // method 2: use union find
     public static int numberOfCC_UnionFind(Graph G) {
         WeightedQuickUnionUF uf = new WeightedQuickUnionUF(G.V());
         for (int i = 0; i < G.V(); i++) {
@@ -43,7 +46,7 @@ public class _20_Conected_Component {
     }
 
     public static void main(String[] args) {
-        Graph g = new Graph("6 3 1 0 0 2 4 5");
+        Graph g = new Graph("6");
         System.out.println(numberOfCC(g));
         System.out.println(numberOfCC_UnionFind(g));
     }

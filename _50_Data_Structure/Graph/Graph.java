@@ -95,14 +95,14 @@ public class Graph {
             }
             arr.add(numbers);
         }
-        // 初始化adjacent list
+        // Initialize the adjacent list according to the first number readed
         this.V = arr.get(0)[0];
         if (this.V <= 0) throw new IllegalArgumentException("nubmer of vertices shouldn't lesser than 0");
         adj = (LinkedList<Integer>[]) new LinkedList[V];
         for (int v = 0; v < V; v++) {
             adj[v] = new LinkedList<Integer>();
         }
-        // 添加edges
+        // add edges according to the number before '/'
         for (int i = 1; i < arr.size(); i++) {
             int[] subarr = arr.get(i);
             if (subarr.length <= 1)
@@ -120,14 +120,27 @@ public class Graph {
      * non-static methods
      ************************************************************************/
 
+    /**
+     * 
+     * @return the number of vertex in this graph
+     */
     public int V() {
         return this.V;
     }
 
+    /**
+     * 
+     * @return the number of edges in this graph
+     */
     public int E() {
         return this.E;
     }
 
+    /**
+     * 
+     * @param v
+     * @return a list that contains all the neighbours of {@code v}
+     */
     public Iterable<Integer> adj(int v) {
         if (v > V) throw new IllegalArgumentException("param of adj() exceed the maximum limit");
         return adj[v];
