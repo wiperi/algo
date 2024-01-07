@@ -2,11 +2,11 @@ package _50_Data_Structure.Graph.Digraph;
 
 import _50_Data_Structure.Graph.Simple_Graph._10S_Graph;
 
-public class Digraph extends _10S_Graph {
+public class _01S_Digraph extends _10S_Graph {
 
-    protected int[] indegree;
+    protected int[] indegree; // record indegree of each vertex
 
-    public Digraph(String s) {
+    public _01S_Digraph(String s) {
         super(s);
 
         indegree = new int[super.V];
@@ -21,7 +21,7 @@ public class Digraph extends _10S_Graph {
     public void addEdge(int v, int w) {
         validateVertex(v);
         validateVertex(w);
-        adj[v].add(w);
+        adj[v].add(w); // the only difference between digraph and simple graph is digraph only add v->w
         if (indegree != null) indegree[w]++;
         E++;
     }
@@ -37,7 +37,7 @@ public class Digraph extends _10S_Graph {
     }
 
     public static void main(String[] args) {
-        Digraph digra = new Digraph("4 / 0 1 / 2 1/ 3 1");
+        _01S_Digraph digra = new _01S_Digraph("4 / 0 1 / 2 1/ 3 1");
         System.out.println(digra.toString());
     }
 }
