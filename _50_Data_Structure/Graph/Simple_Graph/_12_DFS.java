@@ -1,4 +1,4 @@
-package _50_Data_Structure.Graph;
+package _50_Data_Structure.Graph.Simple_Graph;
 
 import java.util.LinkedList;
 import edu.princeton.cs.algs4.In;

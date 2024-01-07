@@ -1,4 +1,4 @@
-package _50_Data_Structure.Graph;
+package _50_Data_Structure.Graph.Simple_Graph;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -13,9 +13,9 @@ public class _10S_Graph {
      * memeber variables
      ************************************************************************/
 
-    private List<Integer>[] adj;
-    private final int V;
-    private int E;
+    protected List<Integer>[] adj;
+    protected final int V;
+    protected int E;
 
     /************************************************************************
      * constructor
@@ -163,7 +163,7 @@ public class _10S_Graph {
         return s;
     }
 
-    private void validateVertex(int v) {
+    protected void validateVertex(int v) {
         if (v < 0 || v >= V) throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V - 1));
     }
 

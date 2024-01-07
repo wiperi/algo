@@ -1,4 +1,4 @@
-package _50_Data_Structure.Graph;
+package _50_Data_Structure.Graph.Simple_Graph;
 
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
