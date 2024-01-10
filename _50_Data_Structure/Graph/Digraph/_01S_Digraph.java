@@ -33,7 +33,7 @@ public class _01S_Digraph extends _10S_Graph {
 
     public int indegree(int v) {
         validateVertex(v);
-        return indegree(v);
+        return indegree[v];
     }
 
     public static void main(String[] args) {

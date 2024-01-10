@@ -14,6 +14,7 @@ public class _12_DFS {
     }
 
     private static void dfsAux(_10S_Graph G, int v) {
+        // preorder postion
         visited[v] = true;
 
         for (int w : G.adj(v)) {
@@ -22,6 +23,8 @@ public class _12_DFS {
                 dfsAux(G, w);
             }
         }
+
+        // postorder positon
     }
 
     public static Iterable<Integer> path(_10S_Graph G, int s, int v) {

@@ -338,4 +338,65 @@ public class Solution {
             return graph;
         }
     }
+
+    class course2 {
+        public int[] findOrder(int numCourses, int[][] prerequisites) {
+            // 0. init
+            visited = new boolean[numCourses];
+            onPath = new boolean[numCourses];
+            post = new LinkedList<>();
+            hasCycle = false;
+            // 1. built the graph
+            List<Integer>[] graph = builtGraph(numCourses, prerequisites);
+
+            // 2. if hasCycle then return empty list
+            // if not, then record the postorder traverse result and return the inversed
+            // version
+            for (int i = 0; i < graph.length; i++) {
+                if (visited[i] == false) dfs(graph, i);
+            }
+            if (hasCycle) return new int[0];
+            int[] res = new int[numCourses];
+            for (int i = 0; i < res.length; i++) {
+                res[i] = post.getLast();
+                post.removeLast();
+            }
+            return res;
+        }
+
+        boolean[] visited;
+        boolean[] onPath;
+        boolean hasCycle;
+        LinkedList<Integer> post;
+
+        private void dfs(List<Integer>[] graph, int v) {
+            visited[v] = true;
+            onPath[v] = true;
+
+            for (int w : graph[v]) {
+                if (!visited[w]) dfs(graph, w);
+                if (onPath[w]) {
+                    hasCycle = true;
+                    return;
+                }
+            }
+
+            onPath[v] = false;
+            post.add(v);
+        }
+
+        private List<Integer>[] builtGraph(int numCourses, int[][] prerequisites) {
+            List<Integer>[] graph = new LinkedList[numCourses];
+            for (int i = 0; i < graph.length; i++) {
+                graph[i] = new LinkedList<>();
+            }
+
+            for (int edges = 0; edges < prerequisites.length; edges++) {
+                int from = prerequisites[edges][1];
+                int to = prerequisites[edges][0];
+                graph[from].add(to);
+            }
+            return graph;
+        }
+    }
 }
