@@ -3,7 +3,7 @@ package _50_Data_Structure.Graph.Simple_Graph;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class _15_Multisource_BFS {
+public class _17_Multisource_BFS {
 
     private static boolean[] visited;
     private static int[] pathTo;

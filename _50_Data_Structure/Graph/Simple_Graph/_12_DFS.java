@@ -7,10 +7,10 @@ public class _12_DFS {
     private static boolean[] visited;
     private static int[] pathTo;
 
-    public static void dfs(_10S_Graph G, int s) {
+    public static void dfs(_10S_Graph G, int source) {
         visited = new boolean[G.V()];
         pathTo = new int[G.V()];
-        dfsAux(G, s);
+        dfsAux(G, source);
     }
 
     private static void dfsAux(_10S_Graph G, int v) {
@@ -27,8 +27,8 @@ public class _12_DFS {
         // postorder positon
     }
 
-    public static Iterable<Integer> path(_10S_Graph G, int s, int v) {
-        dfs(G, s);
+    public static Iterable<Integer> path(_10S_Graph G, int source, int v) {
+        dfs(G, source);
         if (visited[v] == false) return null;
 
         LinkedList<Integer> path = new LinkedList<>();
@@ -37,7 +37,7 @@ public class _12_DFS {
         do {
             i = pathTo[i];
             path.addFirst(i);
-        } while (i != s);
+        } while (i != source);
         return path;
     }
 

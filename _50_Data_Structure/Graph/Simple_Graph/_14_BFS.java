@@ -8,7 +8,7 @@ import edu.princeton.cs.algs4.In;
 public class _14_BFS {
 
     private static boolean[] visited;
-    
+
     // 利用并查集结构记录从起点到每一个顶点的最短路径，pathTo数组表示了一颗无环多叉树，pathTo[kid] = parent
     private static int[] pathTo;
     
@@ -18,17 +18,17 @@ public class _14_BFS {
         bfsAux(G, s);
     }
 
-    private static Iterable<Integer> bfsAux(_10S_Graph G, int s) {
+    private static Iterable<Integer> bfsAux(_10S_Graph G, int source) {
+        // 1. 定义队列的初始状态
         Queue<Integer> que = new LinkedList<>();
-        // 1. 添加起点
-        que.add(s);
-        visited[s] = true;
-        // 2. 开始bfs
+        que.add(source);
+        visited[source] = true; // *VERY IMPORTANT* 设置visited[]初始状态，避免死循环
+        // 2. bfs
         while (!que.isEmpty()) {
             int v = que.poll();
-            for (int w : G.adj(v)) { // visit all unvisited adjacent edges
+            for (int w : G.adj(v)) {
                 if (!visited[w]) {
-                    visited[w] = true;
+                    visited[w] = true; // *VERY IMPORTANT* 必须在que.add()之前更新visited[]，否则 w 会被多次访问
                     pathTo[w] = v;
                     que.add(w);
                 }
@@ -37,8 +37,8 @@ public class _14_BFS {
         return que;
     }
 
-    public static Iterable<Integer> path(_10S_Graph G, int s, int v) {
-        bfs(G, s);
+    public static Iterable<Integer> path(_10S_Graph G, int source, int v) {
+        bfs(G, source);
         if (!visited[v]) return null;
 
         LinkedList<Integer> path = new LinkedList<>();
@@ -47,7 +47,7 @@ public class _14_BFS {
         do {
             i = pathTo[i];
             path.addFirst(i);
-        } while (i != s);
+        } while (i != source);
         return path;
     }
 
