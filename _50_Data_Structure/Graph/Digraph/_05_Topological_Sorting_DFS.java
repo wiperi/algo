@@ -10,24 +10,28 @@ public class _05_Topological_Sorting_DFS {
     private static boolean[] visited;
     private static boolean[] onPath;
     private static boolean hasCycle;
-    private static LinkedList<Integer> post;
+    private static LinkedList<Integer> postList;
 
     public static List<Integer> topologicalSorting(_01S_Digraph graph) {
         // 1. init
         visited = new boolean[graph.V()];
         onPath = new boolean[graph.V()];
         hasCycle = false;
-        post = new LinkedList<>();
+        postList = new LinkedList<>();
+
         // 2. traverse graph to get postorder list
         // if there is cycle, return empty list, if not, return inversed version of postorder list
         for (int i = 0; i < graph.V(); i++) {
             if (!visited[i]) dfs(graph, i);
             if (hasCycle) return new LinkedList<>();
         }
+
+        // 3. copy postList in back order to resList
+        // then return res
         LinkedList<Integer> res = new LinkedList<>();
         for (int i = 0; i < graph.V(); i++) {
-            res.add(post.getLast());
-            post.removeLast();
+            res.add(postList.getLast());
+            postList.removeLast();
         }
         return res;
     }
@@ -44,7 +48,7 @@ public class _05_Topological_Sorting_DFS {
             }
         }
 
-        post.add(v);
+        postList.add(v);
         onPath[v] = false;
     }
     

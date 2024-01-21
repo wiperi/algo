@@ -1,4 +1,4 @@
-package Week3_Elementary_Sort;
+package _50_Data_Structure.Sort.Merge_Sort;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

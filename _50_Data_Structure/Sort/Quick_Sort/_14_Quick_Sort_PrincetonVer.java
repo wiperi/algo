@@ -1,14 +1,20 @@
-package Week3_Elementary_Sort;
+package _50_Data_Structure.Sort.Quick_Sort;
 
 import edu.princeton.cs.algs4.StdArrayIO;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
 
-public class _14_Quick_Sort_Sedgewick_Version {
+/**
+ * [![Watch the video](https://img.youtube.com/vi/IBnkwEAForc/default.jpg)](https://youtu.be/IBnkwEAForc)
+ */
+public class _14_Quick_Sort_PrincetonVer {
 
     public static void sort(int[] arr) {
-        StdRandom.shuffle(arr); // 为了防止最坏情况发生（输入数组为有序的），提前打乱数组
+        
+        // 为了防止最坏情况（输入数组逆序排布，pivot每次选中最大值，要将N-1个元素移动到pivot左边）发生，所以需要提前打乱数组
+        StdRandom.shuffle(arr);
+
         sort(arr, 0, arr.length - 1);
     }
 

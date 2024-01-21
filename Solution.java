@@ -399,4 +399,66 @@ public class Solution {
             return graph;
         }
     }
+
+    class bipartite {
+        public boolean isBipartite(int[][] graph) {
+            // 1. init data
+            boolean[] color = new boolean[graph.length];
+            boolean[] visited = new boolean[graph.length];
+
+            // 2. bfs and dye
+            for (int root = 0; root < graph.length; root++) {
+                if (!visited[root]) {
+                    Queue<Integer> que = new LinkedList<>();
+                    que.offer(root);
+                    while (!que.isEmpty()) {
+
+                        int cur = que.poll();
+                        visited[cur] = true;
+
+                        for (int i : graph[cur]) {
+                            if (!visited[i]) {
+                                que.add(i);
+                                color[i] = !color[cur];
+                            } else {
+                                if (color[i] != color[cur]) {
+                                    res = false;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return res;
+        }
+
+        boolean res = true;
+
+        private void dfs(int[][] graph, boolean[] visited, boolean[] color, int i) {
+
+            visited[i] = true;
+
+            for (int j : graph[i]) {
+                if (!visited[j]) {
+                    // dye the new node
+                    color[j] = !color[i];
+                    dfs(graph, visited, color, j);
+                } else {
+                    // check the color is or not the same
+                    if (color[i] == color[j]) {
+                        res = false;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int[][] graph = { { 1, 3 }, { 0, 2 }, { 1, 3 }, { 0, 2 } };
+        bipartite b = new Solution().new bipartite();
+        boolean isBipartite = b.isBipartite(graph);
+        System.out.println("Is the graph bipartite? " + isBipartite);
+    }
 }

@@ -1,8 +1,8 @@
-package Week3_Elementary_Sort;
+package _50_Data_Structure.Sort.Quick_Sort;
 
 import edu.princeton.cs.algs4.StdArrayIO;
 
-public class _13_Quick_Sort_BroCode_Version {
+public class _13_Quick_Sort_BrocodeVer {
 
     private static void quickSort(int[] arr, int start, int end) {
 

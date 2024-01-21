@@ -1,4 +1,4 @@
-package Week3_Elementary_Sort;
+package _50_Data_Structure.Sort.Merge_Sort;
 
 public class _12_MergeSortCuiVer {
     public int[] sortArray(int[] nums) {

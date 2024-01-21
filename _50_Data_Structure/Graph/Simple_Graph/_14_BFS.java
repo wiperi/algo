@@ -8,8 +8,10 @@ import edu.princeton.cs.algs4.In;
 public class _14_BFS {
 
     private static boolean[] visited;
-    private static int[] pathTo; // 利用并查集结构记录从起点到每一个顶点的最短路径，pathTo数组表示了一颗无环多叉树，pathTo[kid] = parent
-
+    
+    // 利用并查集结构记录从起点到每一个顶点的最短路径，pathTo数组表示了一颗无环多叉树，pathTo[kid] = parent
+    private static int[] pathTo;
+    
     public static void bfs(_10S_Graph G, int s) {
         visited = new boolean[G.V()];
         pathTo = new int[G.V()];

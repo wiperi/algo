@@ -1,5 +1,7 @@
 package _50_Data_Structure.Graph.Simple_Graph;
 
+// reference:
+// 算法第四版 P545 - P546
 public class _50_isBipartite {
     private static boolean[] visited;
     private static boolean[] color;

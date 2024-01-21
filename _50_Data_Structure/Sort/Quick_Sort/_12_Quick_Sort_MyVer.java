@@ -1,11 +1,11 @@
-package Week3_Elementary_Sort;
+package _50_Data_Structure.Sort.Quick_Sort;
 
 import edu.princeton.cs.algs4.StdArrayIO;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.Stopwatch;
 import edu.princeton.cs.algs4.StdRandom;
 
-public class _12_Quick_Sort_My_Attempt {
+public class _12_Quick_Sort_MyVer {
 
     private static void qsort(int[] arr, int l, int r) {
 
