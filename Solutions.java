@@ -1,5 +1,3 @@
-import static org.junit.jupiter.api.Assumptions.abort;
-
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,5 +23,5 @@ import edu.princeton.cs.algs4.IndexMultiwayMinPQ;
 
 @SuppressWarnings("unused")
 public class Solutions {
-    
+
 }
