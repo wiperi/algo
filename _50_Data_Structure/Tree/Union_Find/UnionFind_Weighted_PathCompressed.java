@@ -43,6 +43,21 @@ public class UnionFind_Weighted_PathCompressed {
         return parent[x];
     }
 
+    // find()的循环版本
+    @SuppressWarnings("unused")
+    private int find_iter(int x) {
+        int root = x;
+        while (root != parent[root])
+            root = parent[root];
+
+        while (x != root) {
+            int newp = parent[x];
+            parent[x] = root; // 路径压缩
+            x = newp;
+        }
+        return root;
+    }
+
     public boolean isConnected(int x, int y) {
         return find(x) == find(y);
     }
