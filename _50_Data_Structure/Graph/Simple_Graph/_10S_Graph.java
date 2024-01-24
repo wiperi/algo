@@ -7,6 +7,7 @@ import java.util.NoSuchElementException;
 
 import edu.princeton.cs.algs4.In;
 
+// adjacent list verison of graph
 public class _10S_Graph {
 
     /************************************************************************
@@ -14,8 +15,8 @@ public class _10S_Graph {
      ************************************************************************/
 
     protected List<Integer>[] adj;
-    protected final int V;
-    protected int E;
+    protected final int V; // total vertices
+    protected int E; // total edges
 
     /************************************************************************
      * constructor
