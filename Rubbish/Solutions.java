@@ -17,8 +17,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
-import _50_Data_Structure.Graph.Simple_Graph._10S_Graph;
-import _50_Data_Structure.Tree.Binary_Tree.Node;
+import Graph.Simple_Graph._10S_Graph;
+import Tree.Binary_Tree.Node;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.IndexMultiwayMinPQ;
 
