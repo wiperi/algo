@@ -1,5 +1,8 @@
-package Chap1_Fundamental;
+package _50_Data_Structure.List.LinkedList;
 
+/**
+ * Leetcode compatible verson of ListNode (node of the linked list).
+ */
 public class ListNode {
     public int val;
     public ListNode next;

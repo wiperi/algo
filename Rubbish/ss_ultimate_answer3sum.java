@@ -1,3 +1,4 @@
+package Rubbish;
 
 //C(n, k) = C(n - 1, k) + C(n - 1, k - 1)
 import java.util.AbstractList;

@@ -3,7 +3,7 @@ package _50_Data_Structure;
 /**
  * LDUR_Traverse_Technique
  */
-public class LDUR_Traverse_Technique {
+public class LDUR_traverse_technie {
 
     static int row;
     static int col;

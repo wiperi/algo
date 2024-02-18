@@ -1,3 +1,4 @@
+package Rubbish;
 import java.util.Arrays;
 
 public class multi_thread {

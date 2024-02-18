@@ -1,12 +1,15 @@
-package Chap1_Fundamental;
+package _50_Data_Structure.List.LinkedList;
 import edu.princeton.cs.algs4.Queue;
 
-public class Linked_List_Leet_Ver {
+/**
+ * Leetcode compatible version of Linked List.
+ */
+public class Linked_List {
 
     public Queue<ListNode> que = new Queue<ListNode>();
     public ListNode head;
 
-    public Linked_List_Leet_Ver() {
+    public Linked_List() {
         head = null;
     }
 
@@ -15,7 +18,7 @@ public class Linked_List_Leet_Ver {
      * 
      * @param s 用于构建链表的字符串
      */
-    public Linked_List_Leet_Ver(String s) {
+    public Linked_List(String s) {
         String[] tokens = s.split("\\s+");
         for (String string : tokens) {
             addBack(Integer.parseInt(string));
@@ -27,7 +30,7 @@ public class Linked_List_Leet_Ver {
      * 
      * @param a 用于构建链表的数组
      */
-    public Linked_List_Leet_Ver(int[] a) {
+    public Linked_List(int[] a) {
         for (int i : a) {
             addBack((int) Integer.valueOf(i));
         }
@@ -86,7 +89,7 @@ public class Linked_List_Leet_Ver {
     }
 
     public static void main(String[] args) {
-        Linked_List_Leet_Ver l = new Linked_List_Leet_Ver("1 2 3 4 5");
+        Linked_List l = new Linked_List("1 2 3 4 5");
         l.print();
         System.out.println(l);
         l.showAllNodes();
