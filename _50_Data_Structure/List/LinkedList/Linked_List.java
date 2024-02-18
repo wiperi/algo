@@ -14,10 +14,10 @@ public class Linked_List {
     }
 
     /**
-     * 由字符串构建链表
+     * Create a linked list from a string of numbers separated by space.
      * 
-     * @param s 用于构建链表的字符串
-     */
+     * @param s string of numbers separated by space
+     */    
     public Linked_List(String s) {
         String[] tokens = s.split("\\s+");
         for (String string : tokens) {
@@ -26,9 +26,9 @@ public class Linked_List {
     }
 
     /**
-     * 由数组构建链表
+     * Create a linked list from an array.
      * 
-     * @param a 用于构建链表的数组
+     * @param a array of integers
      */
     public Linked_List(int[] a) {
         for (int i : a) {
@@ -36,16 +36,30 @@ public class Linked_List {
         }
     }
 
+    /**
+     * 
+     * @return head of the linked list
+     */
     public ListNode getHead() {
         return head;
     }
 
+    /**
+     * Add a node to the front of the linked list.
+     * 
+     * @param val
+     */
     public void addFront(int val) {
         ListNode newNode = new ListNode(val, head);
         que.enqueue(newNode);
         head = newNode;
     }
 
+    /**
+     * Add a node to the back of the linked list.
+     * 
+     * @param val
+     */
     public void addBack(int val) {
         ListNode newNode = new ListNode(val, null);
         que.enqueue(newNode);
@@ -60,16 +74,6 @@ public class Linked_List {
         }
     }
 
-    public void print() {
-        ListNode cur = head;
-        System.out.print("-> ");
-        while (cur != null) {
-            System.out.print(cur.val + " -> ");
-            cur = cur.next;
-        }
-        System.out.print(cur + "\n");
-    }
-
     @Override
     public String toString() {
         ListNode cur = head;
@@ -82,15 +86,18 @@ public class Linked_List {
         return s;
     }
 
+    /**
+     * Show all nodes that have been added to the linked list.
+     */
     public void showAllNodes() {
         for (ListNode node : que) {
             System.out.println(node.val + "-> " + (node.next == null ? null : node.next.val));
         }
     }
 
+    // unit testing
     public static void main(String[] args) {
         Linked_List l = new Linked_List("1 2 3 4 5");
-        l.print();
         System.out.println(l);
         l.showAllNodes();
     }
