@@ -1,7 +1,5 @@
 package Rubbish.LearnJava._20_Object_And_Class;
 
-import Chap1_Fundamental.Section1_Programming_Model._1_HelloWorld;
-
 /*
  * 嵌套类：
  * 
@@ -50,7 +48,7 @@ public class _20_NestedClass {
 
         // 通过impot指令添加其他的类，文件夹，包。然后就可以调用其他类的方法
         // 由于这些方法是静态的，所以不需要实例化它们的类
-        _1_HelloWorld.main(new String[] {});
-        _1_HelloWorld.static_method_saying_goodbye();
+        HelloWorld.main(new String[] {});
+        HelloWorld.static_method_saying_goodbye();
     }
 }
