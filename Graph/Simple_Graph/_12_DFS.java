@@ -7,13 +7,13 @@ public class _12_DFS {
     private static boolean[] visited;
     private static int[] pathTo;
 
-    public static void dfs(_10S_Graph G, int source) {
+    public static void dfs(_10_Graph G, int source) {
         visited = new boolean[G.V()];
         pathTo = new int[G.V()];
         dfsAux(G, source);
     }
 
-    private static void dfsAux(_10S_Graph G, int v) {
+    private static void dfsAux(_10_Graph G, int v) {
         // preorder postion
         visited[v] = true;
 
@@ -27,7 +27,7 @@ public class _12_DFS {
         // postorder positon
     }
 
-    public static Iterable<Integer> path(_10S_Graph G, int source, int v) {
+    public static Iterable<Integer> path(_10_Graph G, int source, int v) {
         dfs(G, source);
         if (visited[v] == false) return null;
 
@@ -42,7 +42,7 @@ public class _12_DFS {
     }
 
     public static void main(String[] args) {
-        _10S_Graph g = new _10S_Graph(new In("_50_Data_Structure\\tinyGraph.txt"));
+        _10_Graph g = new _10_Graph(new In("_50_Data_Structure\\tinyGraph.txt"));
         System.out.println(path(g, 0, 4));
     }
 }

@@ -8,7 +8,7 @@ import java.util.Queue;
 // https://labuladong.github.io/algo/di-yi-zhan-da78c/shou-ba-sh-03a72/huan-jian--e36de/#%E7%8E%AF%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95-bfs-%E7%89%88%E6%9C%AC
 public class _09_Topological_Sorting_BFS {
 
-    public static List<Integer> topologicalSorting(_01S_Digraph graph) {
+    public static List<Integer> topologicalSorting(_01_Digraph graph) {
         Queue<Integer> que = new LinkedList<>();
         // 1. add 0 indegree vertices to queue
         for (int i = 0; i < graph.V(); i++) {
@@ -33,9 +33,9 @@ public class _09_Topological_Sorting_BFS {
     }
 
     public static void main(String[] args) {
-        _01S_Digraph digraph1 = new _01S_Digraph("4 / 0 1 2 / 1 3 / 2 3");
-        _01S_Digraph digraph2 = new _01S_Digraph("3 / 0 1 2 / 1 0");
-        _01S_Digraph digraph3 = new _01S_Digraph("3 / 0 1 / 1 2 / 2 0");
+        _01_Digraph digraph1 = new _01_Digraph("4 / 0 1 2 / 1 3 / 2 3");
+        _01_Digraph digraph2 = new _01_Digraph("3 / 0 1 2 / 1 0");
+        _01_Digraph digraph3 = new _01_Digraph("3 / 0 1 / 1 2 / 2 0");
         System.out.println(topologicalSorting(digraph1)); // no cycle, 0 1 2 3
         System.out.println(topologicalSorting(digraph2)); // has cycle
         System.out.println(topologicalSorting(digraph3)); // has cycle

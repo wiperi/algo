@@ -1,20 +1,19 @@
-package Graph.Simple_Graph;
+package Graph.Digraph;
 
 import java.util.LinkedList;
 import java.util.List;
 
-// adjacent matrix version of graph
-public class _11S_Graph_MatrixVersion {
+// adjacent matrix version of digraph
+public class _02_Digraph_MatrixVer {
 
     boolean[][] graph;
 
-    public _11S_Graph_MatrixVersion(int size) {
+    public _02_Digraph_MatrixVer(int size) {
         graph = new boolean[size][size];
     }
 
     public void addEdge(int x, int y) {
-        graph[x][y] = true;
-        graph[y][x] = true;
+        graph[x][y] = true; // the only difference with simple graph
     }
 
     public List<Integer> adj(int x) {
@@ -27,3 +26,4 @@ public class _11S_Graph_MatrixVersion {
         return res;
     }
 }
+

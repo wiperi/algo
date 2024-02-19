@@ -12,13 +12,13 @@ public class _14_BFS {
     // 利用并查集结构记录从起点到每一个顶点的最短路径，pathTo数组表示了一颗无环多叉树，pathTo[kid] = parent
     private static int[] pathTo;
     
-    public static void bfs(_10S_Graph G, int s) {
+    public static void bfs(_10_Graph G, int s) {
         visited = new boolean[G.V()];
         pathTo = new int[G.V()];
         bfsAux(G, s);
     }
 
-    private static Iterable<Integer> bfsAux(_10S_Graph G, int source) {
+    private static Iterable<Integer> bfsAux(_10_Graph G, int source) {
         // 1. 定义队列的初始状态
         Queue<Integer> que = new LinkedList<>();
         que.add(source);
@@ -37,7 +37,7 @@ public class _14_BFS {
         return que;
     }
 
-    public static Iterable<Integer> path(_10S_Graph G, int source, int v) {
+    public static Iterable<Integer> path(_10_Graph G, int source, int v) {
         bfs(G, source);
         if (!visited[v]) return null;
 
@@ -52,7 +52,7 @@ public class _14_BFS {
     }
 
     public static void main(String[] args) {
-        _10S_Graph g = new _10S_Graph(new In("_50_Data_Structure\\tinyGraph.txt"));
+        _10_Graph g = new _10_Graph(new In("_50_Data_Structure\\tinyGraph.txt"));
         System.out.println(path(g, 0, 4));
     }
 }

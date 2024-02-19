@@ -5,7 +5,7 @@ public class _40_hasCycle {
     private static boolean[] visited;
     private static boolean hasCycle;
 
-    public static boolean hasCycle(_10S_Graph G) {
+    public static boolean hasCycle(_10_Graph G) {
         visited = new boolean[G.V()];
         hasCycle = false;
         for (int v = 0; v < G.V(); v++) {
@@ -22,7 +22,7 @@ public class _40_hasCycle {
      * @param v    current vertex
      * @param prev previous vertex
      */
-    private static void dfs(_10S_Graph G, int v, int prev) {
+    private static void dfs(_10_Graph G, int v, int prev) {
         visited[v] = true;
         for (int w : G.adj(v)) {
             if (!visited[w])
@@ -32,8 +32,8 @@ public class _40_hasCycle {
     }
 
     public static void main(String[] args) {
-        _10S_Graph nocircle = new _10S_Graph("6 / 0 1 2 / 1 3/ 2 4 / 4 5");
-        _10S_Graph circle = new _10S_Graph("6 / 0 1 2 / 1 3/ 2 4 / 4 5 / 3 5");
+        _10_Graph nocircle = new _10_Graph("6 / 0 1 2 / 1 3/ 2 4 / 4 5");
+        _10_Graph circle = new _10_Graph("6 / 0 1 2 / 1 3/ 2 4 / 4 5 / 3 5");
         System.out.println(hasCycle(nocircle)); // false
         System.out.println(hasCycle(circle)); // true
     }

@@ -4,12 +4,12 @@ import edu.princeton.cs.algs4.Graph;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.ST;
 
-public class _60S_Symbol_Graph {
+public class _60_Symbol_Graph {
     private ST<String, Integer> st; // String -> index
     private String[] keys;          // index -> String
     private Graph G;                // the graph
 
-    public _60S_Symbol_Graph(String stream, String separator) {
+    public _60_Symbol_Graph(String stream, String separator) {
         st = new ST<String, Integer>();
 
         In in = new In(stream);                           // First pass

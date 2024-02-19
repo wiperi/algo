@@ -5,11 +5,11 @@ import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class _10T_GraphTest {
+public class _10_GraphTest {
 
     @Test
     public void testAddEdge() {
-        _10S_Graph graph = new _10S_Graph(5);
+        _10_Graph graph = new _10_Graph(5);
 
         graph.addEdge(0, 1);
         graph.addEdge(0, 2);
@@ -21,7 +21,7 @@ public class _10T_GraphTest {
 
     @Test
     public void testAdj() {
-        _10S_Graph graph = new _10S_Graph(5);
+        _10_Graph graph = new _10_Graph(5);
 
         graph.addEdge(0, 1);
         graph.addEdge(0, 2);
@@ -43,18 +43,18 @@ public class _10T_GraphTest {
 
     @Test
     public void testDegree() {
-        _10S_Graph graph = new _10S_Graph(5);
+        _10_Graph graph = new _10_Graph(5);
 
         graph.addEdge(0, 1);
         graph.addEdge(0, 2);
         graph.addEdge(1, 3);
         graph.addEdge(2, 4);
 
-        int degree0 = _10S_Graph.degree(graph, 0);
-        int degree1 = _10S_Graph.degree(graph, 1);
-        int degree2 = _10S_Graph.degree(graph, 2);
-        int degree3 = _10S_Graph.degree(graph, 3);
-        int degree4 = _10S_Graph.degree(graph, 4);
+        int degree0 = _10_Graph.degree(graph, 0);
+        int degree1 = _10_Graph.degree(graph, 1);
+        int degree2 = _10_Graph.degree(graph, 2);
+        int degree3 = _10_Graph.degree(graph, 3);
+        int degree4 = _10_Graph.degree(graph, 4);
 
         Assertions.assertEquals(2, degree0);
         Assertions.assertEquals(2, degree1);
@@ -65,35 +65,35 @@ public class _10T_GraphTest {
 
     @Test
     public void testMaxDegree() {
-        _10S_Graph graph = new _10S_Graph(5);
+        _10_Graph graph = new _10_Graph(5);
 
         graph.addEdge(0, 1);
         graph.addEdge(0, 2);
         graph.addEdge(1, 3);
         graph.addEdge(2, 4);
 
-        int maxDegree = _10S_Graph.maxDegree(graph);
+        int maxDegree = _10_Graph.maxDegree(graph);
 
         Assertions.assertEquals(2, maxDegree);
     }
 
     @Test
     public void testAverageDegree() {
-        _10S_Graph graph = new _10S_Graph(5);
+        _10_Graph graph = new _10_Graph(5);
 
         graph.addEdge(0, 1);
         graph.addEdge(0, 2);
         graph.addEdge(1, 3);
         graph.addEdge(2, 4);
 
-        double averageDegree = _10S_Graph.avergeDegree(graph);
+        double averageDegree = _10_Graph.avergeDegree(graph);
 
         Assertions.assertEquals(1.6, averageDegree, 0.001);
     }
 
     @Test
     public void testNumberOfSelfLoops() {
-        _10S_Graph graph = new _10S_Graph(5);
+        _10_Graph graph = new _10_Graph(5);
 
         graph.addEdge(0, 1);
         graph.addEdge(0, 2);
@@ -101,7 +101,7 @@ public class _10T_GraphTest {
         graph.addEdge(2, 4);
         graph.addEdge(3, 3); // self-loop
 
-        int numberOfSelfLoops = _10S_Graph.numberOfSelfLoops(graph);
+        int numberOfSelfLoops = _10_Graph.numberOfSelfLoops(graph);
 
         Assertions.assertEquals(1, numberOfSelfLoops);
     }

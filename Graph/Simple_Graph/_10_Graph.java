@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
 import edu.princeton.cs.algs4.In;
 
 // adjacent list verison of graph
-public class _10S_Graph {
+public class _10_Graph {
 
     /************************************************************************
      * memeber variables
@@ -23,7 +23,7 @@ public class _10S_Graph {
      ************************************************************************/
 
     @SuppressWarnings("unchecked")
-    public _10S_Graph(int V) {
+    public _10_Graph(int V) {
         this.V = V;
         E = 0;
         adj = (LinkedList<Integer>[]) new LinkedList[V];
@@ -46,7 +46,7 @@ public class _10S_Graph {
      * @throws IllegalArgumentException if the input stream is in the wrong format
      */
     @SuppressWarnings("unchecked")
-    public _10S_Graph(In in) {
+    public _10_Graph(In in) {
         if (in == null) throw new IllegalArgumentException("argument is null");
         try {
             // build vertices
@@ -82,7 +82,7 @@ public class _10S_Graph {
      * @param s the input string
      */
     @SuppressWarnings("unchecked")
-    public _10S_Graph(String s) {
+    public _10_Graph(String s) {
         ArrayList<int[]> arr = new ArrayList<>();
         String[] parts = s.split("/");
         for (String part : parts) {
@@ -179,7 +179,7 @@ public class _10S_Graph {
      * @return how many edges is incident to the vertex {@code v}
      */
     @SuppressWarnings("unused")
-    public static int degree(_10S_Graph G, int v) {
+    public static int degree(_10_Graph G, int v) {
         int degree = 0;
         for (int i : G.adj(v)) degree++;
         return degree;
@@ -191,7 +191,7 @@ public class _10S_Graph {
      * @return the maximum number of edges incident to a vertex in the graph
      *         {@code G}
      */
-    public static int maxDegree(_10S_Graph G) {
+    public static int maxDegree(_10_Graph G) {
         int maxDegree = 0;
         for (int v = 0; v < G.V(); v++) {
             if (degree(G, v) > maxDegree) maxDegree = degree(G, v);
@@ -204,11 +204,11 @@ public class _10S_Graph {
      * @param G the graph
      * @return the total of edges / the total of vertices
      */
-    public static double avergeDegree(_10S_Graph G) {
+    public static double avergeDegree(_10_Graph G) {
         return 2.0 * G.E() / G.V();
     }
 
-    public static int numberOfSelfLoops(_10S_Graph G) {
+    public static int numberOfSelfLoops(_10_Graph G) {
         int count = 0;
         for (int v = 0; v < G.V(); v++) {
             for (int w : G.adj(v)) {
@@ -221,7 +221,7 @@ public class _10S_Graph {
     }
 
     public static void main(String[] args) {
-        _10S_Graph g = new _10S_Graph(10);
+        _10_Graph g = new _10_Graph(10);
         System.out.println(g);
 
         g.addEdge(0, 1);
@@ -231,6 +231,6 @@ public class _10S_Graph {
         g.addEdge(3, 3); // self-loop
 
         System.out.println(g);
-        System.out.println(_10S_Graph.numberOfSelfLoops(g));
+        System.out.println(_10_Graph.numberOfSelfLoops(g));
     }
 }

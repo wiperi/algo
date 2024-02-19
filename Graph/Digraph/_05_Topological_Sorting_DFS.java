@@ -12,7 +12,7 @@ public class _05_Topological_Sorting_DFS {
     private static boolean hasCycle;
     private static LinkedList<Integer> postList;
 
-    public static List<Integer> topologicalSorting(_01S_Digraph graph) {
+    public static List<Integer> topologicalSorting(_01_Digraph graph) {
         // 1. init
         visited = new boolean[graph.V()];
         onPath = new boolean[graph.V()];
@@ -36,7 +36,7 @@ public class _05_Topological_Sorting_DFS {
         return res;
     }
 
-    public static void dfs(_01S_Digraph di, int v) {
+    public static void dfs(_01_Digraph di, int v) {
         visited[v] = true;
         onPath[v] = true;
 
@@ -53,9 +53,9 @@ public class _05_Topological_Sorting_DFS {
     }
     
     public static void main(String[] args) {
-        _01S_Digraph digraph1 = new _01S_Digraph("4 / 0 1 2 / 1 3/ 2 3");
-        _01S_Digraph digraph2 = new _01S_Digraph("3 / 0 1 2 / 1 0");
-        _01S_Digraph digraph3 = new _01S_Digraph("3 / 0 1 / 1 2 / 2 0");
+        _01_Digraph digraph1 = new _01_Digraph("4 / 0 1 2 / 1 3/ 2 3");
+        _01_Digraph digraph2 = new _01_Digraph("3 / 0 1 2 / 1 0");
+        _01_Digraph digraph3 = new _01_Digraph("3 / 0 1 / 1 2 / 2 0");
         System.out.println(topologicalSorting(digraph1)); // 0 2 1 3
         System.out.println(topologicalSorting(digraph2)); // []
         System.out.println(topologicalSorting(digraph3)); // []

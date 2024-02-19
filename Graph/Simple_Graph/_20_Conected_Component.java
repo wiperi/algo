@@ -9,7 +9,7 @@ public class _20_Conected_Component {
     private static int count; // nubmer of CCs
 
     // method 1: use dfs
-    public static int numberOfCC(_10S_Graph G) {
+    public static int numberOfCC(_10_Graph G) {
         // initialize data
         visited = new boolean[G.V()];
         id = new int[G.V()];
@@ -24,7 +24,7 @@ public class _20_Conected_Component {
         return count;
     }
 
-    private static void dfsAux(_10S_Graph G, int v) {
+    private static void dfsAux(_10_Graph G, int v) {
         visited[v] = true;
         id[v] = count;
         for (int w : G.adj(v)) {
@@ -35,7 +35,7 @@ public class _20_Conected_Component {
     }
 
     // method 2: use union find
-    public static int numberOfCC_UnionFind(_10S_Graph G) {
+    public static int numberOfCC_UnionFind(_10_Graph G) {
         WeightedQuickUnionUF uf = new WeightedQuickUnionUF(G.V());
         for (int i = 0; i < G.V(); i++) {
             for (Integer v : G.adj(i)) {
@@ -46,7 +46,7 @@ public class _20_Conected_Component {
     }
 
     public static void main(String[] args) {
-        _10S_Graph g = new _10S_Graph("6");
+        _10_Graph g = new _10_Graph("6");
         System.out.println(numberOfCC(g));
         System.out.println(numberOfCC_UnionFind(g));
     }

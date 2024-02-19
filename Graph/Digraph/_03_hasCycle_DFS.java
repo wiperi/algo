@@ -8,7 +8,7 @@ public class _03_hasCycle_DFS {
     private static boolean[] onPath;
     private static boolean hasCycle = false;
 
-    public static boolean hasCycle(_01S_Digraph digraph) {
+    public static boolean hasCycle(_01_Digraph digraph) {
         // Initialization
         visited = new boolean[digraph.V()];
         onPath = new boolean[digraph.V()];
@@ -19,7 +19,7 @@ public class _03_hasCycle_DFS {
         return hasCycle;
     }
 
-    public static void dfs(_01S_Digraph di, int v) {
+    public static void dfs(_01_Digraph di, int v) {
         visited[v] = true;
         onPath[v] = true;
 
@@ -35,9 +35,9 @@ public class _03_hasCycle_DFS {
     }
 
     public static void main(String[] args) {
-        _01S_Digraph digraph1 = new _01S_Digraph("3 / 0 1 2");
-        _01S_Digraph digraph2 = new _01S_Digraph("3 / 0 1 2 / 1 0");
-        _01S_Digraph digraph3 = new _01S_Digraph("3 / 0 1 / 1 2 / 2 0");
+        _01_Digraph digraph1 = new _01_Digraph("3 / 0 1 2");
+        _01_Digraph digraph2 = new _01_Digraph("3 / 0 1 2 / 1 0");
+        _01_Digraph digraph3 = new _01_Digraph("3 / 0 1 / 1 2 / 2 0");
         System.out.println(hasCycle(digraph1)); // false
         System.out.println(hasCycle(digraph2)); // true
         System.out.println(hasCycle(digraph3)); // true

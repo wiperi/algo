@@ -1,12 +1,12 @@
 package Graph.Digraph;
 
-import Graph.Simple_Graph._10S_Graph;
+import Graph.Simple_Graph._10_Graph;
 
-public class _01S_Digraph extends _10S_Graph {
+public class _01_Digraph extends _10_Graph {
 
     protected int[] indegree; // record indegree of each vertex
 
-    public _01S_Digraph(String s) {
+    public _01_Digraph(String s) {
         super(s);
 
         indegree = new int[super.V];
@@ -37,7 +37,7 @@ public class _01S_Digraph extends _10S_Graph {
     }
 
     public static void main(String[] args) {
-        _01S_Digraph digra = new _01S_Digraph("4 / 0 1 / 2 1/ 3 1");
+        _01_Digraph digra = new _01_Digraph("4 / 0 1 / 2 1/ 3 1");
         System.out.println(digra.toString());
     }
 }

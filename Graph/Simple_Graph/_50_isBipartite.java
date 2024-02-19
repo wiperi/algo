@@ -7,7 +7,7 @@ public class _50_isBipartite {
     private static boolean[] color;
     private static boolean isBipartite = true;
 
-    public static boolean isBipartite(_10S_Graph G) {
+    public static boolean isBipartite(_10_Graph G) {
         visited = new boolean[G.V()];
         color = new boolean[G.V()];
         for (int s = 0; s < G.V(); s++)
@@ -15,7 +15,7 @@ public class _50_isBipartite {
         return isBipartite;
     }
 
-    private static void dfs(_10S_Graph G, int v) {
+    private static void dfs(_10_Graph G, int v) {
         visited[v] = true;
         for (int w : G.adj(v))
             if (!visited[w]) {
@@ -28,8 +28,8 @@ public class _50_isBipartite {
     }
 
     public static void main(String[] args) {
-        _10S_Graph is = new _10S_Graph("5 / 1 0 2 / 4 3 2");
-        _10S_Graph not = new _10S_Graph("5 / 1 0 2 / 4 3 2 / 3 0");
+        _10_Graph is = new _10_Graph("5 / 1 0 2 / 4 3 2");
+        _10_Graph not = new _10_Graph("5 / 1 0 2 / 4 3 2 / 3 0");
         System.out.println(isBipartite(is)); // true
         System.out.println(isBipartite(not)); // false
     }
