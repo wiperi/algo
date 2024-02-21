@@ -1,4 +1,4 @@
-package Graph.Simple_Graph;
+package Graph.Graph;
 
 // reference:
 // 算法第四版 P545 - P546

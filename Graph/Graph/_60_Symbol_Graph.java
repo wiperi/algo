@@ -1,4 +1,4 @@
-package Graph.Simple_Graph;
+package Graph.Graph;
 
 import edu.princeton.cs.algs4.Graph;
 import edu.princeton.cs.algs4.In;

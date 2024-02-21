@@ -1,6 +1,6 @@
 package Graph.Digraph;
 
-import Graph.Simple_Graph._10_Graph;
+import Graph.Graph._10_Graph;
 
 public class _01_Digraph extends _10_Graph {
 
@@ -9,8 +9,8 @@ public class _01_Digraph extends _10_Graph {
     public _01_Digraph(String s) {
         super(s);
 
-        indegree = new int[super.V];
-        for (int v = 0; v < super.V; v++) {
+        indegree = new int[super.NUM_VERTEX];
+        for (int v = 0; v < super.NUM_VERTEX; v++) {
             for (int w : super.adj(v)) {
                 indegree[w]++; // initialize indegree in the constructor
             }
@@ -21,14 +21,14 @@ public class _01_Digraph extends _10_Graph {
     public void addEdge(int v, int w) {
         validateVertex(v);
         validateVertex(w);
-        adj[v].add(w); // the only difference between digraph and simple graph is digraph only add v->w
+        adj_list[v].add(w); // the only difference between digraph and simple graph is digraph only add v->w
         if (indegree != null) indegree[w]++;
-        E++;
+        num_edges++;
     }
 
     public int outdegree(int v) {
         validateVertex(v);
-        return adj[v].size();
+        return adj_list[v].size();
     }
 
     public int indegree(int v) {

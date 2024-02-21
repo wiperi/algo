@@ -1,4 +1,4 @@
-package Graph.Simple_Graph;
+package Graph.Graph;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -14,9 +14,9 @@ public class _10_Graph {
      * memeber variables
      ************************************************************************/
 
-    protected List<Integer>[] adj;
-    protected final int V; // total vertices
-    protected int E; // total edges
+    protected List<Integer>[] adj_list;
+    protected final int NUM_VERTEX; // total vertices
+    protected int num_edges; // total edges
 
     /************************************************************************
      * constructor
@@ -24,11 +24,11 @@ public class _10_Graph {
 
     @SuppressWarnings("unchecked")
     public _10_Graph(int V) {
-        this.V = V;
-        E = 0;
-        adj = (LinkedList<Integer>[]) new LinkedList[V];
+        this.NUM_VERTEX = V;
+        num_edges = 0;
+        adj_list = (LinkedList<Integer>[]) new LinkedList[V];
         for (int v = 0; v < V; v++) {
-            adj[v] = new LinkedList<Integer>();
+            adj_list[v] = new LinkedList<Integer>();
         }
     }
 
@@ -50,11 +50,11 @@ public class _10_Graph {
         if (in == null) throw new IllegalArgumentException("argument is null");
         try {
             // build vertices
-            this.V = in.readInt();
-            if (V < 0) throw new IllegalArgumentException("number of vertices in a Graph must be non negative");
-            adj = (LinkedList<Integer>[]) new LinkedList[V];
-            for (int v = 0; v < V; v++) {
-                adj[v] = new LinkedList<Integer>();
+            this.NUM_VERTEX = in.readInt();
+            if (NUM_VERTEX < 0) throw new IllegalArgumentException("number of vertices in a Graph must be non negative");
+            adj_list = (LinkedList<Integer>[]) new LinkedList[NUM_VERTEX];
+            for (int v = 0; v < NUM_VERTEX; v++) {
+                adj_list[v] = new LinkedList<Integer>();
             }
             // build edges
             int E = in.readInt();
@@ -97,11 +97,11 @@ public class _10_Graph {
             arr.add(numbers);
         }
         // Initialize the adjacent list according to the first number readed
-        this.V = arr.get(0)[0];
-        if (this.V <= 0) throw new IllegalArgumentException("nubmer of vertices shouldn't lesser than 0");
-        adj = (LinkedList<Integer>[]) new LinkedList[V];
-        for (int v = 0; v < V; v++) {
-            adj[v] = new LinkedList<Integer>();
+        this.NUM_VERTEX = arr.get(0)[0];
+        if (this.NUM_VERTEX <= 0) throw new IllegalArgumentException("nubmer of vertices shouldn't lesser than 0");
+        adj_list = (LinkedList<Integer>[]) new LinkedList[NUM_VERTEX];
+        for (int v = 0; v < NUM_VERTEX; v++) {
+            adj_list[v] = new LinkedList<Integer>();
         }
         // add edges according to the number before '/'
         for (int i = 1; i < arr.size(); i++) {
@@ -126,7 +126,7 @@ public class _10_Graph {
      * @return the number of vertex in this graph
      */
     public int V() {
-        return this.V;
+        return this.NUM_VERTEX;
     }
 
     /**
@@ -134,7 +134,7 @@ public class _10_Graph {
      * @return the number of edges in this graph
      */
     public int E() {
-        return this.E;
+        return this.num_edges;
     }
 
     /**
@@ -143,29 +143,29 @@ public class _10_Graph {
      * @return a list that contains all the neighbours of {@code v}
      */
     public Iterable<Integer> adj(int v) {
-        if (v > V) throw new IllegalArgumentException("param of adj() exceed the maximum limit");
-        return adj[v];
+        if (v > NUM_VERTEX) throw new IllegalArgumentException("param of adj() exceed the maximum limit");
+        return adj_list[v];
     }
 
     public void addEdge(int v, int w) {
         validateVertex(v);
         validateVertex(w);
-        adj[v].add(w);
-        if (v != w) adj[w].add(v);
-        E++;
+        adj_list[v].add(w);
+        if (v != w) adj_list[w].add(v);
+        num_edges++;
     }
 
     @Override
     public String toString() {
         String s = "";
-        for (int i = 0; i < V; i++) {
-            s = s + String.format("%d: %s\n", i, adj[i].toString());
+        for (int i = 0; i < NUM_VERTEX; i++) {
+            s = s + String.format("%d: %s\n", i, adj_list[i].toString());
         }
         return s;
     }
 
     protected void validateVertex(int v) {
-        if (v < 0 || v >= V) throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V - 1));
+        if (v < 0 || v >= NUM_VERTEX) throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (NUM_VERTEX - 1));
     }
 
     /************************************************************************

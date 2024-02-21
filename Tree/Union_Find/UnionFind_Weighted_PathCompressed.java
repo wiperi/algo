@@ -62,6 +62,13 @@ public class UnionFind_Weighted_PathCompressed {
         return find(x) == find(y);
     }
 
+    public boolean isUnioned() {
+        for (int i = 0; i < parent.length; i++) {
+            if (parent[i] != i) return false;
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         UnionFind_Weighted_PathCompressed uf = new UnionFind_Weighted_PathCompressed(10);
 
