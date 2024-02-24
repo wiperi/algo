@@ -17,17 +17,17 @@ public class Kruskal_MinSpanningTree extends WeightedGraph {
 
         uf = new UnionFind_Weighted_PathCompressed(NUM_VERTEX);
         
-        List<Edge> mst = new ArrayList<>();
+        List<Edge> minSpanningTree = new ArrayList<>();
         for (Edge e : edges) {
-            int v = e.v;
-            int w = e.w;
+            int v = e.origin;
+            int w = e.target;
             if (!uf.isConnected(v, w)) {
                 uf.union(v, w);
-                mst.add(e);
+                minSpanningTree.add(e);
             }
         }
 
-        return mst;
+        return minSpanningTree;
     }
 
 }

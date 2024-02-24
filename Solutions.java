@@ -66,7 +66,7 @@ public class Solutions {
         }
     }
 
-    class Solution {
+    class SolutionDailyTemperatures {
 
         public int[] dailyTemperatures(int[] temperatures) {
 
@@ -87,6 +87,7 @@ public class Solutions {
             return ret;
         }
     }
+
 
     public static void main(String[] args) {
         MedianFinder mf = new Solutions().new MedianFinder();
