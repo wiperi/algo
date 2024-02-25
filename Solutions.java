@@ -88,14 +88,191 @@ public class Solutions {
         }
     }
 
+    class Solution_NetworkDelayTime {
+
+        public int networkDelayTime(int[][] times, int n, int k) {
+            // build a map
+            List<List<int[]>> graph = new ArrayList<>();
+            for (int i = 0; i < n; i++) {
+                graph.add(new LinkedList<int[]>());
+            }
+
+            for (int i = 0; i < times.length; i++) {
+                int from = times[i][0] - 1;
+                int to = times[i][1] - 1;
+                int weight = times[i][2];
+
+                graph.get(from).add(new int[] { to, weight });
+            }
+
+            // find the shortest path
+            int[] distTo = new int[n];
+            Arrays.fill(distTo, Integer.MAX_VALUE);
+            distTo[k - 1] = 0;
+
+            PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[1] - b[1]);
+            pq.add(new int[] { k - 1, 0 });
+
+            while (!pq.isEmpty()) {
+                int[] cur = pq.poll();
+                int cur_vertex = cur[0];
+                int disToCur = cur[1];
+
+                for (int[] edge : graph.get(cur[0])) {
+                    int next_vertex = edge[0];
+                    int weight = edge[1];
+
+                    int disToNext = distTo[cur_vertex] + weight;
+                    if (disToNext < distTo[next_vertex]) {
+                        distTo[next_vertex] = disToNext;
+                        pq.offer(new int[] { next_vertex, disToNext });
+                    }
+                }
+            }
+
+            int maxIndex = 0;
+            for (int i = 0; i < distTo.length; i++) {
+                if (distTo[i] > distTo[maxIndex]) {
+                    maxIndex = i;
+                }
+            }
+
+            if (distTo[maxIndex] == Integer.MAX_VALUE) {
+                return -1;
+            } else {
+                return distTo[maxIndex];
+            }
+        }
+    }
+
+    /**
+     * 
+     * @param edges
+     * @param n     number of nodes
+     * @return a weighted di-graph
+     */
+    @SuppressWarnings("unchecked")
+    List<int[]>[] buildGraph(int[][] edges, int n) {
+        List<int[]>[] graph = new List[n];
+        for (int i = 0; i < n; i++) {
+            graph[i] = new LinkedList<>();
+        }
+
+        for (int i = 0; i < edges.length; i++) {
+            int from = edges[i][0];
+            int to = edges[i][1];
+            int weight = edges[i][2];
+
+            graph[from].add(new int[] { to, weight });
+        }
+
+        return graph;
+    }
+
+    class Solution_MinimumEffortPath {
+
+        class Node {
+            int x;
+            int y;
+            int effortFromStart;
+
+            public Node(int x, int y, int effortFromStart) {
+                this.x = x;
+                this.y = y;
+
+                // it means the the steepest slope that need to be tacked to get here. not the
+                // total height difference traveled.
+                this.effortFromStart = effortFromStart;
+            }
+        }
+
+        public int minimumEffortPath(int[][] heights) {
+            int[][] directions = new int[][] { { 1, 0 }, { 0, 1 }, { -1, 0 }, { 0, -1 } };
+            int numRow = heights.length;
+            int numCol = heights[0].length;
+
+            int[][] effortTo = new int[numRow][numCol];
+            for (int i = 0; i < numRow; i++) {
+                for (int j = 0; j < numCol; j++) {
+                    effortTo[i][j] = Integer.MAX_VALUE;
+                }
+            }
+            effortTo[0][0] = 0;
+
+            PriorityQueue<Node> pq = new PriorityQueue<>((a, b) -> a.effortFromStart - b.effortFromStart);
+            pq.add(new Node(0, 0, 0));
+
+            while (!pq.isEmpty()) {
+                Node cur = pq.poll();
+
+                if (cur.x == numRow - 1 && cur.y == numCol - 1) {
+                    return effortTo[cur.x][cur.y];
+                }
+
+                if (cur.effortFromStart > effortTo[cur.x][cur.y]) {
+                    continue;
+                }
+
+                for (int dir = 0; dir < 4; dir++) {
+                    int nextX = cur.x + directions[dir][0];
+                    int nextY = cur.y + directions[dir][1];
+
+                    if (nextX < 0 || nextX >= numRow || nextY < 0 || nextY >= numCol) {
+                        continue;
+                    }
+
+                    int effortForNextNode = Math.max(Math.abs(heights[nextX][nextY] - heights[cur.x][cur.y]),
+                            cur.effortFromStart);
+
+                    if (effortForNextNode < effortTo[nextX][nextY]) {
+                        effortTo[nextX][nextY] = effortForNextNode;
+                        pq.add(new Node(nextX, nextY, effortForNextNode));
+                    }
+                }
+            }
+
+            return -1;
+        }
+    }
+
+
+
+
+
+
+    class Solution {
+        public double maxProbability(int n, int[][] edges, double[] succProb, int start_node, int end_node) {
+            
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public static void main(String[] args) {
-        MedianFinder mf = new Solutions().new MedianFinder();
-        mf.addNum(1);
-        mf.addNum(2);
-        System.out.println(mf.findMedian());
-        mf.addNum(3);
-        System.out.println(mf.findMedian());
+        Solution s = new Solutions().new Solution();
+
+        int res = s.minimumEffortPath(new int[][] { { 1, 2, 2 }, { 3, 8, 2 }, { 5, 3, 5 } });
+        System.out.println(res);
     }
 
 }
