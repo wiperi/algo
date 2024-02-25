@@ -33,6 +33,14 @@ public class Dijkistra_ShortestPath {
         }
     }
 
+    /**
+     * Standard version of Dijkistra's algorithm. It finds the minimum weight sum to
+     * every vertex from source.
+     * 
+     * @param g
+     * @param source
+     * @return
+     */
     public static int[] dijkistra(WeightedGraph g, int source) {
 
         // shortest distance from source to each vertex
@@ -67,6 +75,14 @@ public class Dijkistra_ShortestPath {
         return distTo;
     }
 
+    /**
+     * This version finds the shortest path from source to a single destination.
+     * 
+     * @param g
+     * @param source
+     * @param target
+     * @return
+     */
     public static int dijkistraSingleDestination(WeightedGraph g, int source, int target) {
 
         int[] distTo = new int[g.numOfVertex()];
@@ -105,10 +121,13 @@ public class Dijkistra_ShortestPath {
     }
 
     /**
+     * This version records the shortest path from source to every node in the
+     * graph.
      * 
-     * @param g the graph
+     * @param g      the graph
      * @param source
-     * @return an array that record the shortest path from source to every node in the graph.
+     * @return an array that record the shortest path from source to every node in
+     *         the graph.
      */
     public static int[] dijkistraPath(WeightedGraph g, int source) {
 

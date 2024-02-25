@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Assertions;
 
 import Graph.Graph._10_Graph;
 import Tree.Binary_Tree.Node;
+import edu.princeton.cs.algs4.Edge;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.IndexMultiwayMinPQ;
 
@@ -145,30 +146,6 @@ public class Solutions {
         }
     }
 
-    /**
-     * 
-     * @param edges
-     * @param n     number of nodes
-     * @return a weighted di-graph
-     */
-    @SuppressWarnings("unchecked")
-    List<int[]>[] buildGraph(int[][] edges, int n) {
-        List<int[]>[] graph = new List[n];
-        for (int i = 0; i < n; i++) {
-            graph[i] = new LinkedList<>();
-        }
-
-        for (int i = 0; i < edges.length; i++) {
-            int from = edges[i][0];
-            int to = edges[i][1];
-            int weight = edges[i][2];
-
-            graph[from].add(new int[] { to, weight });
-        }
-
-        return graph;
-    }
-
     class Solution_MinimumEffortPath {
 
         class Node {
@@ -235,43 +212,67 @@ public class Solutions {
         }
     }
 
-
-
-
-
-
     class Solution {
+
+        class Node {
+            int vertex;
+
+            // success probability from start to this node
+            double succProb;
+
+            public Node(int vertex, double succProb) {
+                this.vertex = vertex;
+                this.succProb = succProb;
+            }
+        }
+
         public double maxProbability(int n, int[][] edges, double[] succProb, int start_node, int end_node) {
-            
+            // build a graph
+            List<List<Node>> graph = new ArrayList<>();
+            for (int i = 0; i < n; i++) {
+                graph.add(new LinkedList<Node>());
+            }
+            for (int i = 0; i < edges.length; i++) {
+                int from = edges[i][0]; 
+                int to = edges[i][1];
+                double prob = succProb[i];
+
+                graph.get(from).add(new Node(to, prob));
+                graph.get(to).add(new Node(from, prob));
+            }
+
+            double[] probTo = new double[n];
+
+            Arrays.fill(probTo, 0);
+            probTo[start_node] = 1;
+
+            Queue<Node> pq = new PriorityQueue<>((a, b) -> Double.compare(b.succProb, a.succProb));
+            pq.add(new Node(start_node, 1));
+
+            while (!pq.isEmpty()) {
+                Node cur = pq.poll();
+
+                if (cur.succProb < probTo[cur.vertex]) continue;
+
+                for (Node edge : graph.get(cur.vertex)) {
+
+                    double probOfNext = probTo[cur.vertex] * edge.succProb;
+
+                    if (probOfNext > probTo[edge.vertex]) {
+                        probTo[edge.vertex] = probOfNext;
+                        pq.add(new Node(edge.vertex, probOfNext));
+                    }
+                }
+            }
+            return probTo[end_node];
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public static void main(String[] args) {
         Solution s = new Solutions().new Solution();
 
-        int res = s.minimumEffortPath(new int[][] { { 1, 2, 2 }, { 3, 8, 2 }, { 5, 3, 5 } });
+        double res = s.maxProbability(3, new int[][] { { 0, 1 }, { 1, 2 }, { 0, 2 } }, new double[] { 0.5, 0.5, 0.2 },
+                0, 2);
         System.out.println(res);
     }
 
