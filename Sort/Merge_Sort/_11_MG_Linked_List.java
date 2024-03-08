@@ -1,6 +1,6 @@
 package Sort.Merge_Sort;
 
-public class _11_Merge_Sort_Linked_List {
+public class _11_MG_Linked_List {
 
     private static class Node<T> {
         T item;

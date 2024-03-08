@@ -3,11 +3,13 @@ package Sort.Merge_Sort;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class _12_MergeSortCuiVerTest {
+import Sort.Merge_Sort._12_MG_CuiVer.Tuple;
+
+public class _12_MG_CuiVerTest {
 
     @Test
     public void testSortArray() {
-        _12_MergeSortCuiVer sorter = new _12_MergeSortCuiVer();
+        _12_MG_CuiVer sorter = new _12_MG_CuiVer();
 
         int[] nums = { 5, 2, 8, 3, 1 };
         int[] sorted = sorter.sortArray(nums);
@@ -22,26 +24,26 @@ public class _12_MergeSortCuiVerTest {
 
     @Test
     public void testSplit() {
-        _12_MergeSortCuiVer sorter = new _12_MergeSortCuiVer();
+        _12_MG_CuiVer sorter = new _12_MG_CuiVer();
 
         int[] arr = { 1, 2, 3, 4, 5, 6 };
-        int[][] subArrays = sorter.split(arr);
+        Tuple t = sorter.split(arr);
 
-        Assertions.assertArrayEquals(new int[] { 1, 2, 3 }, subArrays[0]);
-        Assertions.assertArrayEquals(new int[] { 4, 5, 6 }, subArrays[1]);
+        Assertions.assertArrayEquals(new int[] { 1, 2, 3 }, t.left);
+        Assertions.assertArrayEquals(new int[] { 4, 5, 6 }, t.right);
 
         int[] arr2 = { 1 };
-        int[][] subArrays2 = sorter.split(arr2);
+        Tuple t2 = sorter.split(arr2);
 
-        Assertions.assertArrayEquals(new int[] { 1 }, subArrays2[0]);
-        Assertions.assertArrayEquals(new int[] {}, subArrays2[1]);
+        Assertions.assertArrayEquals(new int[] { 1 }, t2.left);
+        Assertions.assertArrayEquals(new int[] {}, t2.right);
 
         // Add more test cases as needed
     }
 
     @Test
     public void testMerge() {
-        _12_MergeSortCuiVer sorter = new _12_MergeSortCuiVer();
+        _12_MG_CuiVer sorter = new _12_MG_CuiVer();
 
         int[] left = { 1, 3, 5 };
         int[] right = { 2, 4, 6 };
