@@ -11,6 +11,9 @@ import Graph.WeightedGraph.WeightedGraph.Edge;
  * the shortest path from a source vertex to all other vertices in a weighted
  * graph.
  * 
+ * <h3> Video Link:</h3>
+ * https://www.youtube.com/watch?v=tzjWMX9vfp0
+ * 
  * 
  * <h3>Limitation:</h3>
  * 
