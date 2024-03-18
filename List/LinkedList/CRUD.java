@@ -2,7 +2,7 @@ package List.LinkedList;
 
 import org.junit.jupiter.api.Assertions;
 
-public class CRUD_On_LinkedList {
+public class CRUD {
 
     static ListNode delete(ListNode head, int val) {
         if (head == null) {

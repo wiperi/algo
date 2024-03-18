@@ -212,7 +212,7 @@ public class Solutions {
         }
     }
 
-    class Solution {
+    class Solution_MaxProb {
 
         class Node {
             int vertex;
@@ -233,7 +233,7 @@ public class Solutions {
                 graph.add(new LinkedList<Node>());
             }
             for (int i = 0; i < edges.length; i++) {
-                int from = edges[i][0]; 
+                int from = edges[i][0];
                 int to = edges[i][1];
                 double prob = succProb[i];
 
@@ -268,12 +268,108 @@ public class Solutions {
         }
     }
 
+    class Solution_fiwejf {
+
+        int nrow = 0;
+        int ncol = 0;
+
+        boolean visited[][];
+
+        public void setZeroesColRow(int[][] matrix, int row, int col) {
+            for (int r = 0; r < nrow; r++) {
+                matrix[r][col] = 0;
+                visited[r][col] = true;
+            }
+            for (int c = 0; c < ncol; c++) {
+                matrix[row][c] = 0;
+                visited[row][c] = true;
+            }
+        }
+
+        class Tuple {
+            int row;
+            int col;
+
+            public Tuple(int row, int col) {
+                this.row = row;
+                this.col = col;
+            }
+        }
+
+        public void setZeroes(int[][] matrix) {
+            nrow = matrix.length;
+            ncol = matrix[0].length;
+            visited = new boolean[nrow][ncol];
+            for (int r = 0; r < nrow; r++) {
+                for (int c = 0; c < ncol; c++) {
+                    visited[r][c] = false;
+                }
+            }
+
+            List<Tuple> target = new ArrayList<>();
+            for (int r = 0; r < nrow; r++) {
+                for (int c = 0; c < ncol; c++) {
+                    if (matrix[r][c] == 0) {
+                        target.add(new Tuple(r, c));
+                    }
+                }
+            }
+
+            for (Tuple t : target) {
+                if (!visited[t.row][t.col]) {
+                    setZeroesColRow(matrix, t.row, t.col);
+                }
+            }
+        }
+
+        void showMatrix(int[][] matrix) {
+            for (int r = 0; r < nrow; r++) {
+                for (int c = 0; c < ncol; c++) {
+                    System.out.print(matrix[r][c] + " ");
+                }
+                System.out.println();
+            }
+            System.out.println();
+        }
+    }
+
+    class Solution {
+
+        public void setZeroes(int[][] matrix) {
+            int nrow = matrix.length;
+            int ncol = matrix[0].length;
+
+            boolean target_row[] = new boolean[nrow];
+            boolean target_col[] = new boolean[ncol];
+
+            // mark the target rows and cols
+            for (int r = 0; r < nrow; r++) {
+                for (int c = 0; c < ncol; c++) {
+                    if (matrix[r][c] == 0) {
+                        target_row[r] = true;
+                        target_col[c] = true;
+                    }
+                }
+            }
+
+            // set zero
+            for (int r = 0; r < nrow; r++) {
+                for (int c = 0; c < ncol; c++) {
+                    if (target_row[r] || target_col[c]) {
+                        matrix[r][c] = 0;
+                    }
+                }
+            }
+        }
+    }
+
     public static void main(String[] args) {
         Solution s = new Solutions().new Solution();
 
-        double res = s.maxProbability(3, new int[][] { { 0, 1 }, { 1, 2 }, { 0, 2 } }, new double[] { 0.5, 0.5, 0.2 },
-                0, 2);
-        System.out.println(res);
+        int matrix[][] = new int[][] { { 1, 1, 1 }, { 1, 0, 1 }, { 1, 1, 1 } };
+        s.setZeroes(matrix);
+        System.out.println(Arrays.deepToString(matrix));
+
     }
 
 }
