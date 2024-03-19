@@ -2,7 +2,7 @@ package List.LinkedList;
 
 import org.junit.jupiter.api.Assertions;
 
-public class Reverse {
+public class Reverse_List {
 
     public static ListNode reverse(ListNode head) {
         if (head == null || head.next == null) {
