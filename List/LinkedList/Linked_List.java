@@ -77,7 +77,7 @@ public class Linked_List {
     @Override
     public String toString() {
         ListNode cur = head;
-        String s = "-> ";
+        String s = "";
         while (cur != null) {
             s += cur.val + " -> ";
             cur = cur.next;

@@ -20,6 +20,8 @@ import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
 import Graph.Graph._10_Graph;
+import List.LinkedList.Linked_List;
+import List.LinkedList.ListNode;
 import Tree.Binary_Tree.Node;
 import edu.princeton.cs.algs4.Edge;
 import edu.princeton.cs.algs4.In;
@@ -363,13 +365,153 @@ public class Solutions {
         }
     }
 
+    class Solution138 {
+
+        class Node {
+            int val;
+            Node next;
+            Node random;
+
+            public Node(int val) {
+                this.val = val;
+                this.next = null;
+                this.random = null;
+            }
+        }
+
+        public Node copyRandomList(Node head) {
+            // copy list and build a hash table
+            HashMap<Node, Node> map = new HashMap<>(0);
+
+            Node dummy = new Node(Integer.MIN_VALUE);
+            Node cur = dummy;
+            for (Node p = head; p != null; p = p.next) {
+                cur.next = new Node(p.val);
+                map.put(p, cur.next);
+                cur = cur.next;
+            }
+
+            cur = dummy.next;
+            for (Node p = head; p != null; p = p.next) {
+                if (p.random == null) {
+                    cur.random = null;
+                } else {
+                    cur.random = map.get(p.random);
+                }
+                cur = cur.next;
+            }
+
+            return dummy.next;
+        }
+
+    }
+
+    class Solution25 {
+
+        ListNode next_begin;
+        int stop_right_now = 0;
+        int global_k;
+
+        public ListNode reverseKGroup(ListNode head, int k) {
+
+            global_k = k;
+
+            ListNode new_head = reverse(head, k);
+
+            return new_head;
+        }
+
+        public ListNode reverse(ListNode head, int k) {
+
+            // base case 1: flip the group of k nodes
+            if (k == 1) {
+                next_begin = head.next == null ? null : head.next;
+                return head;
+            }
+
+            // base case 2: couldn't find group of k to flip, stop immediately
+            if (head == null || head.next == null) {
+                stop_right_now = 1;
+                next_begin = null;
+                return head;
+            }
+
+            ListNode new_head = reverse(head.next, k - 1);
+
+            if (stop_right_now == 1) {
+                // return the old head
+                return head;
+            }
+
+            // post order
+            head.next.next = head;
+
+            if (k == global_k) {
+                head.next = reverse(next_begin, global_k);
+            }
+
+            return new_head;
+        }
+
+        public static void main(String[] args) {
+            Solution25 s = new Solutions().new Solution25();
+
+            Linked_List l = new Linked_List("1 2 3 4 5 6 7 8");
+            l.head = s.reverseKGroup(l.head, 3);
+
+            l.showAllNodes();
+            System.out.println(l);
+        }
+    }
+
+    class DelDup {
+        static ListNode del_neg(ListNode head) {
+            ListNode cur, prev;
+            cur = head;
+            prev = null;
+
+            if (head == null) {
+                return head;
+            }
+
+            if (head.next == null) {
+                if (head.val < 0) {
+                    return null;
+                }
+            }
+
+            // at least two
+            while (cur != null) {
+                // cur from head to tail. not include null
+                if (cur.val < 0) {
+                    if (prev == null) {
+                        // deleting first node
+                        head = cur.next;
+                        cur = cur.next;
+                        continue;
+                    } else {
+                        prev.next = cur.next;
+                        cur = cur.next;
+                        continue;
+                    }
+                }
+
+                prev = cur;
+                cur = cur.next;
+            }
+
+            return head;
+        }
+
+        public static void main(String[] args) {
+            Linked_List l = new Linked_List("-1 0 -1");
+            l.head = del_neg(l.head);
+            System.out.println(l);
+        }
+    }
+
     public static void main(String[] args) {
-        Solution s = new Solutions().new Solution();
-
-        int matrix[][] = new int[][] { { 1, 1, 1 }, { 1, 0, 1 }, { 1, 1, 1 } };
-        s.setZeroes(matrix);
-        System.out.println(Arrays.deepToString(matrix));
-
+        DelDup.main(args);
     }
 
 }
